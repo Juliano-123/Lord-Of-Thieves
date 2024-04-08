@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    //prueba git commit
     public GameObject spawnObjetoBox;
     public GameObject spawnObjetoGema;
 
