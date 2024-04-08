@@ -1,0 +1,5354 @@
+fileFormatVersion: 2
+guid: 156de68be174b8e43b6618f086b5c667
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 240
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aed5edb3a609e04c80800d5ac82026e
+      internalID: -684738965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eee81bddf37f1e4c8e7d68552cea53d
+      internalID: -1573134913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 240
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb1d5c9ec5fb154b9cf774f0cfe825b
+      internalID: -1276899336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1fb983b300d7a48b556247a53cacd4
+      internalID: -1059206733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_4
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 240
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa644f4d83e9d844c81f6c870aa565da
+      internalID: -1148946586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_5
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 240
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a631d2783c7cbe4999c3f590638eecc
+      internalID: -1835187344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_6
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066aff5671d68eb45b639160be203284
+      internalID: 2126161997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_7
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842457c89c80b604c9c6f1ea713c85ca
+      internalID: -1002439766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_8
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 240
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c5427f0b43d1e4c88be7b5f691b931
+      internalID: 840111097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_9
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3156354596c560d448e9af4d33ae2bd0
+      internalID: 571878185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_10
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 240
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b44168348b91e84db7afdfc3fc55e0b
+      internalID: -1970292267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_11
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e49f4decb0d236345ae2821d0abbbe10
+      internalID: 2085511020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_12
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 240
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65a13503b598f54eb47637c7e8cb9d0
+      internalID: -2127810319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_13
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078d3f22eda892144a3fdda9b1cf6c31
+      internalID: 2074496913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_14
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 240
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5faeccd2b6ea8d41a6596d7522c776a
+      internalID: -536957069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_15
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 240
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba121ba1d670fa943b834532a478e9ae
+      internalID: 2126647071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_16
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 240
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404ab5934655d784083e98012d2f7748
+      internalID: 1854044546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_17
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33214c32fc6c4d5419d2aa940d417f63
+      internalID: -1167619579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_18
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ba6a8719ca06846924180e456c1b17
+      internalID: -1331212973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_19
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 240
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7888d29f3bf88f47b45ec25175121ec
+      internalID: -337649391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_20
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 240
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382f3175dbfff044b8d9ad7473c6737d
+      internalID: 1675861810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_21
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 223
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b0cd903830e8947bff489da0a70e0d
+      internalID: -876662407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_22
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb6fc80c8a4c534485fd89840727d54
+      internalID: -1259150737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_23
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65815e82ee789004fbae98a2c2d8b431
+      internalID: 1008258991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a835aca91b1bfd49b7e434b0913024c
+      internalID: -1085129737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 223
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fc62a5e5b6c1943b6ce9fe2f015c58
+      internalID: 766116795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_26
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b81585bc9f74b4f86c402537675750
+      internalID: 450432255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_27
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7158ef03e7a9349b040c576f3eecc9
+      internalID: 1970588804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_28
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 223
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd25b6ad92e021e489bb6ec9433393aa
+      internalID: 127426326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_29
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 224
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a050827ca5d4240a5d057ce899cf02
+      internalID: 284676893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_30
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 223
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa5b4e6e7c8f994594818d351b1617b
+      internalID: -148997754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_31
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 112e70f17f0de8b43887626c1c9b867b
+      internalID: 1007903724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_32
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 223
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a9b04dc136ba6408798be34ecca30e
+      internalID: -1831190115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_33
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03f4e238158ef545a818f5474d061d9
+      internalID: 151218448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_34
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8234480e25f922743bc194b56a75bcb1
+      internalID: -882149493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_35
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 221
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e04cde029f0e84448398f2754672630
+      internalID: -1580550450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_36
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979c3f99f37105849aae9b021c2619cf
+      internalID: -440678530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_37
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec026a4078dcfcc46802ec0f3083394f
+      internalID: 2103998076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_38
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b917d7eec4af244b94afc9cd24729a6
+      internalID: 1941438857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_39
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fbd23bd25da0247afa4d8ffba4e5b8
+      internalID: 29861578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_40
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 223
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53218524bdb1ed04483485b4c8dfe674
+      internalID: 2039738786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_41
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 224
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce896a5aba864442958210d166e358a
+      internalID: 2092492010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_42
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 223
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c783ec59000e8c46b3806a4008d4b7f
+      internalID: 1491442476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_43
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b506d7ff2b8a8c84f8380f796b393da7
+      internalID: 586513080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_44
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424a4886d066c984891866f7f5d2b6e4
+      internalID: -1866233434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_45
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae912d642994274d908c2677fe1eb04
+      internalID: 87518364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_46
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 223
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c705d42cfed966e4eb144567598150a1
+      internalID: -654141648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_47
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb5967973f18604c91467693c9a51a4
+      internalID: -1315214099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_48
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8a438d6ee3e454887518b79f083d0f
+      internalID: -1244764997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_49
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 223
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889ae68575d0a824484602d46e54c9e3
+      internalID: -3017683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_50
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 224
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca4e0a397ddffb4a8968b5b76a909ac
+      internalID: 130714858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_51
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 223
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2d6f5259be0fd429f5a023fcb4653c
+      internalID: 252512717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_52
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d5d3760e73b1d24f86c8c0fb8adc1bb
+      internalID: -458404412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_53
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 223
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1493c544b29ecc47a9be2c8bb83d225
+      internalID: -1060085272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_54
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47802d9b2f3bb444eba60e2e63658bd3
+      internalID: -2094862826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_55
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c682968ee328042aa804519e5c8128
+      internalID: -1538300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_56
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 221
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d5a3c163ced68347916a979b7cba5ee
+      internalID: 1357658401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_57
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 641a63b8fd1598e45b51e7fb05788558
+      internalID: -1164367528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_58
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66906ab34028f6b43bb5eb11fe458b90
+      internalID: -1431489230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_59
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eacb135ae970384eb8d2163b9756a66
+      internalID: -1828051537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_60
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 223
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baf94763d4e059e458108a9c24c74c22
+      internalID: -1443252047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_61
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 223
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6ce6832d82633498f95958f9be6c2b
+      internalID: 1205336307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_62
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 224
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f80cd12ffe643349aa750317453d962
+      internalID: -1101975067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_63
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 210
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e391ae3af70ae364682f27f8d4df0dfe
+      internalID: -1197945494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_64
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d3ec306e5b545449a6bb2c022883c6c
+      internalID: 240237771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_65
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 210
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aacab5e0dc6ffd24aa4368738c735eee
+      internalID: 1695424189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_66
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2cef18002c582248bc8472e79333d93
+      internalID: 1589337625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_67
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 813f7f097864e774ebd1add6ffcd96d6
+      internalID: 278653270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_68
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 210
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1478cb816c79dd94a9f91e72b1050ab5
+      internalID: 528737546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_69
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8499430cef49f42a7819c92d459778
+      internalID: -780127002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_70
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 210
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fffe52bba6a888242b6968de569c10d2
+      internalID: 32144878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_71
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e727ec35e7cbe374aab138974be4afe3
+      internalID: 1178143198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_72
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd2575018e43a2b4087c021a394880bf
+      internalID: 634369948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_73
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 210
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2bbef0cbbdf75f4d9f919ddab730822
+      internalID: -761777253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_74
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66320765480d773449f0e1b04cf008ca
+      internalID: 1294700922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_75
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da13bb8504ade34ca955636a095d5d3
+      internalID: -735746787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_76
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 210
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75a5ec6bb65c0ba448508e3da80cd9f9
+      internalID: -1464862530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_77
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 210
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472fdd2fcf1ddd346b96c03a19bef643
+      internalID: -1439322201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_78
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 210
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e737040feb851b4680264294b3af671
+      internalID: -230296880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_79
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a702525dd71c5204ebfffa88f9860f41
+      internalID: 1550895878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_80
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 210
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d03339899bdb64c8d8439b73c4d593
+      internalID: -243439601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_81
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3115127fab9dcf4a8e88223a70f196b
+      internalID: 1783923219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_82
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc56cf55d3184fa45869e330aca1cd90
+      internalID: 420728521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_83
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 210
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76088681b41484648b4caec638422311
+      internalID: 969710699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_84
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b92eab2a71c8049839f3cfe8083770
+      internalID: 558155182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_85
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 210
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa43223056b8d1a43810a73c21628b39
+      internalID: 2060734506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_86
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69ffc310440432348ac2486586df698d
+      internalID: 43181082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_87
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59a6b030c08c4d4cacf82ab18aa8c3e
+      internalID: -644643311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_88
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 210
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99257e9c3347dfa4b9f181fbe70040c5
+      internalID: -1482598689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_89
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c9b77db38f07c4195346093349139f
+      internalID: 1524871492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_90
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 210
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37bfc8b66c70e244084ab78c69d96e92
+      internalID: -1299128401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_91
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 210
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8dd7d1a3b559c34abdfb9266dfa9797
+      internalID: -1155361709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_92
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 210
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0da8423dbc7e0844bc0cfa22ba8726f
+      internalID: 1868246680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_93
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 192
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad9849b171523a47831b84b9f65afa4
+      internalID: -1146678589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_94
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 192
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3caebea975526fd48b94d60eae3e164d
+      internalID: 858596290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_95
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 195
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef4cbbcf1b6d5540b1433a6f0db2b5f
+      internalID: -105138456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_96
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 189
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c29d77374fedc9e438fe92535f742b95
+      internalID: -158926630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_97
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 198
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315093d8b48176a4791df4c5e452c387
+      internalID: -696891631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_98
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 195
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692494a64a46beb4683814dfbbd308c7
+      internalID: 118200927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_99
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 189
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9895e3dd82be31944a516fa7d003b897
+      internalID: -1835792780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_100
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 198
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f7754e35ca4b740b3ee069c38f47b8
+      internalID: -598579515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_101
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 182
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb0b57493e23a448803532debf96657
+      internalID: 867033627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_102
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 183
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37779af838c4faa48b1882acb56e335e
+      internalID: -754707945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_103
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 182
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bfb29bd10f5e24fb60cd53127ffdfa
+      internalID: 73482936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_104
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 183
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ac3796402b08c409ea1b9979085cd0
+      internalID: -1717099834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_105
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 182
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edc60a679be4f6f419b89d16e844d1b4
+      internalID: -1999996684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_106
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 188
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec840171e589c645948f4721b83e834
+      internalID: 597734664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_107
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 185
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ab63550c23c5f4db3f593a82bf3843
+      internalID: -2132809128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_108
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 182
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8230c6e42f8ca1144a148da412a9824e
+      internalID: 743035199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_109
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 188
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda95455f4321484e8c0da3cbfa3f1ed
+      internalID: 214048893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_110
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 185
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 943bb1bb16161c54eb5f6061c8f8a111
+      internalID: 366162494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_111
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 183
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32433d9cf6adfd84d91b992382a99ce0
+      internalID: 1828859961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_112
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 181
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f7192550972ee45a8c47d4292ac33c
+      internalID: 657287539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_113
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 176
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2693abd2f1729f84a84ab55a7f0452d8
+      internalID: 1130903512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_114
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 183
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86610f4317910c14aafc301a419fcaf2
+      internalID: -100937961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_115
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 181
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0837d3cd25f1f4549b923423feca0d0e
+      internalID: -256919656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_116
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 176
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70efba6b33af16240ae6eae83402f57b
+      internalID: -1089479669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_117
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 171
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2573cf877b97c4489409d514f86c776
+      internalID: -637159999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_118
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 175
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e54f56c857205245b9bef3598b7994d
+      internalID: 593337957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_119
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 171
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19751407d6b215341ae7ad684f06e074
+      internalID: 1723814761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_120
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 175
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2f5af5f50f6de4eb30d36a0183e4ca
+      internalID: 803353639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_121
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 172
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae3ae3f1333ab14daba0e5b3e56cdcc
+      internalID: 246381011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_122
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 174
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c531e05f07bb640b8c808c3fbc4b48
+      internalID: -1350984800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_123
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 175
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfc220163b1d504d935fa3897af1010
+      internalID: 581715326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_124
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 172
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6587577bfc216b44fa9924eab1e20cd8
+      internalID: 841714897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_125
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 174
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f78b4c8c01bbdd488f61c11701d798e
+      internalID: 1878584007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_126
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 175
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33ac187e0b1561489575d84a315acab
+      internalID: 424985450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_127
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 165
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afed9c1464086cd4995469db6e017ea1
+      internalID: -152077633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_128
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 162
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eed5af937adab0c4bb75f64034b3fe69
+      internalID: 211983949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_129
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 165
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30cf676c22d315645804abf1188fa13d
+      internalID: 1375281781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_130
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 162
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b254fa2fa2030274ea138ace3991aac4
+      internalID: 958885680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_131
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 166
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3718f8e31d2b7cb4d9ea6143b0f6a2a7
+      internalID: -1155944004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_132
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 165
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c926a1ec571cc4b944dc90c3839b8a
+      internalID: 559490918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_133
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 166
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9feb013b3aabf5d45871934f45b384a0
+      internalID: -456462053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_134
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 158
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df076c4d64d2f154ea466893b9c1a444
+      internalID: 644291202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_135
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 166
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b42fae6af16f546b02d4cdce377584
+      internalID: 11891634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_136
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 165
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667ad9b18a3e7054c9d15639f3072daa
+      internalID: 833723157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_137
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 166
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0865082d4739c749b22726bf3e4d8b5
+      internalID: -1095571400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_138
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 158
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b656a83c211cd354db0b7c84a114ada8
+      internalID: 1837848974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_139
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 156
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3c9d48dce584644b99b6d0d45e41bf
+      internalID: 1348353959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_140
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097152098f41dd14fb59a0341b17ffe4
+      internalID: -1460299270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_141
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 154
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353cc91a178423e4abb74e8704363061
+      internalID: 1195361124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_142
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 156
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4af333ac50192a468a20e1e9594e769
+      internalID: 284220818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_143
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22919ed9dbb91504aba8b247fad7b093
+      internalID: 498250178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_144
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 154
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e995cc9ff1a7b46ab39420c9c27853
+      internalID: 109139414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_145
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 156
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3e61bad2ea4c24c8cba090f7d95f0a
+      internalID: 731622464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_146
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 344b62294a168bd4481ca973fb7de01a
+      internalID: -933800392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_147
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 154
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c522e9a9d97c744b35f832ec3c6ff1
+      internalID: -511662617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_148
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859781f0437476c4cb9c57a35fe11831
+      internalID: 415499285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_149
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 154
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac13a79292ec2c542a0ebc82893e89f6
+      internalID: -865283087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_150
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 156
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892c0cd01dfd5d2418fe0209b69e1fa5
+      internalID: 1597737007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_151
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7643e2f89efcc44082e9df798c5454c
+      internalID: -1513682777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_152
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 154
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 872a4552078133642a66e94a7a2e9a42
+      internalID: -308065467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_153
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 155
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75523761f8cf804daf3a1f1d88a0f9f
+      internalID: -1124267412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_154
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 154
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a13268ec39818e47a291ef3d6ecc177
+      internalID: 1499849528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_155
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 147
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087e00e1015fd6b419e99402d6f3f5b7
+      internalID: -1893410016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_156
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a7153567e36e44b8d1c0caca7be46c
+      internalID: 1905675692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_157
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 146
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00338bcbb8ab45b4e9639a72174be105
+      internalID: 1804962860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_158
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 147
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766783bf294a547438eec199eba15294
+      internalID: -1704591712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_159
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db56d8778dc94354687a6bcc14f006eb
+      internalID: 1105822606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_160
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 146
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce80d3be262c333468b5bafc00f8a092
+      internalID: -1987671424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_161
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 147
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702eb54ed47bd4e49ba782126dde511e
+      internalID: -991129427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_162
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64da3162ff8d2b46921f7a61cdbc9a6
+      internalID: -837405996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_163
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 147
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ed959fff3467784391cf3440cd60f3a
+      internalID: 2114711040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_164
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126230632182ee34787f027961cb7729
+      internalID: 747389362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_165
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 146
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1514c2f012553eb4db34390de081809a
+      internalID: -1494899469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_166
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 147
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4652987ba59a7438fffd1ff871bf29
+      internalID: 598273141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_167
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31f253964ea4264ba7df55aeace7d4b
+      internalID: -1136753797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_168
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 147
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f865c72097341174385e143623efe32f
+      internalID: -1679699825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_169
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 147
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461134d333223ef46ab834300a9f452e
+      internalID: -559862247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_170
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 146
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e042a42413a5bb47a771cc6d4503a45
+      internalID: -773692874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_171
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 132
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74d4c9e1c47a6b4bbe916fcf7498c90
+      internalID: -1128520189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_172
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 132
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2bd1319293f92b44bdad76772c24e46
+      internalID: -1159186936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_173
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 132
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed235f930e6fba4390a7a143d1c1d49
+      internalID: 87935169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_174
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 132
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ded8a29e7bb837409e1224f141a6460
+      internalID: 759295111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_175
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 132
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 977d56c2b5f5acd409b25dc360f9389b
+      internalID: 1834281208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_176
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 132
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab1186cf92c9ec44854955cf4643208
+      internalID: 1719109173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_177
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 132
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296713d5f77c35e48936e9bd39b318c0
+      internalID: -1940611482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_182
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 116
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b349f86d3ea275d4f913e1a344f537c7
+      internalID: -1300777453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_183
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 116
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a8cd3725d6c51419e2e9612ce26b5f
+      internalID: -74961863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_184
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 116
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a09c1a99fdd3b04c82c96ceb5af5c8a
+      internalID: 1005356250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_185
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 116
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da8b84b0692f454dbf9a8ac293a54e7
+      internalID: -1017776325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_186
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 116
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd4844c3fc985d54f9cdc04b52441094
+      internalID: 1916973981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_187
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 116
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501d654bcf07ce2428e3dab37198c595
+      internalID: 606051528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_188
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 116
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc391f6ba39f604f973da610ccf0596
+      internalID: -879506135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_189
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 100
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db19c3eb31a614346a214bf0c5f05324
+      internalID: 644757384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_190
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 100
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ca29695461edb4f96f3057e39dbc90
+      internalID: 1386223184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_191
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 100
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bf5a0d289574b94a8a0309d54436647
+      internalID: 2143494411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_192
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 100
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d618c42475212a42a4c466eeb94c52c
+      internalID: -305432147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_193
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 100
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bd8dc85925036e4fac2ed0feb322e93
+      internalID: -815990828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_194
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 100
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851c1b67d2a512f44ab18c6a8a4560ec
+      internalID: 1206500057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_195
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 100
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b23e5242e137f41ae0d6052d8c3ff0
+      internalID: 1695584922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_196
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 100
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d80e58977604e847a6628dac6e53390
+      internalID: 878031447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_197
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 100
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bf616707597da439def50df73a1b81
+      internalID: 587017851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_198
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 84
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea46e6174dd84e4888714860fdbb7c3
+      internalID: -1716496124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_199
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 84
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e13c13ef4a82f458cd783a0eac7402
+      internalID: 325489984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_200
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 84
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5e4a3ae011a1a4d991c6a02e331ec8
+      internalID: -900373988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_201
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 84
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ba08f226facc614892cf3c0c541191a
+      internalID: -790985519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_202
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 84
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9876f1f36224f7b489974eed60ca179d
+      internalID: 2064561381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_203
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 84
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3010676d2f2cef6438b2f98f39fe0761
+      internalID: 847721401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_204
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 84
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44660774b72f81147b5752e865864b0c
+      internalID: -1566176462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_205
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 52
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042a640d9ee602448b8e8585823c2c00
+      internalID: 1895038561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_206
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 52
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfaad44f653ad7f439131993628f5f0a
+      internalID: 771859382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_207
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 52
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600b864c853203f47b8e99c66343b588
+      internalID: -593099229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_208
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 52
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135bbec238ccebc4e811f143c3ec4e47
+      internalID: 209580020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_209
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 52
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 585228510b6d2544ead7a4ab224f5b70
+      internalID: -1276072875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_210
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 52
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6b68d4b31a9a340853683e930d5f78
+      internalID: 238494035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_211
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 52
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6208f6edd23e2b44fa803d56c3b6f9f5
+      internalID: -845226476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_212
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a9e4f8409e9944da464e97e9552ce7
+      internalID: 1156369859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_214
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 36
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b072df8a91dff5468f6db2a2b43a60c
+      internalID: 94862104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_215
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 36
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca72adc95f870f47950171f7444436b
+      internalID: 273050468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_216
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 36
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: facb1039a71bbb341ad38ca316853ced
+      internalID: -838445963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_217
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 36
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79935d520bbe3524b8190a0598b78e8f
+      internalID: 1293410893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_218
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 36
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef6beb22b2adaf4da95b9a05b0f2341
+      internalID: -1171878664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_219
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 36
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2754f57f1a30b4d8ca325cbe501d47
+      internalID: 1695019254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_220
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 36
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ec761c05c40974fab5abfcb8d375ed
+      internalID: -1311436236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_221
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 20
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69ac897fd20a8c244a9c001325ed7451
+      internalID: 1045056325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_222
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 20
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd9c53621ad2b914ea338e883c26428e
+      internalID: 1814818263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_223
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 20
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afe2db64ce25294d94195ba6d512bab
+      internalID: -636719553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_224
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 20
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 866d8c970093ddc43a916f1a42b70922
+      internalID: -428024277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_225
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 20
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea20fb43716adc428cf36a68cdbd735
+      internalID: -549760711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_226
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 20
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe9d9d4e73654a40b4e0be6715a7924
+      internalID: 1066017626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_227
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 20
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baec4c490f2f79944a19a3c1d1c4a194
+      internalID: 1983112086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_228
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 20
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 106fd6fd3b23c8d4581d386be0bfffb2
+      internalID: 1504169929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_229
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 20
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44bfd1123279a0a4a884cb1b9fb0e8cb
+      internalID: 418371732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_230
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 4
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597552ae42e7db6438b083f554660803
+      internalID: -350440625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_231
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 4
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4e1e020ab372748a6cd85b35672502
+      internalID: -1625016132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_232
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 4
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b9a2634fd419a4da0d9e0cc0de3260
+      internalID: -1202128150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_233
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 4
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3204ed7a53eb7244bdbfe04bcf4fa8a
+      internalID: -164627001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_234
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 4
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb307ac6e81e1440b18f32fc9f75e14
+      internalID: -2100751603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_235
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 4
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9631e8c44b657b4469e6c3df951ee20e
+      internalID: -1538330266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_236
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 4
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669c91ff619fb774da0e2642d83a45c2
+      internalID: 1218727676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_178
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62e4ebf14eb901f408bb3aa20b6e6b9b
+      internalID: 426893734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_179
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a32c652ebcb81a49a3629716f4d5a4a
+      internalID: -1874217042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_180
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 129
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96953b95590df61428c2c3e14ee7d78d
+      internalID: -708505542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_181
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 80
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad49732b2be4b664487d3f75c5e5846a
+      internalID: 1755737124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Item and Brick Blocks_213
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e287721e0d0961744b8df6838d7ea61a
+      internalID: -1945316356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      NES - Super Mario Bros - Item and Brick Blocks_0: -684738965
+      NES - Super Mario Bros - Item and Brick Blocks_1: -1573134913
+      NES - Super Mario Bros - Item and Brick Blocks_10: -1970292267
+      NES - Super Mario Bros - Item and Brick Blocks_100: -598579515
+      NES - Super Mario Bros - Item and Brick Blocks_101: 867033627
+      NES - Super Mario Bros - Item and Brick Blocks_102: -754707945
+      NES - Super Mario Bros - Item and Brick Blocks_103: 73482936
+      NES - Super Mario Bros - Item and Brick Blocks_104: -1717099834
+      NES - Super Mario Bros - Item and Brick Blocks_105: -1999996684
+      NES - Super Mario Bros - Item and Brick Blocks_106: 597734664
+      NES - Super Mario Bros - Item and Brick Blocks_107: -2132809128
+      NES - Super Mario Bros - Item and Brick Blocks_108: 743035199
+      NES - Super Mario Bros - Item and Brick Blocks_109: 214048893
+      NES - Super Mario Bros - Item and Brick Blocks_11: 2085511020
+      NES - Super Mario Bros - Item and Brick Blocks_110: 366162494
+      NES - Super Mario Bros - Item and Brick Blocks_111: 1828859961
+      NES - Super Mario Bros - Item and Brick Blocks_112: 657287539
+      NES - Super Mario Bros - Item and Brick Blocks_113: 1130903512
+      NES - Super Mario Bros - Item and Brick Blocks_114: -100937961
+      NES - Super Mario Bros - Item and Brick Blocks_115: -256919656
+      NES - Super Mario Bros - Item and Brick Blocks_116: -1089479669
+      NES - Super Mario Bros - Item and Brick Blocks_117: -637159999
+      NES - Super Mario Bros - Item and Brick Blocks_118: 593337957
+      NES - Super Mario Bros - Item and Brick Blocks_119: 1723814761
+      NES - Super Mario Bros - Item and Brick Blocks_12: -2127810319
+      NES - Super Mario Bros - Item and Brick Blocks_120: 803353639
+      NES - Super Mario Bros - Item and Brick Blocks_121: 246381011
+      NES - Super Mario Bros - Item and Brick Blocks_122: -1350984800
+      NES - Super Mario Bros - Item and Brick Blocks_123: 581715326
+      NES - Super Mario Bros - Item and Brick Blocks_124: 841714897
+      NES - Super Mario Bros - Item and Brick Blocks_125: 1878584007
+      NES - Super Mario Bros - Item and Brick Blocks_126: 424985450
+      NES - Super Mario Bros - Item and Brick Blocks_127: -152077633
+      NES - Super Mario Bros - Item and Brick Blocks_128: 211983949
+      NES - Super Mario Bros - Item and Brick Blocks_129: 1375281781
+      NES - Super Mario Bros - Item and Brick Blocks_13: 2074496913
+      NES - Super Mario Bros - Item and Brick Blocks_130: 958885680
+      NES - Super Mario Bros - Item and Brick Blocks_131: -1155944004
+      NES - Super Mario Bros - Item and Brick Blocks_132: 559490918
+      NES - Super Mario Bros - Item and Brick Blocks_133: -456462053
+      NES - Super Mario Bros - Item and Brick Blocks_134: 644291202
+      NES - Super Mario Bros - Item and Brick Blocks_135: 11891634
+      NES - Super Mario Bros - Item and Brick Blocks_136: 833723157
+      NES - Super Mario Bros - Item and Brick Blocks_137: -1095571400
+      NES - Super Mario Bros - Item and Brick Blocks_138: 1837848974
+      NES - Super Mario Bros - Item and Brick Blocks_139: 1348353959
+      NES - Super Mario Bros - Item and Brick Blocks_14: -536957069
+      NES - Super Mario Bros - Item and Brick Blocks_140: -1460299270
+      NES - Super Mario Bros - Item and Brick Blocks_141: 1195361124
+      NES - Super Mario Bros - Item and Brick Blocks_142: 284220818
+      NES - Super Mario Bros - Item and Brick Blocks_143: 498250178
+      NES - Super Mario Bros - Item and Brick Blocks_144: 109139414
+      NES - Super Mario Bros - Item and Brick Blocks_145: 731622464
+      NES - Super Mario Bros - Item and Brick Blocks_146: -933800392
+      NES - Super Mario Bros - Item and Brick Blocks_147: -511662617
+      NES - Super Mario Bros - Item and Brick Blocks_148: 415499285
+      NES - Super Mario Bros - Item and Brick Blocks_149: -865283087
+      NES - Super Mario Bros - Item and Brick Blocks_15: 2126647071
+      NES - Super Mario Bros - Item and Brick Blocks_150: 1597737007
+      NES - Super Mario Bros - Item and Brick Blocks_151: -1513682777
+      NES - Super Mario Bros - Item and Brick Blocks_152: -308065467
+      NES - Super Mario Bros - Item and Brick Blocks_153: -1124267412
+      NES - Super Mario Bros - Item and Brick Blocks_154: 1499849528
+      NES - Super Mario Bros - Item and Brick Blocks_155: -1893410016
+      NES - Super Mario Bros - Item and Brick Blocks_156: 1905675692
+      NES - Super Mario Bros - Item and Brick Blocks_157: 1804962860
+      NES - Super Mario Bros - Item and Brick Blocks_158: -1704591712
+      NES - Super Mario Bros - Item and Brick Blocks_159: 1105822606
+      NES - Super Mario Bros - Item and Brick Blocks_16: 1854044546
+      NES - Super Mario Bros - Item and Brick Blocks_160: -1987671424
+      NES - Super Mario Bros - Item and Brick Blocks_161: -991129427
+      NES - Super Mario Bros - Item and Brick Blocks_162: -837405996
+      NES - Super Mario Bros - Item and Brick Blocks_163: 2114711040
+      NES - Super Mario Bros - Item and Brick Blocks_164: 747389362
+      NES - Super Mario Bros - Item and Brick Blocks_165: -1494899469
+      NES - Super Mario Bros - Item and Brick Blocks_166: 598273141
+      NES - Super Mario Bros - Item and Brick Blocks_167: -1136753797
+      NES - Super Mario Bros - Item and Brick Blocks_168: -1679699825
+      NES - Super Mario Bros - Item and Brick Blocks_169: -559862247
+      NES - Super Mario Bros - Item and Brick Blocks_17: -1167619579
+      NES - Super Mario Bros - Item and Brick Blocks_170: -773692874
+      NES - Super Mario Bros - Item and Brick Blocks_171: -1128520189
+      NES - Super Mario Bros - Item and Brick Blocks_172: -1159186936
+      NES - Super Mario Bros - Item and Brick Blocks_173: 87935169
+      NES - Super Mario Bros - Item and Brick Blocks_174: 759295111
+      NES - Super Mario Bros - Item and Brick Blocks_175: 1834281208
+      NES - Super Mario Bros - Item and Brick Blocks_176: 1719109173
+      NES - Super Mario Bros - Item and Brick Blocks_177: -1940611482
+      NES - Super Mario Bros - Item and Brick Blocks_178: 426893734
+      NES - Super Mario Bros - Item and Brick Blocks_179: -1874217042
+      NES - Super Mario Bros - Item and Brick Blocks_18: -1331212973
+      NES - Super Mario Bros - Item and Brick Blocks_180: -708505542
+      NES - Super Mario Bros - Item and Brick Blocks_181: 1755737124
+      NES - Super Mario Bros - Item and Brick Blocks_182: -1300777453
+      NES - Super Mario Bros - Item and Brick Blocks_183: -74961863
+      NES - Super Mario Bros - Item and Brick Blocks_184: 1005356250
+      NES - Super Mario Bros - Item and Brick Blocks_185: -1017776325
+      NES - Super Mario Bros - Item and Brick Blocks_186: 1916973981
+      NES - Super Mario Bros - Item and Brick Blocks_187: 606051528
+      NES - Super Mario Bros - Item and Brick Blocks_188: -879506135
+      NES - Super Mario Bros - Item and Brick Blocks_189: 644757384
+      NES - Super Mario Bros - Item and Brick Blocks_19: -337649391
+      NES - Super Mario Bros - Item and Brick Blocks_190: 1386223184
+      NES - Super Mario Bros - Item and Brick Blocks_191: 2143494411
+      NES - Super Mario Bros - Item and Brick Blocks_192: -305432147
+      NES - Super Mario Bros - Item and Brick Blocks_193: -815990828
+      NES - Super Mario Bros - Item and Brick Blocks_194: 1206500057
+      NES - Super Mario Bros - Item and Brick Blocks_195: 1695584922
+      NES - Super Mario Bros - Item and Brick Blocks_196: 878031447
+      NES - Super Mario Bros - Item and Brick Blocks_197: 587017851
+      NES - Super Mario Bros - Item and Brick Blocks_198: -1716496124
+      NES - Super Mario Bros - Item and Brick Blocks_199: 325489984
+      NES - Super Mario Bros - Item and Brick Blocks_2: -1276899336
+      NES - Super Mario Bros - Item and Brick Blocks_20: 1675861810
+      NES - Super Mario Bros - Item and Brick Blocks_200: -900373988
+      NES - Super Mario Bros - Item and Brick Blocks_201: -790985519
+      NES - Super Mario Bros - Item and Brick Blocks_202: 2064561381
+      NES - Super Mario Bros - Item and Brick Blocks_203: 847721401
+      NES - Super Mario Bros - Item and Brick Blocks_204: -1566176462
+      NES - Super Mario Bros - Item and Brick Blocks_205: 1895038561
+      NES - Super Mario Bros - Item and Brick Blocks_206: 771859382
+      NES - Super Mario Bros - Item and Brick Blocks_207: -593099229
+      NES - Super Mario Bros - Item and Brick Blocks_208: 209580020
+      NES - Super Mario Bros - Item and Brick Blocks_209: -1276072875
+      NES - Super Mario Bros - Item and Brick Blocks_21: -876662407
+      NES - Super Mario Bros - Item and Brick Blocks_210: 238494035
+      NES - Super Mario Bros - Item and Brick Blocks_211: -845226476
+      NES - Super Mario Bros - Item and Brick Blocks_212: 1156369859
+      NES - Super Mario Bros - Item and Brick Blocks_213: -1945316356
+      NES - Super Mario Bros - Item and Brick Blocks_214: 94862104
+      NES - Super Mario Bros - Item and Brick Blocks_215: 273050468
+      NES - Super Mario Bros - Item and Brick Blocks_216: -838445963
+      NES - Super Mario Bros - Item and Brick Blocks_217: 1293410893
+      NES - Super Mario Bros - Item and Brick Blocks_218: -1171878664
+      NES - Super Mario Bros - Item and Brick Blocks_219: 1695019254
+      NES - Super Mario Bros - Item and Brick Blocks_22: -1259150737
+      NES - Super Mario Bros - Item and Brick Blocks_220: -1311436236
+      NES - Super Mario Bros - Item and Brick Blocks_221: 1045056325
+      NES - Super Mario Bros - Item and Brick Blocks_222: 1814818263
+      NES - Super Mario Bros - Item and Brick Blocks_223: -636719553
+      NES - Super Mario Bros - Item and Brick Blocks_224: -428024277
+      NES - Super Mario Bros - Item and Brick Blocks_225: -549760711
+      NES - Super Mario Bros - Item and Brick Blocks_226: 1066017626
+      NES - Super Mario Bros - Item and Brick Blocks_227: 1983112086
+      NES - Super Mario Bros - Item and Brick Blocks_228: 1504169929
+      NES - Super Mario Bros - Item and Brick Blocks_229: 418371732
+      NES - Super Mario Bros - Item and Brick Blocks_23: 1008258991
+      NES - Super Mario Bros - Item and Brick Blocks_230: -350440625
+      NES - Super Mario Bros - Item and Brick Blocks_231: -1625016132
+      NES - Super Mario Bros - Item and Brick Blocks_232: -1202128150
+      NES - Super Mario Bros - Item and Brick Blocks_233: -164627001
+      NES - Super Mario Bros - Item and Brick Blocks_234: -2100751603
+      NES - Super Mario Bros - Item and Brick Blocks_235: -1538330266
+      NES - Super Mario Bros - Item and Brick Blocks_236: 1218727676
+      NES - Super Mario Bros - Item and Brick Blocks_24: -1085129737
+      NES - Super Mario Bros - Item and Brick Blocks_25: 766116795
+      NES - Super Mario Bros - Item and Brick Blocks_26: 450432255
+      NES - Super Mario Bros - Item and Brick Blocks_27: 1970588804
+      NES - Super Mario Bros - Item and Brick Blocks_28: 127426326
+      NES - Super Mario Bros - Item and Brick Blocks_29: 284676893
+      NES - Super Mario Bros - Item and Brick Blocks_3: -1059206733
+      NES - Super Mario Bros - Item and Brick Blocks_30: -148997754
+      NES - Super Mario Bros - Item and Brick Blocks_31: 1007903724
+      NES - Super Mario Bros - Item and Brick Blocks_32: -1831190115
+      NES - Super Mario Bros - Item and Brick Blocks_33: 151218448
+      NES - Super Mario Bros - Item and Brick Blocks_34: -882149493
+      NES - Super Mario Bros - Item and Brick Blocks_35: -1580550450
+      NES - Super Mario Bros - Item and Brick Blocks_36: -440678530
+      NES - Super Mario Bros - Item and Brick Blocks_37: 2103998076
+      NES - Super Mario Bros - Item and Brick Blocks_38: 1941438857
+      NES - Super Mario Bros - Item and Brick Blocks_39: 29861578
+      NES - Super Mario Bros - Item and Brick Blocks_4: -1148946586
+      NES - Super Mario Bros - Item and Brick Blocks_40: 2039738786
+      NES - Super Mario Bros - Item and Brick Blocks_41: 2092492010
+      NES - Super Mario Bros - Item and Brick Blocks_42: 1491442476
+      NES - Super Mario Bros - Item and Brick Blocks_43: 586513080
+      NES - Super Mario Bros - Item and Brick Blocks_44: -1866233434
+      NES - Super Mario Bros - Item and Brick Blocks_45: 87518364
+      NES - Super Mario Bros - Item and Brick Blocks_46: -654141648
+      NES - Super Mario Bros - Item and Brick Blocks_47: -1315214099
+      NES - Super Mario Bros - Item and Brick Blocks_48: -1244764997
+      NES - Super Mario Bros - Item and Brick Blocks_49: -3017683
+      NES - Super Mario Bros - Item and Brick Blocks_5: -1835187344
+      NES - Super Mario Bros - Item and Brick Blocks_50: 130714858
+      NES - Super Mario Bros - Item and Brick Blocks_51: 252512717
+      NES - Super Mario Bros - Item and Brick Blocks_52: -458404412
+      NES - Super Mario Bros - Item and Brick Blocks_53: -1060085272
+      NES - Super Mario Bros - Item and Brick Blocks_54: -2094862826
+      NES - Super Mario Bros - Item and Brick Blocks_55: -1538300030
+      NES - Super Mario Bros - Item and Brick Blocks_56: 1357658401
+      NES - Super Mario Bros - Item and Brick Blocks_57: -1164367528
+      NES - Super Mario Bros - Item and Brick Blocks_58: -1431489230
+      NES - Super Mario Bros - Item and Brick Blocks_59: -1828051537
+      NES - Super Mario Bros - Item and Brick Blocks_6: 2126161997
+      NES - Super Mario Bros - Item and Brick Blocks_60: -1443252047
+      NES - Super Mario Bros - Item and Brick Blocks_61: 1205336307
+      NES - Super Mario Bros - Item and Brick Blocks_62: -1101975067
+      NES - Super Mario Bros - Item and Brick Blocks_63: -1197945494
+      NES - Super Mario Bros - Item and Brick Blocks_64: 240237771
+      NES - Super Mario Bros - Item and Brick Blocks_65: 1695424189
+      NES - Super Mario Bros - Item and Brick Blocks_66: 1589337625
+      NES - Super Mario Bros - Item and Brick Blocks_67: 278653270
+      NES - Super Mario Bros - Item and Brick Blocks_68: 528737546
+      NES - Super Mario Bros - Item and Brick Blocks_69: -780127002
+      NES - Super Mario Bros - Item and Brick Blocks_7: -1002439766
+      NES - Super Mario Bros - Item and Brick Blocks_70: 32144878
+      NES - Super Mario Bros - Item and Brick Blocks_71: 1178143198
+      NES - Super Mario Bros - Item and Brick Blocks_72: 634369948
+      NES - Super Mario Bros - Item and Brick Blocks_73: -761777253
+      NES - Super Mario Bros - Item and Brick Blocks_74: 1294700922
+      NES - Super Mario Bros - Item and Brick Blocks_75: -735746787
+      NES - Super Mario Bros - Item and Brick Blocks_76: -1464862530
+      NES - Super Mario Bros - Item and Brick Blocks_77: -1439322201
+      NES - Super Mario Bros - Item and Brick Blocks_78: -230296880
+      NES - Super Mario Bros - Item and Brick Blocks_79: 1550895878
+      NES - Super Mario Bros - Item and Brick Blocks_8: 840111097
+      NES - Super Mario Bros - Item and Brick Blocks_80: -243439601
+      NES - Super Mario Bros - Item and Brick Blocks_81: 1783923219
+      NES - Super Mario Bros - Item and Brick Blocks_82: 420728521
+      NES - Super Mario Bros - Item and Brick Blocks_83: 969710699
+      NES - Super Mario Bros - Item and Brick Blocks_84: 558155182
+      NES - Super Mario Bros - Item and Brick Blocks_85: 2060734506
+      NES - Super Mario Bros - Item and Brick Blocks_86: 43181082
+      NES - Super Mario Bros - Item and Brick Blocks_87: -644643311
+      NES - Super Mario Bros - Item and Brick Blocks_88: -1482598689
+      NES - Super Mario Bros - Item and Brick Blocks_89: 1524871492
+      NES - Super Mario Bros - Item and Brick Blocks_9: 571878185
+      NES - Super Mario Bros - Item and Brick Blocks_90: -1299128401
+      NES - Super Mario Bros - Item and Brick Blocks_91: -1155361709
+      NES - Super Mario Bros - Item and Brick Blocks_92: 1868246680
+      NES - Super Mario Bros - Item and Brick Blocks_93: -1146678589
+      NES - Super Mario Bros - Item and Brick Blocks_94: 858596290
+      NES - Super Mario Bros - Item and Brick Blocks_95: -105138456
+      NES - Super Mario Bros - Item and Brick Blocks_96: -158926630
+      NES - Super Mario Bros - Item and Brick Blocks_97: -696891631
+      NES - Super Mario Bros - Item and Brick Blocks_98: 118200927
+      NES - Super Mario Bros - Item and Brick Blocks_99: -1835792780
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
