@@ -15,16 +15,16 @@ public class LevelGenerator : MonoBehaviour
     public static float distanciaTotalX = 0;
     public static float distanciaTotalY = 0;
 
-    //los 28 lugares de spawneo se guardan aca
+    //los 32 lugares de spawneo se guardan aca
     Vector3[] lugarspawn = new Vector3[33];
 
-    //los lugares anteriores aca
-    List<Vector3> lugaresBoxesAnteriores = new List<Vector3>();
-
+    //para checkear el overlapbox
+    Vector2 sizeacheckear = new Vector2(3,3);
+    
     //La separacion X entre cajas es 2.5
     float separacionX = 2.5f;
     //La separacion Y entre cajas es 2.5
-    float separacionY = 2.5f;
+    float separacionY = 2.6f;
     //Separacion para que se pare el pj sobre la caja
     float separacionpjcajaY = 0.68f;
 
@@ -42,7 +42,7 @@ public class LevelGenerator : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         distanciaTotalX = transform.position.x - primeraPosicion.x;
         distanciaTotalY = transform.position.y - primeraPosicion.y;
@@ -167,11 +167,9 @@ public class LevelGenerator : MonoBehaviour
 
 
             for (int  i = 1; i <= 32; i++) {
-                if (!lugaresBoxesAnteriores.Contains(lugarspawn[i]))
+                if (!Physics2D.OverlapBox(lugarspawn[i], sizeacheckear, 0) && (lugarspawn[i].y > primeraPosicion.y)) 
                 {
                     Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
-                    lugaresBoxesAnteriores.Add(lugarspawn[i]);
-
                 }
 
             }
