@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    //prueba git commit
     public GameObject spawnObjetoBox;
     public GameObject spawnObjetoGema;
     public GameObject spawnObjetoVacio;
+
+    public GameObject LineadeFuego;
 
     public static Vector3 primeraPosicion;
     public static Vector3 ultimaPosicionSpawn;
@@ -190,14 +191,19 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (spawnboxsiono[i] == 0)
                     {
-                        Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                        ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
                     else
-                        Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                    {
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                        ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                    }
 
                     if (spawngemasiono[i] == 0)
                     {
-                        Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
                 }
 
@@ -212,26 +218,34 @@ public class LevelGenerator : MonoBehaviour
                     switch (spawnboxsiono[i - 1] + spawnboxsiono[i - 2])
                     {
                         case 0:
-                            Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);                         
-                        break;
+                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                            ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                            break;
 
                         case 1:
                             if (spawnboxsiono[i] == 0)
                             {
-                                Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                                ObjetoSpawneado1.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                             }
                             else
-                                Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                            {
+                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                                ObjetoSpawneado1.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                            }
+                                
                         break;
 
                         case 2:
-                            Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                            GameObject ObjetoSpawneado3 = Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                            ObjetoSpawneado3.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                         break;
                     }
 
                     if (spawngemasiono[i] == 0)
                     {
-                        Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
                 }
 
