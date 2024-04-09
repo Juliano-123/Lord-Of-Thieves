@@ -8,6 +8,7 @@ TagManager:
   - Piso
   - CUBO
   - GEMA
+  - VACIO
   layers:
   - Default
   - TransparentFX

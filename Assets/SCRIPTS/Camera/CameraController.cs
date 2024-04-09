@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
 
 
-    void Update()
+    void FixedUpdate()
     {
         actualPosicionX = Player.elJugador.transform.position.x;
         actualPosicionY = Player.elJugador.transform.position.y;

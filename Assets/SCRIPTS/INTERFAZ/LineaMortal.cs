@@ -13,13 +13,13 @@ public class LineaMortal : MonoBehaviour
     public float distanciaCatchUp;
     public float multiDesacell;
     int gemasAplicadas;
-    //public float acumuladaSpeed;
-    //public float retrocesoSpeed;
+
+    public GameObject Jugador;
+    float ultimaPosicionY;
+    float actualPosicionY;
+
     public Vector2 velocity;
 
-    //public static float timerLentitudGema = 3;
-    //public float tiempolentitudgema = 2;
-    //public float tiemporetrocesogema = 0.2f;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class LineaMortal : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         //if (tiempolentitudgema >= timerLentitudGema)
         //{
@@ -66,6 +66,15 @@ public class LineaMortal : MonoBehaviour
 
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (Jugador.transform.position.y > 0)
+        {
+            actualPosicionY = Jugador.transform.position.y;
+            transform.position = new Vector3(transform.position.x, actualPosicionY + (actualPosicionY - ultimaPosicionY) * Time.deltaTime, transform.position.z);
+            ultimaPosicionY = Jugador.transform.position.y;
+        }
+
+
 
         //Destruir todo
         if (controller.collisions.right)

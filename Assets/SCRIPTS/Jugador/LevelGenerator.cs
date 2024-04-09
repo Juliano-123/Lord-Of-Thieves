@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     //prueba git commit
     public GameObject spawnObjetoBox;
     public GameObject spawnObjetoGema;
+    public GameObject spawnObjetoVacio;
 
     public static Vector3 primeraPosicion;
     public static Vector3 ultimaPosicionSpawn;
@@ -18,6 +19,11 @@ public class LevelGenerator : MonoBehaviour
 
     //los 32 lugares de spawneo se guardan aca
     Vector3[] lugarspawn = new Vector3[33];
+
+    //la decision de spawnear se guarda aca
+    int[] spawnboxsiono = new int[33];
+    //la decision de spawnear gemas se guarda aca
+    int[] spawngemasiono = new int[33];
 
     //para checkear el overlapbox
     Vector2 sizeacheckear = new Vector2(3,3);
@@ -165,16 +171,72 @@ public class LevelGenerator : MonoBehaviour
             lugarspawn[32].x = lugarspawn[1].x;
             lugarspawn[32].y = lugarspawn[1].y + separacionY;
 
+            //Genera un 0 o 1 para cada lugar de spawn de box
+            for (int i = 1; i <= 32; i++)
+            {
+                spawnboxsiono[i] = Random.Range(0,2);
+            }
 
+            //Genera un 0 a 2 para cada lugar de spawn de gema
+            for (int i = 1; i <= 32; i++)
+            {
+                spawngemasiono[i] = Random.Range(0, 3);
+            }
 
-            for (int  i = 1; i <= 32; i++) {
+            //los dos primeros espacios los instanceo segun el 0 o 1 de spawnsiono
+            for (int  i = 1; i <= 2; i++)
+            {
                 if (!Physics2D.OverlapBox(lugarspawn[i], sizeacheckear, 0) && (lugarspawn[i].y > primeraPosicion.y)) 
                 {
-                    Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                    if (spawnboxsiono[i] == 0)
+                    {
+                        Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                    }
+                    else
+                        Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+
+                    if (spawngemasiono[i] == 0)
+                    {
+                        Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                    }
                 }
 
             }
-            
+
+            //Los lugares 3 en adelante tienen en cuenta lo anterior
+            for (int i = 3; i <= 32; i++)
+            {
+                if (!Physics2D.OverlapBox(lugarspawn[i], sizeacheckear, 0) && (lugarspawn[i].y > primeraPosicion.y))
+                {
+                    //Decido que hacer segun que no se haya spawneado 0 o 1 o 2
+                    switch (spawnboxsiono[i - 1] + spawnboxsiono[i - 2])
+                    {
+                        case 0:
+                            Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);                         
+                        break;
+
+                        case 1:
+                            if (spawnboxsiono[i] == 0)
+                            {
+                                Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                            }
+                            else
+                                Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                        break;
+
+                        case 2:
+                            Instantiate(spawnObjetoVacio, lugarspawn[i], Quaternion.identity);
+                        break;
+                    }
+
+                    if (spawngemasiono[i] == 0)
+                    {
+                        Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                    }
+                }
+
+            }
+
             spawnear = false;
 
         }
