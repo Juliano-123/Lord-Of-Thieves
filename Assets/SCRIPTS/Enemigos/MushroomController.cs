@@ -59,6 +59,6 @@ public class MushroomController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.totalMonsters -= 1;
+        //GameManager.totalMonsters -= 1;
     }
 }

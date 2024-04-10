@@ -17,6 +17,6 @@ public class ContadorDistancia : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textoContador.text = Mathf.FloorToInt(GameManager.distanciaTotal) + "M";        
+        //textoContador.text = Mathf.FloorToInt(GameManager.distanciaTotal) + "M";        
     }
 }

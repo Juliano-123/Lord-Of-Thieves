@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class COLORFONDO : MonoBehaviour
 {
-    new Camera camera;
-    GameObject lineafuego;
+    public GameObject lineafuego;
+    public GameObject jugador;
 
     SpriteRenderer spriteRenderer;
 
@@ -19,14 +19,13 @@ public class COLORFONDO : MonoBehaviour
 
     private void Start()
     {
-        lineafuego = GameObject.Find("LINEA MORTAL");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
 
-        diferenciadistancia = GameManager.ultimaPosicion.x - lineafuego.transform.position.x;
+        diferenciadistancia = jugador.transform.position.x - lineafuego.transform.position.x;
         escalaporcentual = 1 - diferenciadistancia / 17;
 
         if (diferenciadistancia > 17)
