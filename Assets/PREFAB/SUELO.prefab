@@ -430,6 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9187217310991944859}
   - component: {fileID: 144035334069716080}
+  - component: {fileID: -7795362965010493690}
   m_Layer: 10
   m_Name: SUELO
   m_TagString: Piso
@@ -507,6 +508,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.9794235, y: 0.9886608}
   m_EdgeRadius: 0
+--- !u!114 &-7795362965010493690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345685431640818039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3e6554e5e573b488c35e37d5f50d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LineadeFuego: {fileID: 0}
 --- !u!1 &5761261708875980819
 GameObject:
   m_ObjectHideFlags: 0

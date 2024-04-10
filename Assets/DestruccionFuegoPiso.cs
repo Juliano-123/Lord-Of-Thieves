@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestruccionFuego : MonoBehaviour
+public class DestruccionFuegoPiso : MonoBehaviour
 {
     public GameObject LineadeFuego;
 
@@ -13,11 +13,11 @@ public class DestruccionFuego : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-     if (LineadeFuego.transform.position.x - transform.position.x > 0)
+        if (LineadeFuego.transform.position.x - transform.position.x > 7)
         {
             Destroy(gameObject);
         }
-        
+
 
     }
 }

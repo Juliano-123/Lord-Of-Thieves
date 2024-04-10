@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public GameObject spawnObjetoPiso;
+    float ultimaPosicionSpawnPiso;
+
     public GameObject spawnObjetoBox;
     public GameObject spawnObjetoGema;
     public GameObject spawnObjetoVacio;
@@ -34,12 +37,15 @@ public class LevelGenerator : MonoBehaviour
     //La separacion Y entre cajas es 2.5
     float separacionY = 2.6f;
     //Separacion para que se pare el pj sobre la caja
-    float separacionpjcajaY = 0.68f;
+    float separacionpjcajaY = 0.53f;
+    //Separacion entre secciones de piso
+    float separacionPiso = 9.87f;
 
     void Awake()
     {
         primeraPosicion = transform.position;
         ultimaPosicionSpawn = transform.position;
+        ultimaPosicionSpawnPiso = transform.position.x;
         distanciaTotalX = 0;
         distanciaTotalY = 0;
 
@@ -59,6 +65,13 @@ public class LevelGenerator : MonoBehaviour
         float distanciaDeltaY = transform.position.y - ultimaPosicionSpawn.y;
 
         bool spawnear = false;
+
+        if (distanciaTotalX - ultimaPosicionSpawnPiso >= separacionPiso)
+        {
+            GameObject suelo = Instantiate(spawnObjetoPiso, new Vector3(distanciaTotalX + separacionPiso*1.7f, primeraPosicion.y - separacionpjcajaY), Quaternion.identity);
+            suelo.GetComponent<DestruccionFuegoPiso>().LineadeFuego = LineadeFuego;
+            ultimaPosicionSpawnPiso = distanciaTotalX;
+        }
 
         if (Mathf.Abs(distanciaDeltaX) >= separacionX)
         {
