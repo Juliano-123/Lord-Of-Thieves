@@ -8,8 +8,8 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject spawnObjetoPiso;
     float ultimaPosicionSpawnPiso;
-
-    public GameObject spawnObjetoBox;
+    // 1 es piso 2 es explosiva
+    public GameObject[] spawnObjetoBox = new GameObject[2];
     public GameObject spawnObjetoGema;
     public GameObject spawnObjetoVacio;
 
@@ -209,7 +209,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else
                     {
-                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
                         ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
 
@@ -231,7 +231,7 @@ public class LevelGenerator : MonoBehaviour
                     switch (spawnboxsiono[i - 1] + spawnboxsiono[i - 2])
                     {
                         case 0:
-                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
                             ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                             break;
 
@@ -243,7 +243,7 @@ public class LevelGenerator : MonoBehaviour
                             }
                             else
                             {
-                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox, lugarspawn[i], Quaternion.identity);
+                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
                                 ObjetoSpawneado1.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                             }
                                 
