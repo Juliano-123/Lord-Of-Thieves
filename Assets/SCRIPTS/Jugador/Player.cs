@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.ComponentModel.Design;
+using Unity.Burst.CompilerServices;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
     float minJumpVelocity;
     Vector2 velocity;
     float velocityXSmoothing;
+    float tiempoCoyote = -1f;
+    bool toquePiso = true;
 
     int jumpApretado;
     float tiempoJump1 = -10;
@@ -93,7 +96,6 @@ public class Player : MonoBehaviour
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
-        print("Gravity: " + gravity + "  Jump Velocity: " + maxJumpVelocity);
 
     }
 
@@ -158,6 +160,7 @@ public class Player : MonoBehaviour
             ghost.makeGhost = false;
         }
 
+        
         //SALTO
         //SI APRETE JUMP, ESTOY TOCANDO PISO, Y ESTOY DENTRO DEL TIEMPO BUFFER
         if (jumpApretado > 0 && controller.collisions.below && Time.time-tiempoJump2 < 0.2)
@@ -260,9 +263,24 @@ public class Player : MonoBehaviour
         }
 
         // GRAVEDAD
+        //Tiempo de coyote
+        if (controller.collisions.below)
+        {
+            toquePiso = true;
+        }
 
-        //APLICA LA GRAVEDAD
-        velocity.y += gravity * Time.deltaTime;
+        if (controller.collisions.objetoGolpeado == null)
+        {
+            tiempoCoyote = Time.time;
+            toquePiso = false;
+        }
+
+
+        if (Time.time - tiempoCoyote > 1)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
 
         if (velocity.y <= -12)
         {

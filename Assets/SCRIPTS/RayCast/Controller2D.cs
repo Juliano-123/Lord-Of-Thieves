@@ -5,6 +5,7 @@ public class Controller2D : RayCastController
 {
     public CollisionInfo collisions;
 
+
     public override void Start()
     {
         base.Start();
@@ -78,6 +79,7 @@ public class Controller2D : RayCastController
                 collisions.objetoGolpeado = hit.transform.gameObject;
             }
         }
+
     }
 
 
