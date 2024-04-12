@@ -31,14 +31,16 @@ public class Player : MonoBehaviour
     float minJumpVelocity;
     Vector2 velocity;
     float velocityXSmoothing;
-    float tiempoCoyote = -1f;
+    public float tiempoCoyote = -1f;
+    public bool tiempoCoyoteON = false;
     bool toquePiso = true;
 
     int jumpApretado;
     float tiempoJump1 = -10;
     float tiempoJump2 = -1;
     public bool jumpSoltado = false;
-    bool yaSaltex2 = false;
+    public bool yasalte = false;
+    public bool yaSaltex2 = false;
     public bool flotando = false;
     float timerdash = 1f;
     public static bool rebotin = false;
@@ -163,18 +165,19 @@ public class Player : MonoBehaviour
         
         //SALTO
         //SI APRETE JUMP, ESTOY TOCANDO PISO, Y ESTOY DENTRO DEL TIEMPO BUFFER
-        if (jumpApretado > 0 && controller.collisions.below && Time.time-tiempoJump2 < 0.2)
+        if (jumpApretado > 0 && (controller.collisions.below || tiempoCoyoteON) && Time.time-tiempoJump2 < 0.15)
         {
             animator.SetBool("Saltando", true);
             audioJugador.clip = salto;
             audioJugador.Play();
+            yasalte = true;
             velocity.y = maxJumpVelocity;
             jumpApretado = 0;
         }
 
         //DOBLE SALTO
         //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-        if (jumpApretado > 0 && !controller.collisions.below && !yaSaltex2)
+        if (jumpApretado > 0 && !controller.collisions.below && !tiempoCoyoteON && !yaSaltex2 && yasalte)
         {
             animator.SetBool("Saltando", true);
             audioJugador.clip = salto;
@@ -205,7 +208,8 @@ public class Player : MonoBehaviour
             timerdash += Time.deltaTime;
             velocity.y = 0;
             velocity.x = dashVelocity * orientacionX;
-            controller.Move(velocity * Time.deltaTime);
+            yasalte = true;
+            controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
             timeForNextDash = delayForDash;
             return;
         }
@@ -218,7 +222,7 @@ public class Player : MonoBehaviour
             FlashRed();
             velocity.y = 3f;
             velocity.x = 6f;
-            controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
             return;
         }
 
@@ -228,21 +232,9 @@ public class Player : MonoBehaviour
             FlashRed();
             velocity.y = 3f;
             velocity.x = -6f;
-            controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
             return;
         }
-
-        ////borrar gemas despues de x tiempo
-        //if (timergemascontadas >= timeGemasDecay && gemasContadas != 0)
-        //{
-        //    gemasContadas--;
-        //    timergemascontadas = 0;
-        //}
-        //else
-        //{
-        //    timergemascontadas = timergemascontadas + Time.deltaTime;
-        //}
-
 
 
             //SI SUELTO SALTO ME BAJA LA VELOCIDAD
@@ -263,32 +255,34 @@ public class Player : MonoBehaviour
         }
 
         // GRAVEDAD
+        velocity.y += gravity * Time.deltaTime;
+
         //Tiempo de coyote
         if (controller.collisions.below)
         {
-            toquePiso = true;
+            tiempoCoyote = 0.15f;
         }
 
-        if (controller.collisions.objetoGolpeado == null)
+        tiempoCoyote -= Time.deltaTime;
+
+        if (tiempoCoyote > 0 && !yasalte)
         {
-            tiempoCoyote = Time.time;
-            toquePiso = false;
+            tiempoCoyoteON = true;
+        }
+        else
+        {
+            tiempoCoyoteON = false;
         }
 
 
-        if (Time.time - tiempoCoyote > 1)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
 
-
-        if (velocity.y <= -12)
+        if (velocity.y <= -10)
         {
-            velocity.y = -12;
+            velocity.y = -10;
         }
 
         //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
     }
 
     private void FixedUpdate()
@@ -312,6 +306,7 @@ public class Player : MonoBehaviour
                             if (controller.collisions.below)
                             {
                                 animator.SetBool("Saltando", false);
+                                yasalte = false;
                                 yaSaltex2 = false;
                                 yaDashee = false;
                                 boxContados = 0;
@@ -327,6 +322,7 @@ public class Player : MonoBehaviour
                             controller.collisions.objetoGolpeado.transform.GetComponent<EnemigoGolpeado>().enabled = true;
                             velocity.y = maxJumpVelocity;
                             boxContados++;
+                            yasalte = true;
                             yaSaltex2 = false;
                             yaDashee = false;
                             audioJugador.clip = salto;

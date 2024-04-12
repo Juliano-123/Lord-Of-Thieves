@@ -11,7 +11,7 @@ public class Controller2D : RayCastController
         base.Start();
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2 velocity, bool tiempoCoyoteON)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
@@ -25,6 +25,10 @@ public class Controller2D : RayCastController
             VerticalCollisions(ref velocity);
         }   
 
+        if (tiempoCoyoteON)
+        {
+            velocity.y = 0;
+        }
 
         transform.Translate(velocity);
     }

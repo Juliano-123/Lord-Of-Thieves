@@ -37,7 +37,7 @@ public class DagaArma : MonoBehaviour
 
 
 
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, false);
 
     }
 

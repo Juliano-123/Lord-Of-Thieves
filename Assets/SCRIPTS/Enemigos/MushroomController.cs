@@ -53,7 +53,7 @@ public class MushroomController : MonoBehaviour
      
 
         //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, false);
 
     }
 

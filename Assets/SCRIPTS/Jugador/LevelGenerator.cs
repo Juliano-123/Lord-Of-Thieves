@@ -225,13 +225,15 @@ public class LevelGenerator : MonoBehaviour
             //Los lugares 3 en adelante tienen en cuenta lo anterior
             for (int i = 3; i <= 32; i++)
             {
+                int cajaASpawnear = Random.Range(1, 3);
+
                 if (!Physics2D.OverlapBox(lugarspawn[i], sizeacheckear, 0) && (lugarspawn[i].y > primeraPosicion.y))
                 {
                     //Decido que hacer segun que no se haya spawneado 0 o 1 o 2
                     switch (spawnboxsiono[i - 1] + spawnboxsiono[i - 2])
                     {
                         case 0:
-                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
+                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[cajaASpawnear], lugarspawn[i], Quaternion.identity);
                             ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                             break;
 
@@ -243,7 +245,7 @@ public class LevelGenerator : MonoBehaviour
                             }
                             else
                             {
-                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
+                                GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox[cajaASpawnear], lugarspawn[i], Quaternion.identity);
                                 ObjetoSpawneado1.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                             }
                                 
