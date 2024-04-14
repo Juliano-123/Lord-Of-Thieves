@@ -11,26 +11,26 @@ public class Controller2D : RayCastController
         base.Start();
     }
 
-    public void Move(Vector2 velocity, bool tiempoCoyoteON)
+    public void Move(Vector2 moveAmount, bool tiempoCoyoteON)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
                 
-        if (velocity.x != 0)
+        if (moveAmount.x != 0)
         {
-            HorizontalCollisions(ref velocity);
+            HorizontalCollisions(ref moveAmount);
         }
-        if (velocity.y != 0)
+        if (moveAmount.y != 0)
         {
-            VerticalCollisions(ref velocity);
+            VerticalCollisions(ref moveAmount);
         }   
 
         if (tiempoCoyoteON)
         {
-            velocity.y = 0;
+            moveAmount.y = 0;
         }
 
-        transform.Translate(velocity);
+        transform.Translate(moveAmount);
     }
 
 
@@ -46,7 +46,7 @@ public class Controller2D : RayCastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
 
             if (hit)
             {
@@ -71,7 +71,7 @@ public class Controller2D : RayCastController
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
 
             if (hit)
             {

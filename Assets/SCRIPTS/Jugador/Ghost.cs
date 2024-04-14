@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
-    public float ghostDelay;
+    float ghostDelay = 0.1f;
     float ghostDelaySeconds;
     public GameObject ghost;
     public bool makeGhost = false;
@@ -25,12 +25,23 @@ public class Ghost : MonoBehaviour
             else
             {
                 GameObject currentGhost = Instantiate(ghost, transform.position, transform.rotation);
-                Sprite currentSprite = GetComponent<SpriteRenderer>().sprite;
-                currentGhost.GetComponent<SpriteRenderer>().sprite = currentSprite;
+                Sprite _currentPlayerSprite = GetComponent<SpriteRenderer>().sprite;
+                SpriteRenderer _ghostSpriteRenderer = currentGhost.GetComponent<SpriteRenderer>();
+                _ghostSpriteRenderer.sprite = _currentPlayerSprite;
+                //VOLTEA EL SPRITE
+                if (Player.orientacionX == 1)
+                {
+                    _ghostSpriteRenderer.flipX = false;
+                }
+                else if (Player.orientacionX == -1)
+                {
+                    _ghostSpriteRenderer.flipX = true;
+                }
                 currentGhost.transform.localScale = transform.localScale;
                 ghostDelaySeconds = ghostDelay;
                 Destroy(currentGhost, 0.29f);
             }
+
         }
 
     }
