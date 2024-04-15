@@ -28,10 +28,10 @@ public class Player : MonoBehaviour
     public float multiplicadorGravedadPuntoMasAlto = 0.5f;
 
 
-    float gravity;
+    public static float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
-    Vector2 velocity;
+    public static Vector2 velocity;
     float velocityXSmoothing;
     public float tiempoCoyote = -1f;
     public bool tiempoCoyoteON = false;
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
         }
 
         //DASH TOMAR INPUT
-        if (Input.GetButtonDown("Fire3") && timeForNextDash <= 0)
+        if (Input.GetButtonDown("Fire2") && timeForNextDash <= 0)
         {
             dashApretado = dashApretado + 1;
         }
