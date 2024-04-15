@@ -326,6 +326,7 @@ public class Player : MonoBehaviour
                         {
                             _saltosTotales = 1;
                             controller.collisions.objetoGolpeado.transform.GetComponent<EnemigoGolpeado>().enabled = true;
+                            jumpApretado = 0;
                             velocity.y = maxJumpVelocity;
                             boxContados++;
                             audioJugador.clip = salto;

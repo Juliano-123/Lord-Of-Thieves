@@ -11369,8 +11369,7 @@ MonoBehaviour:
   tiempoCoyote: -1
   tiempoCoyoteON: 0
   jumpSoltado: 0
-  yasalte: 0
-  yaSaltex2: 0
+  _saltosTotales: 0
   dashVelocity: 15
   delayForDash: 2
   animator: {fileID: 0}
