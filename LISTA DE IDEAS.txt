@@ -1,5 +1,68 @@
+CAMBIOS RADICALES
+
+[CONCEPTO}
+IDEA DE JUEGO:
+
+Modo dos jugadores. Pantalla fija, las cajas aparecen arriba y van bajando. Vos tenes que subir para no caerte.
+
+Si un jugador cae de la pantalla, vuelve a aparecer arriba y punto para el otro PJ.
+El que aparece lo hace titilando en una caja ad hoc. Salta desde ahi y esa caja desaparece.
+
+Tambien es punto si perdes tus vidas. Los jugadores tienen 3 vidas. Te las quitan y apareces arriba.
+Cada golpe de enemigo o el otro player resta un punto.
+
+Los jugadores pueden tirarse cosas entre si.
+Cuando te tiran te caes, titilas breve y tenes un jump para agarrarte de algo.
+
+El round dura 1:00 minuto. El que mas puntos tiene al final gano. Son 3 rounds. Ahi se anuncia ganador.
+
+[TAREAS]
+PRIORIDAD - AGREGAR TIRAR UNA PIEDRA DESDE TU CAJA A LA SIGUIENTE.
+Tres formas de tirar. Tap, la lanza a la de abajo (rapido). Press, la lanza a la de enfrente (mas lento).
+Hold, la lanza a la tercera caja (mucho mas lento). Pasa por la 1 de arriba.
+Cuando apretas y holdeas te muestra donde va a caer con un bullseye.
+Ponerle una bola cualquiera marron y que salga con .x.y, gravedad y haga las tres pendientes que queremos.
+
+PRIORIDAD2 - HACER NUEVA SCENE
+Las cajas se generan arriba con spawn points y tienen gravedad. La que se nos cante.
+Dos black bars a los costados. 
+
+[CONCEPTO]
+IDEAS PARA MAS ADELANTE
+{
+Agarras gemas. Cuando arranca el round 2 y 3 te da upgrades para comprar segun tu cantidad de gemas.
+-Upgrades a Shield
+-Upgrades a dash
+-A movement jump/speed
+-A rock trowhing
+
+Sistema de upgrades a la 20 minutes.
+Dash: Dash 15% longer y Reduce cooldown 15% - Improve both 15% - El dash ataca
+Move: Jump higher (for easier jumps) 15% y Move faster 15% - Improve both 15% - Corre contra la pared hasta un piso
+Shield: 1) Ganas 2 shield - 2) Mejor cooldown - Mientras tenes shield podes saltar sobre los personajes para bajarlos.
+Perdes un shield al hacerlo - Tercer shield y mejor cooldown
+El shield blanco y el dash amarillo se representan con barritas abajo del pj.
+Rock: Tira mas rapido y Reduce cooldown 10% - Tira mas rapido y reduce cooldown
+}
+
+
+FUNCIONES
+
+AGREGAR WALL SLIDING
+Paredes a los costados del nivel. Te agarras y vas bajando. Podes disparar desde ahi. Y hacer wall jump.
+
+AGREGAR ENEMIGOS
+Los enemigos son de tres tipos.
+1) Saltan de caja en caja y despues a vos.
+2) Se acercan hasta 1 o 2 cajas a tu nivel (variantes) y tiran piedra.
+3) Van arriba tuyo y tiran piedra desde arriba.
+ 
+
+
+
+[ESTO ES VIEJO]
+IDEAS DE LA PRIMERA VUELTA:
 Movimiento:
--COYOTE TIME
 -PEAK JUMP REDUCE
 -EDGE DETECTION
 -CLAMP VELOCIDAD CAIDA
@@ -7,10 +70,6 @@ Movimiento:
 Enemigos:
 -RAYS PARA QUE PUEDAN GOLPEAR y MOVERSE DETECTANDO AL PLAYER
 
-SONIDOS:
--JUMP
--KILL
--LIBRO INFERNO
 
 CONTADOR:
 -SE AGRANDA UN TOQUE AL SUMAR, SE ACHICA Y QUEDA UN 0,1% MAS GRANDE
