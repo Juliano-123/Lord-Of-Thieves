@@ -6,18 +6,20 @@ public class ROCAARMA : MonoBehaviour
 {
 
     Controller2D controller;
-    public Vector2 velocity;
+    [SerializeField]
+    Vector2 _velocity;
 
     void Start()
     {
         controller = GetComponent<Controller2D>();
-        if (Player.orientacionX == 1)
+        if (Player.orientacionX == -1)
         {
-            //velocity = new Vector2(moveSpeed, 0);
+            _velocity.x = _velocity.x * -1;
+            _velocity.x += Player.velocity.x;
         }
-        else if (Player.orientacionX == -1)
+        else
         {
-            velocity.x = velocity.x * -1;
+            _velocity.x += Player.velocity.x;
         }
 
 
@@ -26,7 +28,7 @@ public class ROCAARMA : MonoBehaviour
     void Update()
     {
         //APLICA GRAVEDAD
-        velocity.y += Player.gravity/2 * Time.deltaTime;
+        _velocity.y += Player.gravity/2 * Time.deltaTime;
         
 
         //if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeado.tag == "Enemigo")
@@ -35,7 +37,7 @@ public class ROCAARMA : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
-        controller.Move(new Vector2(velocity.x + Player.velocity.x, velocity.y) * Time.deltaTime, false);
+        controller.Move(_velocity * Time.deltaTime, false);
 
     }
 
