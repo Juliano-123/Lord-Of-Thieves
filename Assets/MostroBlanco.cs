@@ -26,6 +26,7 @@ public class MostroBlanco : MonoBehaviour
     bool[] _hayAlgo = new bool[15];
     Vector2 _sizeacheckear = new Vector2(3, 3);
     float _timersalto = 2;
+    int _haySalto2 = 0;
 
     
 
@@ -145,6 +146,36 @@ public class MostroBlanco : MonoBehaviour
                                 
                             }
 
+                        case 3:
+                            {
+                                _velocity = new Vector2(5.35f, 7f);
+                                continue;
+
+                            }
+
+                        case 4:
+                            {
+                                _velocity = new Vector2(3.2f, 5f);
+                                continue;
+
+                            }
+
+                            //falta el caso 5
+
+                        case 6:
+                            {
+                                _velocity = new Vector2(-3.2f, 5f);
+                                continue;
+
+                            }
+
+                        case 7:
+                            {
+                                _velocity = new Vector2(-5.35f, 7f);
+                                continue;
+
+                            }
+
                         case 8:
                             {
                                 _velocity = new Vector2(-6.7f, 7.5f);
@@ -158,10 +189,90 @@ public class MostroBlanco : MonoBehaviour
                                 continue;
 
                             }
+
+                        case 10:
+                            {
+                                _velocity = new Vector2(-4f, 8f);
+                                _haySalto2 = 10;
+                                continue;
+
+                            }
+
+                        case 11:
+                            {
+                                _velocity = new Vector2(-3f, 8f);
+                                _haySalto2 = 11;
+                                continue;
+
+                            }
+
+                        case 12:
+                            {
+                                _velocity = new Vector2(4f, 8f);
+                                _haySalto2 = 12;
+                                continue;
+
+                            }
+
+                        case 13:
+                            {
+                                _velocity = new Vector2(3f, 8f);
+                                _haySalto2 = 13;
+                                continue;
+
+                            }
+
+                        case 14:
+                            {
+                                _velocity = new Vector2(4f, 8f);
+                                _haySalto2 = 14;
+                                continue;
+
+                            }
                     }
                 }
             }
 
+        }
+
+        if (_velocity.y < 0 && _haySalto2 !=0)
+        {
+            switch (_haySalto2 )
+            {
+                case 10:
+                    {
+                        _velocity = new Vector2(-4.8f, 9f);
+                        _haySalto2 = 0;
+                        break;
+                    }
+
+                case 11:
+                    {
+                        _velocity = new Vector2(-2f, 9f);
+                        _haySalto2 = 0;
+                        break;
+                    }
+
+                case 12:
+                    {
+                        _velocity = new Vector2(-2.5f, 8f);
+                        _haySalto2 = 0;
+                        break;
+                    }
+
+                case 13:
+                    {
+                        _velocity = new Vector2(2f, 9f);
+                        _haySalto2 = 0;
+                        break;
+                    }
+                case 14:
+                    {
+                        _velocity = new Vector2(4.8f, 9f);
+                        _haySalto2 = 0;
+                        break;
+                    }
+            }
         }
 
 
