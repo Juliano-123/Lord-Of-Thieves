@@ -2,6 +2,7 @@
 using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public static GameObject elJugador;
 
     Vector2 _input;
+    bool _botonSalto;
+    bool _botonDash;
 
     float _maxJumpHeight = 1.7F;
     float _minJumpHeight = 0.5F;
@@ -37,6 +40,7 @@ public class Player : MonoBehaviour
     public bool tiempoCoyoteON = false;
     bool toquePiso = true;
 
+    [SerializeField]
     int jumpApretado;
     float tiempoJump1 = -1;
     public bool jumpSoltado = false;
@@ -56,9 +60,10 @@ public class Player : MonoBehaviour
 
 
 
-
-    public static float timerGolpeadoIzquierda = 1f;
-    public static float timerGolpeadoDerecha = 1f;
+    [SerializeField]
+    public float timerGolpeadoIzquierda = 1f;
+    [SerializeField]
+    public float timerGolpeadoDerecha = 1f;
     public static float timerGolpeadoArriba = 1f;
     public static float timerGolpeadoAbajo = 1f;
 
@@ -104,8 +109,8 @@ public class Player : MonoBehaviour
         // GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
 
-        //TOMA LA DIRECCION DEL MOVIMIENTO
-        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        ////TOMA LA DIRECCION DEL MOVIMIENTO
+        //_input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         //GUARDA LA ORIENTACION SEGUN ESO
         if (_input.x > 0)
         {
@@ -129,7 +134,7 @@ public class Player : MonoBehaviour
         HandleCollisions();
 
         //SALTO TOMAR INPUT
-        if (Input.GetButtonDown("Jump"))
+        if (_botonSalto)
         {
             jumpApretado = jumpApretado+1;
             jumpSoltado = false;
@@ -137,14 +142,15 @@ public class Player : MonoBehaviour
         }
 
         //SUELTO SALTO TOMAR INPUT
-        if (Input.GetButtonUp("Jump")) {
+        if (!_botonSalto) {
             jumpSoltado = true;
         }
 
         //DASH TOMAR INPUT
-        if (Input.GetButtonDown("Fire2") && timeForNextDash <= 0)
+        if (_botonDash)
         {
             dashApretado = dashApretado + 1;
+            _botonDash = false;
         }
 
         timeForNextDash -= Time.deltaTime;
@@ -221,7 +227,7 @@ public class Player : MonoBehaviour
 
         //GOLPEADO
 
-        if (timerGolpeadoIzquierda <= 0.1f)
+        if (timerGolpeadoIzquierda <= 0.3f)
         {
             timerGolpeadoIzquierda += Time.deltaTime;
             FlashRed();
@@ -231,7 +237,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (timerGolpeadoDerecha <= 0.1f)
+        if (timerGolpeadoDerecha <= 0.3f)
         {
             timerGolpeadoDerecha += Time.deltaTime;
             FlashRed();
@@ -242,14 +248,14 @@ public class Player : MonoBehaviour
         }
 
 
-        //    //SI SUELTO SALTO ME BAJA LA VELOCIDAD
-        //    if (jumpSoltado = true)
-        //{
-        //    if (velocity.y > minJumpVelocity)
-        //    {
-        //        velocity.y = minJumpVelocity;
-        //    }
-        //}
+        //SI SUELTO SALTO ME BAJA LA VELOCIDAD
+        if (jumpSoltado == true)
+        {
+            if (velocity.y > minJumpVelocity)
+            {
+                velocity.y = minJumpVelocity;
+            }
+        }
 
 
 
@@ -291,8 +297,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnMove(InputValue value)
+    {
+        _input = value.Get<Vector2>();
+    }
 
+    void OnButtonX(InputValue value)
+    {
+        _botonSalto = value.isPressed;
+    }
 
+    void OnButtonO()
+    {
+        if (timeForNextDash <= 0)
+        {
+            _botonDash = true;
+        }
+    }
     void HandleCollisions()
     {
 

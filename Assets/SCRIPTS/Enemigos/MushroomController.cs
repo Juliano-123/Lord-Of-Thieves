@@ -32,16 +32,16 @@ public class MushroomController : MonoBehaviour
     
     void Update()
     {
-        //SI LE PEGO AL JUGADOR ................
-        if (controller.collisions.left && controller.collisions.objetoGolpeado.tag == "Player")
-        {
-            Player.timerGolpeadoDerecha = 0;
-        }
+        ////SI LE PEGO AL JUGADOR ................
+        //if (controller.collisions.left && controller.collisions.objetoGolpeado.tag == "Player")
+        //{
+        //    Player.timerGolpeadoDerecha = 0;
+        //}
 
-        if (controller.collisions.right && controller.collisions.objetoGolpeado.tag == "Player")
-        {
-            Player.timerGolpeadoIzquierda = 0;
-        }
+        //if (controller.collisions.right && controller.collisions.objetoGolpeado.tag == "Player")
+        //{
+        //    Player.timerGolpeadoIzquierda = 0;
+        //}
 
         posicionIzquierda = camera.ScreenToWorldPoint(new Vector3(0, 0, 0));
         posicionDerecha = camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
