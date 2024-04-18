@@ -7,16 +7,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    PlayerInput _playerInput;
+    InputAction _moveAction;
+    InputAction _jumpAction;
+    InputAction _dashAction;
+    
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
     public AudioSource audioGemas;
     public AudioClip salto, dashlisto, dasheando, agarrogema;
 
-    public static GameObject elJugador;
-
-    Vector2 _input;
-    bool _botonSalto;
-    bool _botonDash;
 
     float _maxJumpHeight = 1.7F;
     float _minJumpHeight = 0.5F;
@@ -83,16 +83,21 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         gemasContadas = 0;
+        _playerInput = GetComponent<PlayerInput>();
+        _moveAction = _playerInput.actions["MOVE"];
+        _jumpAction = _playerInput.actions["JUMP"];
+        _dashAction = _playerInput.actions["DASH"];
+
+        controller = GetComponent<Controller2D>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
 
 
     void Start()
     {
-        controller = GetComponent<Controller2D>();
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        elJugador = gameObject;
+
 
         //CACULA GRAVEDAD EN BASE A LOS VALORES DE ALTURA MAXIMA Y TIEMPO PARA LLEGAR A ELLA
         gravity = -(2 * _maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -109,32 +114,32 @@ public class Player : MonoBehaviour
         // GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
 
-        ////TOMA LA DIRECCION DEL MOVIMIENTO
-        //_input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //GUARDA LA ORIENTACION SEGUN ESO
-        if (_input.x > 0)
+
+        //GUARDA LA ORIENTACION SEGUN el input
+        if (_moveAction.ReadValue<Vector2>().x > 0)
         {
             orientacionX = 1;
         }
-        else if (_input.x < 0)
+        else if (_moveAction.ReadValue<Vector2>().x < 0)
         {
             orientacionX = -1;
         }
 
         CambiarDireccionSprite();
 
-        float targetVelocityX;
 
+
+        float targetVelocityX;
         //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
-        targetVelocityX = (_input.x * moveSpeed);
+        targetVelocityX = (_moveAction.ReadValue<Vector2>().x * moveSpeed);
         
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 
-        HandleCollisions();
+        
 
         //SALTO TOMAR INPUT
-        if (_botonSalto)
+        if (_jumpAction.WasPressedThisFrame())
         {
             jumpApretado = jumpApretado+1;
             jumpSoltado = false;
@@ -142,17 +147,18 @@ public class Player : MonoBehaviour
         }
 
         //SUELTO SALTO TOMAR INPUT
-        if (!_botonSalto) {
-            jumpSoltado = true;
-        }
+        //if (_jumpAction.WasReleasedThisFrame()) {
+        //    jumpSoltado = true;
+        //}
 
         //DASH TOMAR INPUT
-        if (_botonDash)
+        if (_dashAction.WasPressedThisFrame())
         {
             dashApretado = dashApretado + 1;
-            _botonDash = false;
+            
         }
 
+        //FUNCION FANTASMA
         timeForNextDash -= Time.deltaTime;
 
         if (timeForNextDash <= 0) {
@@ -186,14 +192,14 @@ public class Player : MonoBehaviour
             velocity.y = 0;
             velocity.x = dashVelocity * orientacionX;
             timeForNextDash = delayForDash;
-            if (jumpApretado > 0)
-            {
-                jumpApretado = 0;
-                velocity.x = 0;
-                velocity.y = maxJumpVelocity;
-                _saltosTotales = 2;
-                timerdash = 1f;
-            }
+            //if (jumpApretado > 0)
+            //{
+            //    jumpApretado = 0;
+            //    velocity.x = 0;
+            //    velocity.y = maxJumpVelocity;
+            //    _saltosTotales = 2;
+            //    timerdash = 1f;
+            //}
             controller.Move(velocity * Time.deltaTime, false);
             return;
         }
@@ -207,18 +213,25 @@ public class Player : MonoBehaviour
             audioJugador.Play();
             _saltosTotales += 1;
             velocity.y = maxJumpVelocity;
+            Debug.Log(velocity.y.ToString());
             jumpApretado = 0;
         }
 
         //DOBLE SALTO
         //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-        if (jumpApretado > 0 && !controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+        //if (jumpApretado > 0 && !controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+        
+        if(jumpApretado >0)
         {
             animator.SetBool("Saltando", true);
             audioJugador.clip = salto;
             audioJugador.Play();
 
             velocity.y = maxJumpVelocity;
+            Debug.Log("SALTO2");
+
+            Debug.Log(velocity.y.ToString());
+
             _saltosTotales += 1;
             jumpApretado = 0;
         }
@@ -248,14 +261,14 @@ public class Player : MonoBehaviour
         }
 
 
-        //SI SUELTO SALTO ME BAJA LA VELOCIDAD
-        if (jumpSoltado == true)
-        {
-            if (velocity.y > minJumpVelocity)
-            {
-                velocity.y = minJumpVelocity;
-            }
-        }
+        //si suelto salto me baja la velocidad
+        //if (jumpSoltado == true)
+        //{
+        //    if (velocity.y > minJumpVelocity)
+        //    {
+        //        velocity.y = minJumpVelocity;
+        //    }
+        //}
 
 
 
@@ -280,8 +293,12 @@ public class Player : MonoBehaviour
             velocity.y = -10;
         }
 
+
+        HandleCollisions();
+
         //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
         controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+        Debug.Log(velocity.y.ToString());
     }
 
     void CambiarDireccionSprite()
@@ -297,23 +314,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnMove(InputValue value)
-    {
-        _input = value.Get<Vector2>();
-    }
 
-    void OnButtonX(InputValue value)
-    {
-        _botonSalto = value.isPressed;
-    }
-
-    void OnButtonO()
-    {
-        if (timeForNextDash <= 0)
-        {
-            _botonDash = true;
-        }
-    }
     void HandleCollisions()
     {
 
@@ -348,6 +349,7 @@ public class Player : MonoBehaviour
                             _saltosTotales = 1;
                             controller.collisions.objetoGolpeado.transform.GetComponent<EnemigoGolpeado>().enabled = true;
                             jumpApretado = 0;
+                            jumpSoltado = false;
                             velocity.y = maxJumpVelocity;
                             boxContados++;
                             audioJugador.clip = salto;
