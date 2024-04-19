@@ -128,7 +128,6 @@ public class Player : MonoBehaviour
         CambiarDireccionSprite();
 
 
-
         float targetVelocityX;
         //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
         targetVelocityX = (_moveAction.ReadValue<Vector2>().x * moveSpeed);
@@ -136,7 +135,13 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 
-        
+        //Hay que hacer tres estados: Golpeado > Moviendose > Colisionando. Si golpeado, no hace nada de lo demas. Si no golpeado, se mueve
+        //de acuerdo al input del jugador. Luego de eso checkea si hay colisiones y esas reglas overridean el movimiento.
+
+
+        HandleCollisions();
+
+
 
         //SALTO TOMAR INPUT
         if (_jumpAction.WasPressedThisFrame())
@@ -147,12 +152,13 @@ public class Player : MonoBehaviour
         }
 
         //SUELTO SALTO TOMAR INPUT
-        //if (_jumpAction.WasReleasedThisFrame()) {
-        //    jumpSoltado = true;
-        //}
+        if (_jumpAction.WasReleasedThisFrame())
+        {
+            jumpSoltado = true;
+        }
 
         //DASH TOMAR INPUT
-        if (_dashAction.WasPressedThisFrame())
+        if (_dashAction.WasPressedThisFrame() && timeForNextDash <= 0)
         {
             dashApretado = dashApretado + 1;
             
@@ -178,6 +184,7 @@ public class Player : MonoBehaviour
         {
             timerdash = 0;
             dashApretado = 0;
+            jumpApretado = 0;
             _saltosTotales = 1;
             audioJugador.clip = dasheando;
             audioJugador.Play();
@@ -192,14 +199,14 @@ public class Player : MonoBehaviour
             velocity.y = 0;
             velocity.x = dashVelocity * orientacionX;
             timeForNextDash = delayForDash;
-            //if (jumpApretado > 0)
-            //{
-            //    jumpApretado = 0;
-            //    velocity.x = 0;
-            //    velocity.y = maxJumpVelocity;
-            //    _saltosTotales = 2;
-            //    timerdash = 1f;
-            //}
+            if (jumpApretado > 0)
+            {
+                jumpApretado = 0;
+                velocity.x = 0;
+                velocity.y = maxJumpVelocity;
+                _saltosTotales = 2;
+                timerdash = 1f;
+            }
             controller.Move(velocity * Time.deltaTime, false);
             return;
         }
@@ -219,9 +226,7 @@ public class Player : MonoBehaviour
 
         //DOBLE SALTO
         //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-        //if (jumpApretado > 0 && !controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
-        
-        if(jumpApretado >0)
+        if (jumpApretado > 0 && !controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
         {
             animator.SetBool("Saltando", true);
             audioJugador.clip = salto;
@@ -262,13 +267,13 @@ public class Player : MonoBehaviour
 
 
         //si suelto salto me baja la velocidad
-        //if (jumpSoltado == true)
-        //{
-        //    if (velocity.y > minJumpVelocity)
-        //    {
-        //        velocity.y = minJumpVelocity;
-        //    }
-        //}
+        if (jumpSoltado == true)
+        {
+            if (velocity.y > minJumpVelocity)
+            {
+                velocity.y = minJumpVelocity;
+            }
+        }
 
 
 
@@ -294,8 +299,7 @@ public class Player : MonoBehaviour
         }
 
 
-        HandleCollisions();
-
+       
         //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
         controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
         Debug.Log(velocity.y.ToString());
