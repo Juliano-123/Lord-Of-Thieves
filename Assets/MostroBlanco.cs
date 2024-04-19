@@ -61,12 +61,12 @@ public class MostroBlanco : MonoBehaviour
 
         }
         //si le pego al jugador ................
-        if (_controller.collisions.left && _controller.collisions.objetoGolpeado.tag == "Player")
+        if (_controller.collisions.left && (_controller.collisions.objetoGolpeadoHorizontal.tag == "Player" || _controller.collisions.objetoGolpeadoVertical.tag == "Player"))
         {
             _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
         }
 
-        if (_controller.collisions.right && _controller.collisions.objetoGolpeado.tag == "Player")
+        if (_controller.collisions.right && (_controller.collisions.objetoGolpeadoHorizontal.tag == "Player" || _controller.collisions.objetoGolpeadoVertical.tag == "Player"))
         {
             _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
         }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Controller2D : RayCastController
 {
+    [SerializeField]
     public CollisionInfo collisions;
 
 
@@ -55,7 +56,7 @@ public class Controller2D : RayCastController
 
                 collisions.left = directionX == -1;
                 collisions.right = directionX == 1;
-                collisions.objetoGolpeado = hit.transform.gameObject;
+                collisions.objetoGolpeadoHorizontal = hit.transform.gameObject;
             }
         }
     }
@@ -80,7 +81,7 @@ public class Controller2D : RayCastController
 
                 collisions.below = directionY == -1;
                 collisions.above = directionY == 1;
-                collisions.objetoGolpeado = hit.transform.gameObject;
+                collisions.objetoGolpeadoVertical = hit.transform.gameObject;
             }
         }
 
@@ -91,12 +92,15 @@ public class Controller2D : RayCastController
     {
         public bool above, below;
         public bool left, right;
-        public GameObject objetoGolpeado;
+        public GameObject objetoGolpeadoHorizontal;
+        public GameObject objetoGolpeadoVertical;
 
         public void Reset()
         {
             above = below = false;
             left = right = false;
+            objetoGolpeadoHorizontal = null;
+            objetoGolpeadoVertical = null;
         }
     }
 

@@ -1,53 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using Unity.VisualScripting;
+//using UnityEngine;
 
-public class DagaArma : MonoBehaviour
-{
-    Controller2D controller;
-    float moveSpeed = 8;
-    Vector2 velocity;
+//public class DagaArma : MonoBehaviour
+//{
+//    Controller2D controller;
+//    float moveSpeed = 8;
+//    Vector2 velocity;
 
-    void Start()
-    {
-        controller = GetComponent<Controller2D>();
-        if (Player.orientacionX == 1)
-        {
-            velocity = new Vector2(moveSpeed, 0);
-        }
-        else if (Player.orientacionX == -1)
-        {
-            velocity = new Vector2(-moveSpeed, 0);
-        }
+//    void Start()
+//    {
+//        controller = GetComponent<Controller2D>();
+//        if (Player.orientacionX == 1)
+//        {
+//            velocity = new Vector2(moveSpeed, 0);
+//        }
+//        else if (Player.orientacionX == -1)
+//        {
+//            velocity = new Vector2(-moveSpeed, 0);
+//        }
 
-    }
+//    }
 
-    void Update()
-    {
-
-
-
-
-        if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeado.tag == "Enemigo" )
-        {
-            Destroy(controller.collisions.objetoGolpeado);
-            Destroy(gameObject);
-        }
+//    void Update()
+//    {
 
 
 
-        controller.Move(velocity * Time.deltaTime, false);
 
-    }
+//        if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeado.tag == "Enemigo" )
+//        {
+//            Destroy(controller.collisions.objetoGolpeado);
+//            Destroy(gameObject);
+//        }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
-    private void OnDestroy()
-    {
-        DagaJugador.totalDisparado -= 1;
-    }
-}
+
+//        controller.Move(velocity * Time.deltaTime, false);
+
+//    }
+
+//    private void OnBecameInvisible()
+//    {
+//        Destroy(gameObject);
+//    }
+
+//    private void OnDestroy()
+//    {
+//        DagaJugador.totalDisparado -= 1;
+//    }
+//}
