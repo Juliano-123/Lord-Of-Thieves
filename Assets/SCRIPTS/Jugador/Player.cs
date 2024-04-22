@@ -14,19 +14,20 @@ public class Player : MonoBehaviour
     Controller2D _controller;
 
     //para golpeo
-    [SerializeField]
-    bool _jugadorGolpeado = false;
+    
+    public bool _jugadorGolpeado = false;
     [SerializeField]
     public float timerGolpeadoIzquierda = 1f;
     [SerializeField]
     public float timerGolpeadoDerecha = 1f;
-    public static float timerGolpeadoArriba = 1f;
-    public static float timerGolpeadoAbajo = 1f;
+    public float timerGolpeadoArriba = 1f;
+    public float timerGolpeadoAbajo = 1f;
 
     PlayerInput _playerInput;
     InputAction _moveAction;
     InputAction _jumpAction;
     InputAction _dashAction;
+    InputAction _shootAction;
     
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
@@ -58,8 +59,8 @@ public class Player : MonoBehaviour
     public bool tiempoCoyoteON = false;
     
 
-    [SerializeField]
-    int jumpApretado;
+
+    int _jumpApretado;
     float tiempoJump1 = -1;
     public bool jumpSoltado = false;
     public int _saltosTotales = 0;
@@ -70,11 +71,16 @@ public class Player : MonoBehaviour
 
     
 
-    int dashApretado = 0;
+    int _dashApretado = 0;
     public float dashVelocity = 15f;
     float timeForNextDash = 0;
     public float delayForDash = 1f;
     bool yaSonoElDash = true;
+
+
+    int _shootApretado = 0;
+    public GameObject _spawnObjetoRoca;
+    Vector2 _lugarSpawn;
 
 
 
@@ -93,6 +99,7 @@ public class Player : MonoBehaviour
         _moveAction = _playerInput.actions["MOVE"];
         _jumpAction = _playerInput.actions["JUMP"];
         _dashAction = _playerInput.actions["DASH"];
+        _shootAction = _playerInput.actions["SHOOT"];
 
         _controller = GetComponent<Controller2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -117,10 +124,10 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // GRAVEDAD
+        // AGREGA GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
 
-        //SI ME GOLPEARON
+        //SI ME GOLPEARON NO TOMA INPUT Y HACE ESTO
         if (_jugadorGolpeado == true)
         {
             //GOLPEADO
@@ -152,6 +159,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
         if (_jugadorGolpeado == false)
         {
 
@@ -165,20 +173,15 @@ public class Player : MonoBehaviour
                 orientacionX = -1;
             }
 
+            //VOLETEA EL SPRITE SEGUN DONDE VOY
             CambiarDireccionSprite();
 
-
-            float targetVelocityX;
             //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
-            targetVelocityX = (_moveAction.ReadValue<Vector2>().x * moveSpeed);
-
+            float targetVelocityX = (_moveAction.ReadValue<Vector2>().x * moveSpeed);
+            //Hace que uno vaya acelerando y que no sea 0 100
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
-
-            //Hay que hacer tres estados: Golpeado > Moviendose > Colisionando. Si golpeado, no hace nada de lo demas. Si no golpeado, se mueve
-            //de acuerdo al input del jugador. Luego de eso checkea si hay colisiones y esas reglas overridean el movimiento.
-
-
+            //CheckeaColisiones
             HandleCollisions();
 
 
@@ -186,7 +189,7 @@ public class Player : MonoBehaviour
             //SALTO TOMAR INPUT
             if (_jumpAction.WasPressedThisFrame())
             {
-                jumpApretado = jumpApretado + 1;
+                _jumpApretado = _jumpApretado + 1;
                 jumpSoltado = false;
                 tiempoJump1 = Time.time;
             }
@@ -200,11 +203,18 @@ public class Player : MonoBehaviour
             //DASH TOMAR INPUT
             if (_dashAction.WasPressedThisFrame() && timeForNextDash <= 0)
             {
-                dashApretado = dashApretado + 1;
+                _dashApretado = _dashApretado + 1;
 
             }
 
-            //FUNCION FANTASMA
+            //SHOOT TOMAR INPUT
+            if (_shootAction.WasPressedThisFrame())
+            {
+                _shootApretado = _shootApretado + 1;
+
+            }
+
+            //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
             timeForNextDash -= Time.deltaTime;
 
             if (timeForNextDash <= 0)
@@ -223,11 +233,11 @@ public class Player : MonoBehaviour
             }
 
             //DECIDIR QUE DASHEO
-            if (dashApretado > 0 && timeForNextDash <= 0)
+            if (_dashApretado > 0 && timeForNextDash <= 0)
             {
                 timerdash = 0;
-                dashApretado = 0;
-                jumpApretado = 0;
+                _dashApretado = 0;
+                _jumpApretado = 0;
                 _saltosTotales = 1;
                 audioJugador.clip = dasheando;
                 audioJugador.Play();
@@ -242,9 +252,9 @@ public class Player : MonoBehaviour
                 velocity.y = 0;
                 velocity.x = dashVelocity * orientacionX;
                 timeForNextDash = delayForDash;
-                if (jumpApretado > 0)
+                if (_jumpApretado > 0)
                 {
-                    jumpApretado = 0;
+                    _jumpApretado = 0;
                     velocity.x = 0;
                     velocity.y = maxJumpVelocity;
                     _saltosTotales = 2;
@@ -254,9 +264,24 @@ public class Player : MonoBehaviour
                 return;
             }
 
+
+            //INSTANCIAR PIEDRA
+            if (_shootApretado > 0)
+            {
+                //CALCULAR LUGAR SPAWN
+                //OFFSETS
+                //X. 0.000357117
+                //Y. 0.03107139
+                _lugarSpawn.x = transform.position.x + 0.000357117f;
+                _lugarSpawn.y = transform.position.y + 0.03107139f;
+
+                Instantiate(_spawnObjetoRoca, _lugarSpawn, Quaternion.identity);
+                _shootApretado = 0;
+            }
+
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
-            if (jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeadoVertical.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
+            if (_jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeadoVertical.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
             {
                 animator.SetBool("Saltando", true);
                 audioJugador.clip = salto;
@@ -264,12 +289,12 @@ public class Player : MonoBehaviour
                 _saltosTotales += 1;
                 velocity.y = maxJumpVelocity;
                 Debug.Log(velocity.y.ToString());
-                jumpApretado = 0;
+                _jumpApretado = 0;
             }
 
             //DOBLE SALTO
             //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-            if (jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+            if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
             {
                 animator.SetBool("Saltando", true);
                 audioJugador.clip = salto;
@@ -281,7 +306,7 @@ public class Player : MonoBehaviour
                 Debug.Log(velocity.y.ToString());
 
                 _saltosTotales += 1;
-                jumpApretado = 0;
+                _jumpApretado = 0;
             }
 
                                  
@@ -311,13 +336,11 @@ public class Player : MonoBehaviour
 
 
 
-
+            //PONE UN LIMITE MAXIMO A LA VELOCIDAD DE CAIDA
             if (velocity.y <= -10)
             {
                 velocity.y = -10;
             }
-
-
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
             _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
@@ -360,7 +383,7 @@ public class Player : MonoBehaviour
                     case "Enemigo":
                         _jugadorGolpeado = true;
                         _saltosTotales = 1;
-                        jumpApretado = 0;
+                        _jumpApretado = 0;
                         jumpSoltado = false;
                         if (_controller.collisions.left)
                         {
@@ -392,7 +415,7 @@ public class Player : MonoBehaviour
                             case "Enemigo":
                                 _jugadorGolpeado = true;
                                 _saltosTotales = 1;
-                                jumpApretado = 0;
+                                _jumpApretado = 0;
                                 jumpSoltado = false;
                                 if (_controller.collisions.left)
                                 {
@@ -428,7 +451,7 @@ public class Player : MonoBehaviour
                                 {
                                     _controller.collisions.objetoGolpeadoVertical.transform.GetComponent<EnemigoGolpeado>().enabled = true;
                                     _saltosTotales = 1;
-                                    jumpApretado = 0;
+                                    _jumpApretado = 0;
                                     jumpSoltado = false;
                                     velocity.y = maxJumpVelocity;
                                     boxContados++;
@@ -456,7 +479,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameOverScreen.Activate();
+        //gameOverScreen.Activate();
         Time.timeScale = 0.05f;
 
     }

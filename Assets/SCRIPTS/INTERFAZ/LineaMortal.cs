@@ -5,11 +5,13 @@ using UnityEngine;
 public class LineaMortal : MonoBehaviour
 {
     float speed = 0;
+    [SerializeField]
     float baseSpeed = 3;
+    [SerializeField]
     float accel = 0.12f;
     float desaccel = 0.24f;
     public float distanciaDelta;
-    float distanciaCatchUp = 18f;
+    float distanciaCatchUp = 25f;
     
     int gemasAplicadas;
 

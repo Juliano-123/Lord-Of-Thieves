@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9004151085203104712}
   - component: {fileID: 2513140162464032045}
   - component: {fileID: 5409550888091655062}
-  - component: {fileID: 461194429617927887}
   - component: {fileID: 4224442171216974252}
   m_Layer: 7
   m_Name: CAJABAJADORA
@@ -163,19 +162,6 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: -0.00000023841858, y: 0.000000007450581, z: 0}
     m_Extent: {x: 0.07500005, y: 0.074999996, z: 0}
---- !u!114 &461194429617927887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554900635428892605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aaaa76cd4b5bf2448d594c97c43083b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LineadeFuego: {fileID: 0}
 --- !u!114 &4224442171216974252
 MonoBehaviour:
   m_ObjectHideFlags: 0

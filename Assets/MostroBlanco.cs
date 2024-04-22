@@ -12,7 +12,6 @@ public class MostroBlanco : MonoBehaviour
     Controller2D _controller;
     public GameObject _elJugador;
 
-    [SerializeField]
     Vector2 _velocity = Vector2.zero;
 
     //La separacion X entre cajas es 2.5
@@ -26,6 +25,7 @@ public class MostroBlanco : MonoBehaviour
     
     bool[] _hayAlgo = new bool[15];
     Vector2 _sizeacheckear = new Vector2(1, 1);
+    [SerializeField] 
     float _timersalto = 2;
     int _haySalto2 = 0;
 
@@ -45,6 +45,35 @@ public class MostroBlanco : MonoBehaviour
         //APLICA GRAVEDAD
         _velocity.y += Player.gravity * Time.deltaTime;
 
+        //si le pego al jugador ................
+
+
+        if (_controller.collisions.objetoGolpeadoHorizontal != null)
+        {
+            if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
+            {
+                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+            }
+            else if (_controller.collisions.right && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
+            {
+                _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
+                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+            }
+        }
+
+        if (_controller.collisions.objetoGolpeadoVertical != null)
+        {
+            if (_controller.collisions.objetoGolpeadoVertical.tag == "Player")
+            {
+                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+            }
+        }
+
+
+
+
         //MANDA VELOCIDAD X A 0 CUANDO ATERRIZA
         if ( _controller.collisions.below )
         {
@@ -60,16 +89,7 @@ public class MostroBlanco : MonoBehaviour
 
 
         }
-        //si le pego al jugador ................
-        if (_controller.collisions.left && (_controller.collisions.objetoGolpeadoHorizontal.tag == "Player" || _controller.collisions.objetoGolpeadoVertical.tag == "Player"))
-        {
-            _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
-        }
 
-        if (_controller.collisions.right && (_controller.collisions.objetoGolpeadoHorizontal.tag == "Player" || _controller.collisions.objetoGolpeadoVertical.tag == "Player"))
-        {
-            _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
-        }
 
 
         if (_timersalto < 0)

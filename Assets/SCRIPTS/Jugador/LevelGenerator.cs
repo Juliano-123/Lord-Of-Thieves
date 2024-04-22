@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     float ultimaPosicionSpawnPiso;
     // 1 es caja piso 2 escaja bounce
     public GameObject[] spawnObjetoBox = new GameObject[2];
-    public GameObject spawnObjetoGema;
+    public GameObject[] spawnObjetoSecundario = new GameObject[2];
     public GameObject spawnObjetoVacio;
 
     public GameObject LineadeFuego;
@@ -88,7 +88,7 @@ public class LevelGenerator : MonoBehaviour
             //Genera un 0 a 2 para cada lugar de spawn de gema
             for (int i = 1; i <= 32; i++)
             {
-                spawngemasiono[i] = Random.Range(0, 3);
+                spawngemasiono[i] = Random.Range(0, 4);
             }
 
             //los dos primeros espacios los instanceo segun el 0 o 1 de spawnsiono
@@ -103,15 +103,23 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else
                     {
-                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
-                        ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                        GameObject CajaSpawneada = Instantiate(spawnObjetoBox[1], lugarspawn[i], Quaternion.identity);
+                        CajaSpawneada.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                        if (spawngemasiono[i] == 1)
+                        {
+                            GameObject ObjetoSpawneado = Instantiate(spawnObjetoSecundario[1], new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                            ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                            ObjetoSpawneado.GetComponent<MostroBlanco>()._elJugador = gameObject;
+                        }
+
                     }
 
                     if (spawngemasiono[i] == 0)
                     {
-                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoSecundario[0], new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
                         ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
+                    
                 }
 
             }
@@ -129,6 +137,12 @@ public class LevelGenerator : MonoBehaviour
                         case 0:
                             GameObject ObjetoSpawneado = Instantiate(spawnObjetoBox[cajaASpawnear], lugarspawn[i], Quaternion.identity);
                             ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                            if (spawngemasiono[i] == 1)
+                            {
+                                GameObject MostroSpawneado = Instantiate(spawnObjetoSecundario[1], new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                                MostroSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                                MostroSpawneado.GetComponent<MostroBlanco>()._elJugador = gameObject;
+                            }
                             break;
 
                         case 1:
@@ -141,6 +155,12 @@ public class LevelGenerator : MonoBehaviour
                             {
                                 GameObject ObjetoSpawneado1 = Instantiate(spawnObjetoBox[cajaASpawnear], lugarspawn[i], Quaternion.identity);
                                 ObjetoSpawneado1.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                                if (spawngemasiono[i] == 1)
+                                {
+                                    GameObject MostroSpawneado = Instantiate(spawnObjetoSecundario[1], new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                                    MostroSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
+                                    MostroSpawneado.GetComponent<MostroBlanco>()._elJugador = gameObject;
+                                }
                             }
                                 
                         break;
@@ -153,9 +173,10 @@ public class LevelGenerator : MonoBehaviour
 
                     if (spawngemasiono[i] == 0)
                     {
-                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoGema, new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
+                        GameObject ObjetoSpawneado = Instantiate(spawnObjetoSecundario[0], new Vector3(lugarspawn[i].x, lugarspawn[i].y + 1, lugarspawn[i].z), Quaternion.identity);
                         ObjetoSpawneado.GetComponent<DestruccionFuego>().LineadeFuego = LineadeFuego;
                     }
+                   
                 }
 
             }
