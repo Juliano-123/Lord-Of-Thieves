@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "MOVE",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "1c577b2f-166a-4cf9-a518-39631e2f866d",
                     "expectedControlType": "Stick",
                     "processors": "",
@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AIM",
+                    "type": "PassThrough",
+                    "id": "0ac57387-ecf1-41f8-99d9-f42540cdd58e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -58,7 +67,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "MOVE",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -80,7 +89,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -91,7 +100,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -102,7 +111,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -113,7 +122,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -124,7 +133,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "JUMP",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -135,7 +144,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "JUMP",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -146,7 +155,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "DASH",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -157,7 +166,7 @@
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "DASH",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -168,7 +177,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "SHOOT",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -179,7 +188,7 @@
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyMouse",
                     "action": "SHOOT",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -190,13 +199,63 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "GRAPPLE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "942561fe-1257-49fb-9d12-6b46315b9fb3",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AIM",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77cb907e-e0fd-4833-9da4-2e2d5e623c47",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouse",
+                    "action": "AIM",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "KeyMouse",
+            "bindingGroup": "KeyMouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

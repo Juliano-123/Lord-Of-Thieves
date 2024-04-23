@@ -3,7 +3,6 @@ using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -16,13 +15,15 @@ public class Player : MonoBehaviour
     //para golpeo
     
     public bool _jugadorGolpeado = false;
-    [SerializeField]
+    
     public float timerGolpeadoIzquierda = 1f;
-    [SerializeField]
+    
     public float timerGolpeadoDerecha = 1f;
     public float timerGolpeadoArriba = 1f;
     public float timerGolpeadoAbajo = 1f;
 
+
+    //Variables para los Inputs
     PlayerInput _playerInput;
     InputAction _moveAction;
     InputAction _jumpAction;

@@ -6,12 +6,10 @@ public class DestruccionFuego : MonoBehaviour
 {
     public GameObject LineadeFuego;
 
-    void Start()
-    {
-    }
+
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
      if (LineadeFuego.transform.position.x - transform.position.x > 0)
         {
