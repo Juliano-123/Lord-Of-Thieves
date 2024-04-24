@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "MOVE",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "1c577b2f-166a-4cf9-a518-39631e2f866d",
                     "expectedControlType": "Stick",
                     "processors": "",
@@ -20,7 +20,7 @@
                     "id": "63f722b6-12ef-45b1-bc62-761cbe5fa77d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -52,11 +52,20 @@
                 },
                 {
                     "name": "AIM",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "0ac57387-ecf1-41f8-99d9-f42540cdd58e",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "JUMPRELEASED",
+                    "type": "Button",
+                    "id": "0713d6aa-b84e-4b58-b8d1-597c2ade6e14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 }
             ],
@@ -130,7 +139,7 @@
                 {
                     "name": "",
                     "id": "ea2efa8d-adb7-402a-a238-922c3cfd7a3f",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -152,7 +161,7 @@
                 {
                     "name": "",
                     "id": "6b72c1a0-52c7-4488-a394-3e9b7d135acf",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -174,7 +183,7 @@
                 {
                     "name": "",
                     "id": "2c7fcc3a-583e-4629-bfb1-b959e0c6a77e",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -223,6 +232,17 @@
                     "processors": "",
                     "groups": "KeyMouse",
                     "action": "AIM",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "298e4941-ae35-4d2d-81f6-206bef5fbec2",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "JUMPRELEASED",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

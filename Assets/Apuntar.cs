@@ -15,31 +15,28 @@ public class Apuntar : MonoBehaviour
     [SerializeField]
     float rotZ;
 
-    [SerializeField]
-    Vector2 _stickValue;
 
-    PlayerInput _playerInput;
-    InputAction _aim;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerInput = GetComponent<PlayerInput>();
-        _aim = _playerInput.actions["AIM"]; 
-    }
+
+
+
+
 
     // Update is called once per frame
     void Update()
     {
+        //con stick
+        //_stickValue = _aim.ReadValue<Vector2>();
 
-        _stickValue = _aim.ReadValue<Vector2>();
+        //Vector3 Rotation = _stickValue;
 
 
-        _mousePosition = _maincam.ScreenToWorldPoint(_aim.ReadValue<Vector2>());
+        //con mouse
+        //_mousePosition = _maincam.ScreenToWorldPoint(_aim.ReadValue<Vector2>());
 
-        Vector3 Rotation = _mousePosition - transform.position;
+        //Vector3 Rotation = _mousePosition - transform.position;
 
-        rotZ = Mathf.Atan2(Rotation.y, Rotation.x) * Mathf.Rad2Deg;
+        rotZ = Mathf.Atan2(Player._stickValue.y, Player._stickValue.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0,0,rotZ);
 

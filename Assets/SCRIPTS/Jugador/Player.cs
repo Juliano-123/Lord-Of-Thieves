@@ -27,8 +27,12 @@ public class Player : MonoBehaviour
     PlayerInput _playerInput;
     InputAction _moveAction;
     InputAction _jumpAction;
+    InputAction _jumpReleasedAction;
     InputAction _dashAction;
     InputAction _shootAction;
+    InputAction _aim;
+
+    public static Vector3 _stickValue;
     
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
@@ -101,6 +105,8 @@ public class Player : MonoBehaviour
         _jumpAction = _playerInput.actions["JUMP"];
         _dashAction = _playerInput.actions["DASH"];
         _shootAction = _playerInput.actions["SHOOT"];
+        _aim = _playerInput.actions["AIM"];
+        _jumpReleasedAction = _playerInput.actions["JUMPRELEASED"];
 
         _controller = GetComponent<Controller2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -124,6 +130,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        _stickValue = _aim.ReadValue<Vector2>();
+
+        
+
 
         // AGREGA GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
@@ -188,7 +198,7 @@ public class Player : MonoBehaviour
 
 
             //SALTO TOMAR INPUT
-            if (_jumpAction.WasPressedThisFrame())
+            if (_jumpAction.triggered) //WasPressedThisFrame())
             {
                 _jumpApretado = _jumpApretado + 1;
                 jumpSoltado = false;
@@ -196,7 +206,7 @@ public class Player : MonoBehaviour
             }
 
             //SUELTO SALTO TOMAR INPUT
-            if (_jumpAction.WasReleasedThisFrame())
+            if (_jumpReleasedAction.triggered)
             {
                 jumpSoltado = true;
             }
