@@ -92,9 +92,10 @@ public class Player : MonoBehaviour
 
 
     float flashTime = 0.008f;
-
     public Ghost ghost;
 
+    //nuevo movimiento
+    Vector2 _directionalInput;
 
 
     private void Awake()
@@ -126,6 +127,11 @@ public class Player : MonoBehaviour
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * _minJumpHeight);
 
+    }
+
+    public void SetDirectionalInput (Vector2 input)
+    {
+        _directionalInput = input;
     }
 
     void Update()
@@ -197,33 +203,7 @@ public class Player : MonoBehaviour
 
 
 
-            //SALTO TOMAR INPUT
-            if (_jumpAction.triggered) //WasPressedThisFrame())
-            {
-                _jumpApretado = _jumpApretado + 1;
-                jumpSoltado = false;
-                tiempoJump1 = Time.time;
-            }
 
-            //SUELTO SALTO TOMAR INPUT
-            if (_jumpReleasedAction.triggered)
-            {
-                jumpSoltado = true;
-            }
-
-            //DASH TOMAR INPUT
-            if (_dashAction.WasPressedThisFrame() && timeForNextDash <= 0)
-            {
-                _dashApretado = _dashApretado + 1;
-
-            }
-
-            //SHOOT TOMAR INPUT
-            if (_shootAction.WasPressedThisFrame())
-            {
-                _shootApretado = _shootApretado + 1;
-
-            }
 
             //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
             timeForNextDash -= Time.deltaTime;
