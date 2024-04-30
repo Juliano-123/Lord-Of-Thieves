@@ -7,95 +7,76 @@ using UnityEngine.InputSystem;
 public class InputJulian : MonoBehaviour
 {
     Player player;
+    Apuntar apuntar;
 
     Vector2 _directionalInput;
+
     private void Start()
     {
         player = GetComponent<Player>();
+        apuntar = GetComponentInChildren<Apuntar>();
     }
 
     private void Update()
     {
         player.SetDirectionalInput(_directionalInput);
-    }
-
-    private void Move(InputAction.CallbackContext context)
-    {
-
+        apuntar.SetDirectionalInput(_directionalInput);
 
     }
 
-
-    private void Jump(InputAction.CallbackContext context)
+    public void Move(InputAction.CallbackContext context)
     {
+        _directionalInput = context.ReadValue<Vector2>();
+
+    }
+
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+
         if (context.performed)
         {
-
+            player.SetJumpApretado(1);
         }
 
         if (context.canceled)
         {
-
+            player.SetJumpSoltado();
+            
         }
 
     }
 
 
-    private void Dash(InputAction.CallbackContext context)
+    public void Dash(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-
+            player.SetDashApretado(1);
         }
     }
 
-    private void Shoot(InputAction.CallbackContext context)
+    public void Shoot(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            player.SetShootApretado(1);
+        }
 
+        if (context.canceled)
+        {
+            player.SetShootSoltado(1);
         }
     }
 }
 
-//los botones de input que tenia definidos
-
-//_playerInput = GetComponent<PlayerInput>();
-//_moveAction = _playerInput.actions["MOVE"];
-//_jumpAction = _playerInput.actions["JUMP"];
-//_dashAction = _playerInput.actions["DASH"];
-//_shootAction = _playerInput.actions["SHOOT"];
-//_aim = _playerInput.actions["AIM"];
-//_jumpReleasedAction = _playerInput.actions["JUMPRELEASED"];
 
 
-//todo lo que hacian las tomas de input
 
-////SALTO TOMAR INPUT
-//if (_jumpAction.triggered) //WasPressedThisFrame())
-//{
-//    _jumpApretado = _jumpApretado + 1;
-//    jumpSoltado = false;
-//    tiempoJump1 = Time.time;
-//}
 
-////SUELTO SALTO TOMAR INPUT
-//if (_jumpReleasedAction.triggered)
-//{
-//    jumpSoltado = true;
-//}
 
-////DASH TOMAR INPUT
-//if (_dashAction.WasPressedThisFrame() && timeForNextDash <= 0)
-//{
-//    _dashApretado = _dashApretado + 1;
 
-//}
 
-////SHOOT TOMAR INPUT
-//if (_shootAction.WasPressedThisFrame())
-//{
-//    _shootApretado = _shootApretado + 1;
 
 
 

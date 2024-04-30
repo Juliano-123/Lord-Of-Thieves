@@ -15,18 +15,13 @@ public class Apuntar : MonoBehaviour
     [SerializeField]
     float rotZ;
 
-
-
-
-
+    Vector2 _directionalInput;
 
 
 
     // Update is called once per frame
     void Update()
     {
-        //con stick
-        //_stickValue = _aim.ReadValue<Vector2>();
 
         //Vector3 Rotation = _stickValue;
 
@@ -36,9 +31,16 @@ public class Apuntar : MonoBehaviour
 
         //Vector3 Rotation = _mousePosition - transform.position;
 
-        rotZ = Mathf.Atan2(Player._stickValue.y, Player._stickValue.x) * Mathf.Rad2Deg;
+        //con stick
+        rotZ = Mathf.Atan2(_directionalInput.y, _directionalInput.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0,0,rotZ);
 
     }
+
+    public void SetDirectionalInput(Vector2 input)
+    {
+        _directionalInput = input;
+    }
+
 }

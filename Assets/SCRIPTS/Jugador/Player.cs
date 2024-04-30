@@ -12,35 +12,23 @@ public class Player : MonoBehaviour
     SpriteRenderer playerSpriteRenderer;
     Controller2D _controller;
 
-    //para golpeo
-    
-    public bool _jugadorGolpeado = false;
-    
-    public float timerGolpeadoIzquierda = 1f;
-    
-    public float timerGolpeadoDerecha = 1f;
-    public float timerGolpeadoArriba = 1f;
-    public float timerGolpeadoAbajo = 1f;
-
-
-    //Variables para los Inputs
-    PlayerInput _playerInput;
-    InputAction _moveAction;
-    InputAction _jumpAction;
-    InputAction _jumpReleasedAction;
-    InputAction _dashAction;
-    InputAction _shootAction;
-    InputAction _aim;
-
-    public static Vector3 _stickValue;
-    
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
     public AudioSource audioGemas;
     public AudioClip salto, dashlisto, dasheando, agarrogema;
 
 
-    float _maxJumpHeight = 1.7F;
+    //para golpeo
+
+    public bool _jugadorGolpeado = false;
+    public float timerGolpeadoIzquierda = 1f;
+    public float timerGolpeadoDerecha = 1f;
+    public float timerGolpeadoArriba = 1f;
+    public float timerGolpeadoAbajo = 1f;
+
+
+    
+    float _maxJumpHeight = 1.8F;
     float _minJumpHeight = 0.5F;
     float timeToJumpApex = 0.4f;
     float accelerationTimeAirborne = 0.1f;
@@ -66,8 +54,8 @@ public class Player : MonoBehaviour
 
 
     int _jumpApretado;
-    float tiempoJump1 = -1;
-    public bool jumpSoltado = false;
+    public float tiempoJump1 = -1;
+    public bool _jumpSoltado = false;
     public int _saltosTotales = 0;
     float timerdash = 1f;
 
@@ -76,7 +64,7 @@ public class Player : MonoBehaviour
 
     
 
-    int _dashApretado = 0;
+    public int _dashApretado = 0;
     public float dashVelocity = 15f;
     float timeForNextDash = 0;
     public float delayForDash = 1f;
@@ -84,7 +72,11 @@ public class Player : MonoBehaviour
 
 
     int _shootApretado = 0;
-    public GameObject _spawnObjetoRoca;
+    int _shootSoltado = 0;
+    [SerializeField]
+    GameObject _spawnObjetoDaga;
+    [SerializeField]
+    GameObject _mira;
     Vector2 _lugarSpawn;
 
 
@@ -101,14 +93,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         gemasContadas = 0;
-        _playerInput = GetComponent<PlayerInput>();
-        _moveAction = _playerInput.actions["MOVE"];
-        _jumpAction = _playerInput.actions["JUMP"];
-        _dashAction = _playerInput.actions["DASH"];
-        _shootAction = _playerInput.actions["SHOOT"];
-        _aim = _playerInput.actions["AIM"];
-        _jumpReleasedAction = _playerInput.actions["JUMPRELEASED"];
-
         _controller = GetComponent<Controller2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -129,74 +113,31 @@ public class Player : MonoBehaviour
 
     }
 
-    public void SetDirectionalInput (Vector2 input)
-    {
-        _directionalInput = input;
-    }
+
 
     void Update()
     {
-        _stickValue = _aim.ReadValue<Vector2>();
-
-        
-
-
         // AGREGA GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
 
         //SI ME GOLPEARON NO TOMA INPUT Y HACE ESTO
         if (_jugadorGolpeado == true)
         {
-            //GOLPEADO
-            if (timerGolpeadoIzquierda <= 0.3f)
-            {
-                timerGolpeadoIzquierda += Time.deltaTime;
-                FlashRed();
-                velocity.y = 3f;
-                velocity.x = 6f;
-                _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
-                return;
-            }
-
-
-            if (timerGolpeadoDerecha <= 0.3f)
-            {
-                timerGolpeadoDerecha += Time.deltaTime;
-                FlashRed();
-                velocity.y = 3f;
-                velocity.x = -6f;
-                _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
-                return;
-            }
-
-            if (timerGolpeadoDerecha >= 0.3f && timerGolpeadoIzquierda >= 0.3f)
-            {
-                _jugadorGolpeado = false;
-                
-            }
+            HandleGolpeo();
         }
 
         //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
         if (_jugadorGolpeado == false)
         {
-
-            //GUARDA LA ORIENTACION SEGUN el input
-            if (_moveAction.ReadValue<Vector2>().x > 0)
-            {
-                orientacionX = 1;
-            }
-            else if (_moveAction.ReadValue<Vector2>().x < 0)
-            {
-                orientacionX = -1;
-            }
-
-            //VOLETEA EL SPRITE SEGUN DONDE VOY
-            CambiarDireccionSprite();
-
+           
             //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
-            float targetVelocityX = (_moveAction.ReadValue<Vector2>().x * moveSpeed);
+            float targetVelocityX = (_directionalInput.x * moveSpeed);
             //Hace que uno vaya acelerando y que no sea 0 100
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+            //VOLTEA EL SPRITE SEGUN DONDE VOY
+            CambiarDireccionSprite();
+
 
             //CheckeaColisiones
             HandleCollisions();
@@ -207,7 +148,6 @@ public class Player : MonoBehaviour
 
             //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
             timeForNextDash -= Time.deltaTime;
-
             if (timeForNextDash <= 0)
             {
                 ghost.makeGhost = true;
@@ -242,16 +182,19 @@ public class Player : MonoBehaviour
                 timerdash += Time.deltaTime;
                 velocity.y = 0;
                 velocity.x = dashVelocity * orientacionX;
+                
                 timeForNextDash = delayForDash;
                 if (_jumpApretado > 0)
                 {
                     _jumpApretado = 0;
+                    _jumpSoltado = false;
                     velocity.x = 0;
                     velocity.y = maxJumpVelocity;
                     _saltosTotales = 2;
                     timerdash = 1f;
                 }
                 _controller.Move(velocity * Time.deltaTime, false);
+                
                 return;
             }
 
@@ -259,6 +202,13 @@ public class Player : MonoBehaviour
             //INSTANCIAR PIEDRA
             if (_shootApretado > 0)
             {
+                Time.timeScale = 0.05f;
+                _mira.SetActive(true);
+            }
+            
+            if (_shootSoltado == 1)
+            {
+                Time.timeScale = 1;
                 //CALCULAR LUGAR SPAWN
                 //OFFSETS
                 //X. 0.000357117
@@ -266,8 +216,10 @@ public class Player : MonoBehaviour
                 _lugarSpawn.x = transform.position.x + 0.000357117f;
                 _lugarSpawn.y = transform.position.y + 0.03107139f;
 
-                Instantiate(_spawnObjetoRoca, _lugarSpawn, Quaternion.identity);
+                Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
                 _shootApretado = 0;
+                _shootSoltado = 0;
+                _mira.SetActive(false);
             }
 
             //SALTO
@@ -281,6 +233,7 @@ public class Player : MonoBehaviour
                 velocity.y = maxJumpVelocity;
                 Debug.Log(velocity.y.ToString());
                 _jumpApretado = 0;
+                _jumpSoltado = false;
             }
 
             //DOBLE SALTO
@@ -292,17 +245,16 @@ public class Player : MonoBehaviour
                 audioJugador.Play();
 
                 velocity.y = maxJumpVelocity;
-                Debug.Log("SALTO2");
 
-                Debug.Log(velocity.y.ToString());
 
                 _saltosTotales += 1;
                 _jumpApretado = 0;
+                _jumpSoltado = false;
             }
 
                                  
             //si suelto salto me baja la velocidad
-            if (jumpSoltado == true)
+            if (_jumpSoltado == true)
             {
                 if (velocity.y > minJumpVelocity)
                 {
@@ -338,8 +290,53 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetDirectionalInput(Vector2 input)
+    {
+        _directionalInput = input;
+    }
+
+    public void SetJumpApretado(int input)
+    {
+        _jumpApretado += input;
+        tiempoJump1 = Time.time;
+    }
+
+    public void SetJumpSoltado()
+    {
+        _jumpSoltado = true;
+    }
+
+    public void SetDashApretado(int input)
+    {
+        if (timeForNextDash <= 0)
+        {
+            _dashApretado += input;
+        }
+
+    }
+
+    public void SetShootApretado(int input)
+    {
+        _shootApretado = input;
+    }
+
+    public void SetShootSoltado(int input)
+    {
+        _shootSoltado = input;
+    }
+
     void CambiarDireccionSprite()
     {
+        //GUARDA LA ULTIMA ORIENTACION
+        if (_directionalInput.x > 0)
+        {
+            orientacionX = 1;
+        }
+        else if (_directionalInput.x < 0)
+        {
+            orientacionX = -1;
+        }
+
         //VOLTEA EL SPRITE
         if (orientacionX == 1)
         {
@@ -351,6 +348,38 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
+    void HandleGolpeo()
+    {
+        //GOLPEADO
+        if (timerGolpeadoIzquierda <= 0.3f)
+        {
+            timerGolpeadoIzquierda += Time.deltaTime;
+            FlashRed();
+            velocity.y = 3f;
+            velocity.x = 6f;
+            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+            return;
+        }
+
+
+        if (timerGolpeadoDerecha <= 0.3f)
+        {
+            timerGolpeadoDerecha += Time.deltaTime;
+            FlashRed();
+            velocity.y = 3f;
+            velocity.x = -6f;
+            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+            return;
+        }
+
+        if (timerGolpeadoDerecha >= 0.3f && timerGolpeadoIzquierda >= 0.3f)
+        {
+            _jugadorGolpeado = false;
+
+        }
+    }
 
     void HandleCollisions()
     {
@@ -375,7 +404,7 @@ public class Player : MonoBehaviour
                         _jugadorGolpeado = true;
                         _saltosTotales = 1;
                         _jumpApretado = 0;
-                        jumpSoltado = false;
+                        _jumpSoltado = false;
                         if (_controller.collisions.left)
                         {
                             timerGolpeadoIzquierda = 0;
@@ -407,7 +436,7 @@ public class Player : MonoBehaviour
                                 _jugadorGolpeado = true;
                                 _saltosTotales = 1;
                                 _jumpApretado = 0;
-                                jumpSoltado = false;
+                                _jumpSoltado = false;
                                 if (_controller.collisions.left)
                                 {
                                     timerGolpeadoIzquierda = 0;
@@ -443,7 +472,7 @@ public class Player : MonoBehaviour
                                     _controller.collisions.objetoGolpeadoVertical.transform.GetComponent<EnemigoGolpeado>().enabled = true;
                                     _saltosTotales = 1;
                                     _jumpApretado = 0;
-                                    jumpSoltado = false;
+                                    _jumpSoltado = false;
                                     velocity.y = maxJumpVelocity;
                                     boxContados++;
                                     audioJugador.clip = salto;
