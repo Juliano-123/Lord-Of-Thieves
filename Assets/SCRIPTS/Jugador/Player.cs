@@ -63,11 +63,10 @@ public class Player : MonoBehaviour
     public static int gemasContadas = 0;
 
     
-
+    bool _dasheando = false;
     public int _dashApretado = 0;
     public float dashVelocity = 15f;
-    float timeForNextDash = 0;
-    public float delayForDash = 1f;
+    Vector2 _dashvelocitydirection;
     bool yaSonoElDash = true;
 
 
@@ -147,24 +146,24 @@ public class Player : MonoBehaviour
 
 
             //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
-            timeForNextDash -= Time.deltaTime;
-            if (timeForNextDash <= 0)
-            {
-                ghost.makeGhost = true;
-                if (yaSonoElDash == false)
-                {
-                    audioJugador.clip = dashlisto;
-                    audioJugador.Play();
-                    yaSonoElDash = true;
-                }
-            }
-            else if (timerdash >= 0.3f)
-            {
-                ghost.makeGhost = false;
-            }
+            //timeForNextDash -= Time.deltaTime;
+            //if (timeForNextDash <= 0)
+            //{
+            //    ghost.makeGhost = true;
+            //    if (yaSonoElDash == false)
+            //    {
+            //        audioJugador.clip = dashlisto;
+            //        audioJugador.Play();
+            //        yaSonoElDash = true;
+            //    }
+            //}
+            //else if (timerdash >= 0.3f)
+            //{
+            //    ghost.makeGhost = false;
+            //}
 
             //DECIDIR QUE DASHEO
-            if (_dashApretado > 0 && timeForNextDash <= 0)
+            if (_dashApretado > 0)
             {
                 timerdash = 0;
                 _dashApretado = 0;
@@ -180,12 +179,18 @@ public class Player : MonoBehaviour
             if (timerdash <= 0.3f)
             {
                 timerdash += Time.deltaTime;
-                velocity.y = 0;
-                velocity.x = dashVelocity * orientacionX;
-                
-                timeForNextDash = delayForDash;
+                if (_dasheando == false)
+                {
+                    _dashvelocitydirection = new Vector2(_mira.transform.position.x - transform.position.x, _mira.transform.position.y - transform.position.y) * dashVelocity;
+                    Debug.Log(velocity);
+                    _dasheando = true;
+                }
+
+                velocity = _dashvelocitydirection;
+
                 if (_jumpApretado > 0)
                 {
+                    _dasheando = false;
                     _jumpApretado = 0;
                     _jumpSoltado = false;
                     velocity.x = 0;
@@ -197,18 +202,17 @@ public class Player : MonoBehaviour
                 
                 return;
             }
+            else
+            {
+                _dasheando = false;
+            }
+            
+
 
 
             //INSTANCIAR PIEDRA
             if (_shootApretado > 0)
             {
-                Time.timeScale = 0.05f;
-                _mira.SetActive(true);
-            }
-            
-            if (_shootSoltado == 1)
-            {
-                Time.timeScale = 1;
                 //CALCULAR LUGAR SPAWN
                 //OFFSETS
                 //X. 0.000357117
@@ -219,8 +223,9 @@ public class Player : MonoBehaviour
                 Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
                 _shootApretado = 0;
                 _shootSoltado = 0;
-                _mira.SetActive(false);
+
             }
+            
 
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
@@ -308,10 +313,7 @@ public class Player : MonoBehaviour
 
     public void SetDashApretado(int input)
     {
-        if (timeForNextDash <= 0)
-        {
             _dashApretado += input;
-        }
 
     }
 

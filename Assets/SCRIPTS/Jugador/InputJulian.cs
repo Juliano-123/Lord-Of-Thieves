@@ -8,19 +8,43 @@ public class InputJulian : MonoBehaviour
 {
     Player player;
     Apuntar apuntar;
+    PlayerInput playerInput;
 
     Vector2 _directionalInput;
+    Vector2 _mouseInput;
+    Vector3 _mousePosition;
+
+    [SerializeField]
+    Camera _maincam;
 
     private void Start()
     {
         player = GetComponent<Player>();
         apuntar = GetComponentInChildren<Apuntar>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
         player.SetDirectionalInput(_directionalInput);
-        apuntar.SetDirectionalInput(_directionalInput);
+
+        
+        if (playerInput.currentControlScheme == "Gamepad")
+            {
+                apuntar.SetDirectionalInput(_mouseInput);
+            }
+
+        if (playerInput.currentControlScheme == "KeyMouse")
+            {
+
+            //con mouse
+            _mousePosition = _maincam.ScreenToWorldPoint(new Vector3 (_mouseInput.x, _mouseInput.y, 0));
+
+            Vector3 Rotation = _mousePosition - transform.position;
+
+
+            apuntar.SetDirectionalInput(new Vector2 (Rotation.x, Rotation.y));
+            }
 
     }
 
@@ -68,6 +92,12 @@ public class InputJulian : MonoBehaviour
             player.SetShootSoltado(1);
         }
     }
+
+    public void Aim(InputAction.CallbackContext context)
+    {
+        _mouseInput = context.ReadValue<Vector2>();
+    }
+
 }
 
 

@@ -58,15 +58,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "JUMPRELEASED",
-                    "type": "Button",
-                    "id": "0713d6aa-b84e-4b58-b8d1-597c2ade6e14",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=1)",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -171,8 +162,8 @@
                 },
                 {
                     "name": "",
-                    "id": "66261076-1da0-4409-87f0-c5d626703725",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "40acc231-25f7-4c55-ba49-4a4131d4d6d4",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",
@@ -193,8 +184,8 @@
                 },
                 {
                     "name": "",
-                    "id": "8fbd737d-e5f5-4a2f-980d-1e89712a33c9",
-                    "path": "<Keyboard>/q",
+                    "id": "ca2e49f5-2209-4183-8c79-9d28b8936792",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",
@@ -215,34 +206,12 @@
                 },
                 {
                     "name": "",
-                    "id": "942561fe-1257-49fb-9d12-6b46315b9fb3",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "AIM",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "77cb907e-e0fd-4833-9da4-2e2d5e623c47",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyMouse",
                     "action": "AIM",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "298e4941-ae35-4d2d-81f6-206bef5fbec2",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "JUMPRELEASED",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
