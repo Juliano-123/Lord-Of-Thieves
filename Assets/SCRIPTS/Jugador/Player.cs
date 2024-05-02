@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     
     bool _dasheando = false;
     public int _dashApretado = 0;
+    bool _dashSoltado = false;
     public float dashVelocity = 15f;
     Vector2 _dashvelocitydirection;
     bool yaSonoElDash = true;
@@ -165,13 +166,19 @@ public class Player : MonoBehaviour
             //DECIDIR QUE DASHEO
             if (_dashApretado > 0)
             {
+                Time.timeScale = 0.05f;
+            }
+
+            if(_dashSoltado == true)
+            {
+                Time.timeScale = 1;
+                _dashSoltado = false;
                 timerdash = 0;
                 _dashApretado = 0;
                 _jumpApretado = 0;
                 _saltosTotales = 1;
                 audioJugador.clip = dasheando;
                 audioJugador.Play();
-                yaSonoElDash = false;
             }
 
 
@@ -182,11 +189,11 @@ public class Player : MonoBehaviour
                 if (_dasheando == false)
                 {
                     _dashvelocitydirection = new Vector2(_mira.transform.position.x - transform.position.x, _mira.transform.position.y - transform.position.y) * dashVelocity;
-                    Debug.Log(velocity);
                     _dasheando = true;
                 }
 
                 velocity = _dashvelocitydirection;
+                Debug.Log(velocity);
 
                 if (_jumpApretado > 0)
                 {
@@ -315,6 +322,11 @@ public class Player : MonoBehaviour
     {
             _dashApretado += input;
 
+    }
+
+    public void SetDashSoltado()
+    {
+        _dashSoltado = true;
     }
 
     public void SetShootApretado(int input)

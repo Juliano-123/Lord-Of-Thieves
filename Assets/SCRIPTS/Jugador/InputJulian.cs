@@ -31,7 +31,7 @@ public class InputJulian : MonoBehaviour
         
         if (playerInput.currentControlScheme == "Gamepad")
             {
-                apuntar.SetDirectionalInput(_mouseInput);
+                apuntar.SetDirectionalInput(_directionalInput);
             }
 
         if (playerInput.currentControlScheme == "KeyMouse")
@@ -78,6 +78,12 @@ public class InputJulian : MonoBehaviour
         {
             player.SetDashApretado(1);
         }
+
+        if (context.canceled)
+        {
+            player.SetDashSoltado();
+        }
+
     }
 
     public void Shoot(InputAction.CallbackContext context)
