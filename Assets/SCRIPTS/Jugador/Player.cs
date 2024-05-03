@@ -243,7 +243,6 @@ public class Player : MonoBehaviour
                 audioJugador.Play();
                 _saltosTotales += 1;
                 velocity.y = maxJumpVelocity;
-                Debug.Log(velocity.y.ToString());
                 _jumpApretado = 0;
                 _jumpSoltado = false;
             }

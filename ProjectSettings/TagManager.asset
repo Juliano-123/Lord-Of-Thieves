@@ -9,6 +9,7 @@ TagManager:
   - CUBO
   - GEMA
   - VACIO
+  - Techo
   layers:
   - Default
   - TransparentFX
