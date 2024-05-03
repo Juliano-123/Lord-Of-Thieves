@@ -89,6 +89,9 @@ public class Player : MonoBehaviour
     //nuevo movimiento
     Vector2 _directionalInput;
 
+    //Wallrunning
+    bool _isWallRunning = false;
+
 
     private void Awake()
     {
@@ -129,6 +132,13 @@ public class Player : MonoBehaviour
         //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
         if (_jugadorGolpeado == false)
         {
+            _isWallRunning = false;
+
+            if((_controller.collisions.left || _controller.collisions.right || _controller.collisions.above) && !_controller.collisions.below)
+                {
+                _isWallRunning = true;
+                }
+            
            
             //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
             float targetVelocityX = (_directionalInput.x * moveSpeed);

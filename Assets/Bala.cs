@@ -29,7 +29,6 @@ public class Bala : MonoBehaviour
 
         if (_controller.collisions.objetoGolpeadoHorizontal != null)
         {
-            Debug.Log("Le pego la Bala1");
             if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag is "Player")
             {
                 _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
@@ -41,6 +40,7 @@ public class Bala : MonoBehaviour
                 _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
                 _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
             }
+            Destroy(gameObject);
         }
 
         if (_controller.collisions.objetoGolpeadoVertical != null)
@@ -50,6 +50,7 @@ public class Bala : MonoBehaviour
                 _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
                 _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
             }
+            Destroy(gameObject);
         }
 
         _controller.Move(_velocity * Time.deltaTime, false);

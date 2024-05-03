@@ -1,5 +1,34 @@
 CAMBIOS RADICALES
 
+
+[CONCEPTO]
+
+Celeste con Ghostrunner
+
+Los niveles son de desplazamiento vertical, medida mas bien fija o chica en X. Alto en Y.
+
+Vos podes correr contra las paredes y dashear. Cuando tocas una pared o techo en eje y mientras tu input en x
+sea constante a der o izq vas a correr contra esa pared. Si saltas tocando para arriba sale para arriba el pibe.
+Si saltas tocando lado pared, salta contra la pared. Si saltas derecha leap grande. Si saltas abajo cae rapido.
+Si soltas caes libre.
+
+Pasados 5 segundos te caes igual.
+
+Tenes ataque melee. Enemigos tipo ghostruuner repartidos en las plataformas. Vos corres por las paredes y subis
+por los cotes, wall lepeando y dasheando.
+
+Tenes 1 salto. Un dash. 5 segs de wallrun cada vez que tocas piso.
+
+Ademas roll en el piso, invulnerable. Eso es el dash en el piso, o sea no podes dashear salvo en aire.
+Roll avanza mas que correr.
+
+Encadenar roll + jump conseva momentum.
+
+Agregar edge leap, tambien con momentum, para viajar un monton.
+
+
+
+
 [CONCEPTO}
 IDEA DE JUEGO:
 
