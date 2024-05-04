@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     float accelerationTimeAirborne = 0.1f;
     float aceleracionPuntoMasAlto = 0.075f;
     float accelerationTimeGrounded = 0.005f;
-    float moveSpeed = 4.5f;
+    float moveSpeed = 7f;
     public static int orientacionX = 1;
     public float velocidadtTiempoExtraAire = 0.5f;
     public float multiplicadorGravedadCaida = 1.5f;
@@ -132,18 +132,45 @@ public class Player : MonoBehaviour
         //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
         if (_jugadorGolpeado == false)
         {
-            _isWallRunning = false;
 
-            if((_controller.collisions.left || _controller.collisions.right || _controller.collisions.above) && !_controller.collisions.below)
-                {
-                _isWallRunning = true;
-                }
             
            
             //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
             float targetVelocityX = (_directionalInput.x * moveSpeed);
             //Hace que uno vaya acelerando y que no sea 0 100
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+            velocity.x = targetVelocityX;
+
+            //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+
+            Debug.Log("vel x antes de wallrun ");
+            Debug.Log(velocity.x);
+
+            _isWallRunning = false;
+            if ((_controller.collisions.left || _controller.collisions.right) && !_controller.collisions.below)
+            {
+                _isWallRunning = true;
+
+                //si hay input horizontal
+                if (Mathf.Abs(velocity.x) > 0)
+                {
+                    if (_controller.collisions.right)
+                    {
+                        velocity.y = velocity.x;
+                    }
+                    else
+                    {
+                        velocity.y = velocity.x*-1;
+                    }
+                    
+                    velocity.x = 0;
+                }
+
+                Debug.Log("vel y despues de wallrun ");
+                Debug.Log(velocity.y);
+
+            }
+
 
             //VOLTEA EL SPRITE SEGUN DONDE VOY
             CambiarDireccionSprite();

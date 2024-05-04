@@ -10,17 +10,21 @@ public class Controller2D : RayCastController
     public override void Start()
     {
         base.Start();
+        collisions.facedir = 1;
     }
 
     public void Move(Vector2 moveAmount, bool tiempoCoyoteON)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
-                
+
         if (moveAmount.x != 0)
         {
-            HorizontalCollisions(ref moveAmount);
+            collisions.facedir = (int)Mathf.Sign(moveAmount.x);
         }
+                
+        HorizontalCollisions(ref moveAmount);
+
         if (moveAmount.y != 0)
         {
             VerticalCollisions(ref moveAmount);
@@ -38,8 +42,13 @@ public class Controller2D : RayCastController
 
     void HorizontalCollisions(ref Vector2 velocity)
     {
-        float directionX = Mathf.Sign(velocity.x);
+        float directionX = collisions.facedir;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+        if (Mathf.Abs(velocity.x) < skinWidth)
+        {
+            rayLength = 2 * skinWidth;
+        }
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
@@ -94,6 +103,7 @@ public class Controller2D : RayCastController
         public bool left, right;
         public GameObject objetoGolpeadoHorizontal;
         public GameObject objetoGolpeadoVertical;
+        public int facedir;
 
         public void Reset()
         {
