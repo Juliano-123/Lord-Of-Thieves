@@ -15,11 +15,11 @@ public class RocaArma : MonoBehaviour
         if (Player.orientacionX == -1)
         {
             _velocity.x = _velocity.x * -1;
-            _velocity.x += Player.velocity.x;
+        //    _velocity.x += Player.velocity.x;
         }
         else
         {
-            _velocity.x += Player.velocity.x;
+        //    _velocity.x += Player.velocity.x;
         }
 
 

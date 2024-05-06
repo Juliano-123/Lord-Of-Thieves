@@ -66,7 +66,7 @@ public class InputJulian : MonoBehaviour
         if (context.canceled)
         {
             player.SetJumpSoltado();
-            
+
         }
 
     }

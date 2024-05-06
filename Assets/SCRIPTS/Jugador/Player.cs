@@ -8,8 +8,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     //components
-    public Animator animator;
-    SpriteRenderer playerSpriteRenderer;
+    GameObject _imagen;
+    Animator _animator;
+    SpriteRenderer _spriteRenderer;
     Controller2D _controller;
 
     public GameOverScreen gameOverScreen;
@@ -44,7 +45,8 @@ public class Player : MonoBehaviour
     public static float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
-    public static Vector2 velocity;
+    [SerializeField]
+    Vector2 velocity;
     float velocityXSmoothing;
     
     //COYOTE
@@ -68,7 +70,6 @@ public class Player : MonoBehaviour
     bool _dashSoltado = false;
     public float dashVelocity = 15f;
     Vector2 _dashvelocitydirection;
-    bool yaSonoElDash = true;
 
 
     int _shootApretado = 0;
@@ -90,15 +91,17 @@ public class Player : MonoBehaviour
     Vector2 _directionalInput;
 
     //Wallrunning
-    bool _isWallRunning = false;
+    [SerializeField]
+    bool _isWallTouching = false;
 
 
     private void Awake()
     {
         gemasContadas = 0;
         _controller = GetComponent<Controller2D>();
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        _imagen = transform.Find("Imagen").gameObject;
+        _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
+        _animator = _imagen.GetComponent<Animator>();
     }
 
 
@@ -133,43 +136,56 @@ public class Player : MonoBehaviour
         if (_jugadorGolpeado == false)
         {
 
-            
-           
+
+
             //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
             float targetVelocityX = (_directionalInput.x * moveSpeed);
             //Hace que uno vaya acelerando y que no sea 0 100
-            velocity.x = targetVelocityX;
-
-            //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 
-            Debug.Log("vel x antes de wallrun ");
-            Debug.Log(velocity.x);
 
-            _isWallRunning = false;
-            if ((_controller.collisions.left || _controller.collisions.right) && !_controller.collisions.below)
+
+            //todo walltouching
+            if (_controller.collisions.objetoGolpeadoHorizontal != null)
             {
-                _isWallRunning = true;
 
-                //si hay input horizontal
-                if (Mathf.Abs(velocity.x) > 0)
+                if (_controller.collisions.objetoGolpeadoHorizontal.CompareTag("Pared") && !_controller.collisions.below)
                 {
-                    if (_controller.collisions.right)
+                    _isWallTouching = true;
+
+                    if (_directionalInput.x > 0 && _controller.collisions.right)
                     {
-                        velocity.y = velocity.x;
+                        _imagen.transform.rotation = Quaternion.Euler(0,0,90);
+                        velocity.y = moveSpeed;
+                        velocity.x = 0;
+
+                    }
+                    else if (_directionalInput.x < 0 && _controller.collisions.left)
+                    {
+                        _imagen.transform.rotation = Quaternion.Euler(0, 0, -90);
+                        velocity.y = moveSpeed;
+                        velocity.x = 0;
                     }
                     else
                     {
-                        velocity.y = velocity.x*-1;
+                        _imagen.transform.rotation = Quaternion.identity;
+
                     }
-                    
-                    velocity.x = 0;
+
+
+
                 }
-
-                Debug.Log("vel y despues de wallrun ");
-                Debug.Log(velocity.y);
-
+                else
+                {
+                    _isWallTouching = false;
+                }
             }
+            else
+            {
+                _isWallTouching = false;
+            }
+
 
 
             //VOLTEA EL SPRITE SEGUN DONDE VOY
@@ -275,7 +291,6 @@ public class Player : MonoBehaviour
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
             if (_jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeadoVertical.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
             {
-                animator.SetBool("Saltando", true);
                 audioJugador.clip = salto;
                 audioJugador.Play();
                 _saltosTotales += 1;
@@ -288,7 +303,6 @@ public class Player : MonoBehaviour
             //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
             if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
             {
-                animator.SetBool("Saltando", true);
                 audioJugador.clip = salto;
                 audioJugador.Play();
 
@@ -331,6 +345,46 @@ public class Player : MonoBehaviour
             if (velocity.y <= -10)
             {
                 velocity.y = -10;
+            }
+
+            //seteo de animaciones
+
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("Corriendo", false);
+            _animator.SetBool("Subiendo", false);
+            _animator.SetBool("Cayendo", false);
+
+
+            if (velocity.x == 0 && _controller.collisions.below == true)
+            {
+                _animator.SetBool("Idle", true);
+            }
+
+            //corriendo
+            if (_isWallTouching == false)
+            {
+                if (velocity.x != 0 && _controller.collisions.below == true)
+                {
+                    _animator.SetBool("Corriendo", true);
+                }
+            }
+            else if (_isWallTouching == true)
+            {
+                if (velocity.y > 0)
+                {
+                    _animator.SetBool("Corriendo", true);
+                }
+            }
+
+
+            if (velocity.y > 0 && _isWallTouching == false)
+            {
+                _animator.SetBool("Subiendo", true);
+            }
+
+            if (velocity.y < 0 && _controller.collisions.below == false)
+            {
+                _animator.SetBool("Cayendo", true);
             }
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
@@ -390,11 +444,11 @@ public class Player : MonoBehaviour
         //VOLTEA EL SPRITE
         if (orientacionX == 1)
         {
-            playerSpriteRenderer.flipX = false;
+            _spriteRenderer.flipX = false;
         }
         else if (orientacionX == -1)
         {
-            playerSpriteRenderer.flipX = true;
+            _spriteRenderer.flipX = true;
         }
     }
 
@@ -504,7 +558,6 @@ public class Player : MonoBehaviour
                                 {
                                     if (_controller.collisions.below)
                                     {
-                                        animator.SetBool("Saltando", false);
                                         _saltosTotales = 0;
                                         boxContados = 0;
                                         //Tiempo de coyote
@@ -538,13 +591,13 @@ public class Player : MonoBehaviour
 
     void FlashRed()
     {
-        playerSpriteRenderer.color = Color.black;
+        _spriteRenderer.color = Color.black;
         Invoke("ResetColor", flashTime);
     }
 
     void ResetColor()
     {
-        playerSpriteRenderer.color = Color.white;
+        _spriteRenderer.color = Color.white;
     }
 
     private void OnDestroy()
