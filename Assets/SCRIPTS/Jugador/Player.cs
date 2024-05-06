@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool _isWallTouching = false;
 
+    bool _idleAttack;
+
 
     private void Awake()
     {
@@ -284,6 +286,8 @@ public class Player : MonoBehaviour
                 _shootApretado = 0;
                 _shootSoltado = 0;
 
+                _animator.SetTrigger("IdleAttack");
+
             }
             
 
@@ -386,6 +390,8 @@ public class Player : MonoBehaviour
             {
                 _animator.SetBool("Cayendo", true);
             }
+
+
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
             _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
