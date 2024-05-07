@@ -164,10 +164,8 @@ GameObject:
   - component: {fileID: 5999787607523115386}
   - component: {fileID: 2106592264714736924}
   - component: {fileID: 1639946243279833541}
-  - component: {fileID: 8591659372251640479}
   - component: {fileID: 5251490190843771179}
   - component: {fileID: 8813665683356665534}
-  - component: {fileID: 3479552599976769156}
   - component: {fileID: 4855844292307366518}
   - component: {fileID: 2228606236485844639}
   m_Layer: 6
@@ -288,23 +286,9 @@ MonoBehaviour:
   dashVelocity: 25
   _spawnObjetoDaga: {fileID: 8057733167756946152, guid: a6d8bdaa7f34b414fbbb64bddc38c011, type: 3}
   _mira: {fileID: 8028008100837309550}
-  ghost: {fileID: 8591659372251640479}
+  ghost: {fileID: 0}
   wallClimbDistanceX: 30
   wallLeapDistanceX: 50
---- !u!114 &8591659372251640479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212459141233021213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60b9fbdf408c304e813e856bad0b3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghost: {fileID: 3796669639914162845, guid: de7ced92bfa568d4d9bef377e6e1a290, type: 3}
-  makeGhost: 0
 --- !u!82 &5251490190843771179
 AudioSource:
   m_ObjectHideFlags: 0
@@ -497,36 +481,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3479552599976769156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212459141233021213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -0.09, y: -0.13999999, z: 0}
-  - {x: -0.09, y: 0.13999999, z: 0}
-  - {x: 0.09, y: 0.13999999, z: 0}
-  - {x: 0.09, y: -0.13999999, z: 0}
-  m_ShapePathHash: 0
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -1418
-  m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.09, y: 0.13999999, z: 0}
 --- !u!114 &4855844292307366518
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -467,23 +467,23 @@ public class Player : MonoBehaviour
                 _animator.SetBool("Idle", true);
             }
 
-            //corriendo
+            //corriendo y cayendo cuando walltouching
             if (_isWallTouching == false)
             {
-                if (velocity.x != 0 && _controller.collisions.below == true)
+                if (_directionalInput.x != 0 && _controller.collisions.below == true)
                 {
                     _animator.SetBool("Corriendo", true);
                 }
             }
             else if (_isWallTouching == true)
             {
-                if (velocity.y > 0)
+                if (_directionalInput.x != 0)
                 {
                     _animator.SetBool("Corriendo", true);
                 }
             }
 
-
+            //subiendo y cayendo
             if (velocity.y > 0 && _isWallTouching == false)
             {
                 _animator.SetBool("Subiendo", true);
