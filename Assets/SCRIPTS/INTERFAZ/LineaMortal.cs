@@ -33,11 +33,11 @@ public class LineaMortal : MonoBehaviour
     {
         speed = speed + accel * Time.deltaTime;
 
-        if (Player.gemasContadas > gemasAplicadas)
-        {
-            speed = speed - desaccel * (Player.gemasContadas - gemasAplicadas);
-            gemasAplicadas = Player.gemasContadas;
-        }
+        //if (Player.gemasContadas > gemasAplicadas)
+        //{
+        //    speed = speed - desaccel * (Player.gemasContadas - gemasAplicadas);
+        //    gemasAplicadas = Player.gemasContadas;
+        //}
 
 
         distanciaDelta = Jugador.transform.position.x - transform.position.x;

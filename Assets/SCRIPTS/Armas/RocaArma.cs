@@ -12,15 +12,15 @@ public class RocaArma : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller2D>();
-        if (Player.orientacionX == -1)
-        {
-            _velocity.x = _velocity.x * -1;
-        //    _velocity.x += Player.velocity.x;
-        }
-        else
-        {
-        //    _velocity.x += Player.velocity.x;
-        }
+        //if (Player.orientacionX == -1)
+        //{
+        //    _velocity.x = _velocity.x * -1;
+        ////    _velocity.x += Player.velocity.x;
+        //}
+        //else
+        //{
+        ////    _velocity.x += Player.velocity.x;
+        //}
 
 
     }

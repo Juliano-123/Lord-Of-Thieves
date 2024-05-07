@@ -11,7 +11,16 @@ public class Player : MonoBehaviour
     GameObject _imagen;
     Animator _animator;
     SpriteRenderer _spriteRenderer;
+    GameObject _rotatePoint;
+    GameObject _slicePoint;
+    Animator _slicePointAnimator;
+    SpriteRenderer _slicePointSpriteRenderer;
     Controller2D _controller;
+    BoxCollider2D _collider;
+    
+
+    Vector2 _originalColliderSize;
+    Vector2 _originalColliderOffset;
 
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
@@ -24,22 +33,24 @@ public class Player : MonoBehaviour
     public bool _jugadorGolpeado = false;
     public float timerGolpeadoIzquierda = 1f;
     public float timerGolpeadoDerecha = 1f;
-    public float timerGolpeadoArriba = 1f;
-    public float timerGolpeadoAbajo = 1f;
+    float timerGolpeadoArriba = 1f;
+    float timerGolpeadoAbajo = 1f;
 
 
-    
+    [SerializeField]
     float _maxJumpHeight = 1.8F;
+    [SerializeField]
     float _minJumpHeight = 0.5F;
+    [SerializeField]
     float timeToJumpApex = 0.4f;
     float accelerationTimeAirborne = 0.1f;
     float aceleracionPuntoMasAlto = 0.075f;
     float accelerationTimeGrounded = 0.005f;
     float moveSpeed = 7f;
-    public static int orientacionX = 1;
-    public float velocidadtTiempoExtraAire = 0.5f;
-    public float multiplicadorGravedadCaida = 1.5f;
-    public float multiplicadorGravedadPuntoMasAlto = 0.5f;
+    int orientacionX = 1;
+    float velocidadtTiempoExtraAire = 0.5f;
+    float multiplicadorGravedadCaida = 1.5f;
+    float multiplicadorGravedadPuntoMasAlto = 0.5f;
 
 
     public static float gravity;
@@ -50,25 +61,26 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
     
     //COYOTE
-    public float tiempoCoyote = -1f;
-    public bool tiempoCoyoteON = false;
+    float tiempoCoyote = -1f;
+    bool tiempoCoyoteON = false;
     
 
 
     int _jumpApretado;
-    public float tiempoJump1 = -1;
-    public bool _jumpSoltado = false;
-    public int _saltosTotales = 0;
+    float tiempoJump1 = -1;
+    bool _jumpSoltado = false;
+    int _saltosTotales = 0;
     float timerdash = 1f;
 
-    public static int boxContados = 0;
-    public static int gemasContadas = 0;
+    int boxContados = 0;
+    int gemasContadas = 0;
 
     
     bool _dasheando = false;
-    public int _dashApretado = 0;
+    int _dashApretado = 0;
     bool _dashSoltado = false;
-    public float dashVelocity = 15f;
+    [SerializeField]
+    float dashVelocity = 15f;
     Vector2 _dashvelocitydirection;
 
 
@@ -91,8 +103,17 @@ public class Player : MonoBehaviour
     Vector2 _directionalInput;
 
     //Wallrunning
-    [SerializeField]
     bool _isWallTouching = false;
+    bool _isWallRunning = false;
+    [SerializeField]
+    float wallClimbDistanceX;
+    [SerializeField]
+    float wallLeapDistanceX;
+    float _wallStickTimer = 0f;
+    float _wallStickTime = 0.25f;
+    float _wallStickDirection = 0f;
+
+
 
     bool _idleAttack;
 
@@ -104,6 +125,11 @@ public class Player : MonoBehaviour
         _imagen = transform.Find("Imagen").gameObject;
         _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
         _animator = _imagen.GetComponent<Animator>();
+        _rotatePoint = transform.Find("RotatePoint").gameObject;
+        _slicePoint = _rotatePoint.transform.Find("SlicePoint").gameObject;
+        _slicePointSpriteRenderer = _slicePoint.GetComponent<SpriteRenderer>();
+        _slicePointAnimator = _slicePoint.GetComponent<Animator>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
 
@@ -118,6 +144,11 @@ public class Player : MonoBehaviour
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * _minJumpHeight);
+
+        _originalColliderSize = _collider.size;
+        _originalColliderOffset = _collider.offset;
+
+
 
     }
 
@@ -155,24 +186,33 @@ public class Player : MonoBehaviour
                 if (_controller.collisions.objetoGolpeadoHorizontal.CompareTag("Pared") && !_controller.collisions.below)
                 {
                     _isWallTouching = true;
-
+                    _wallStickTimer = 0;
                     if (_directionalInput.x > 0 && _controller.collisions.right)
                     {
                         _imagen.transform.rotation = Quaternion.Euler(0,0,90);
                         velocity.y = moveSpeed;
                         velocity.x = 0;
-
+                        _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
+                        _isWallRunning = true;
+                        _wallStickDirection = 1;
+                        
                     }
                     else if (_directionalInput.x < 0 && _controller.collisions.left)
                     {
                         _imagen.transform.rotation = Quaternion.Euler(0, 0, -90);
                         velocity.y = moveSpeed;
                         velocity.x = 0;
+                        _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
+                        _collider.offset = new Vector2(_originalColliderOffset.y, _originalColliderOffset.x);
+                        _isWallRunning = true;
+                        _wallStickDirection = -1;
                     }
                     else
                     {
                         _imagen.transform.rotation = Quaternion.identity;
-
+                        _collider.size = _originalColliderSize;
+                        _collider.offset = _originalColliderOffset;
+                        _isWallRunning = false;
                     }
 
 
@@ -181,13 +221,18 @@ public class Player : MonoBehaviour
                 else
                 {
                     _isWallTouching = false;
+                    _isWallRunning = false;
                 }
             }
             else
             {
                 _isWallTouching = false;
+                _isWallRunning = false;
+                _imagen.transform.rotation = Quaternion.identity;
+                _collider.size = _originalColliderSize;
+                _collider.offset = _originalColliderOffset;
             }
-
+            _wallStickTimer += Time.deltaTime;
 
 
             //VOLTEA EL SPRITE SEGUN DONDE VOY
@@ -278,15 +323,19 @@ public class Player : MonoBehaviour
                 //CALCULAR LUGAR SPAWN
                 //OFFSETS
                 //X. 0.000357117
-                //Y. 0.03107139
-                _lugarSpawn.x = transform.position.x + 0.000357117f;
-                _lugarSpawn.y = transform.position.y + 0.03107139f;
+                ////Y. 0.03107139
+                //_lugarSpawn.x = transform.position.x + 0.000357117f;
+                //_lugarSpawn.y = transform.position.y + 0.03107139f;
 
-                Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
+                //Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
+                
                 _shootApretado = 0;
                 _shootSoltado = 0;
 
                 _animator.SetTrigger("IdleAttack");
+                _slicePointSpriteRenderer.enabled = true;
+                _slicePointAnimator.enabled = true;
+
 
             }
             
@@ -305,19 +354,73 @@ public class Player : MonoBehaviour
 
             //DOBLE SALTO
             //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-            if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+            //if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+            //{
+            //    audioJugador.clip = salto;
+            //    audioJugador.Play();
+
+            //    velocity.y = maxJumpVelocity;
+
+
+            //    _saltosTotales += 1;
+            //    _jumpApretado = 0;
+            //    _jumpSoltado = false;
+            //}
+
+
+            //SaltoWallrun
+            if (_jumpApretado > 0 && _wallStickTimer <= _wallStickTime)
             {
-                audioJugador.clip = salto;
-                audioJugador.Play();
+                if (_wallStickDirection == 1)
+                {
+                    if (_directionalInput.x > 0)
+                    {
+                        velocity.y = maxJumpVelocity;
+                        velocity.x = wallClimbDistanceX * -1;
+                        audioJugador.clip = salto;
+                        audioJugador.Play();
+                        _saltosTotales = 2;
+                        _jumpApretado = 0;
+                        _jumpSoltado = false;
 
-                velocity.y = maxJumpVelocity;
 
+                    }
+                    else if (_directionalInput.x < 0)
+                    {
+                        velocity.y = maxJumpVelocity/2;
+                        velocity.x = wallLeapDistanceX * -1;
+                        audioJugador.clip = salto;
+                        audioJugador.Play();
+                        _saltosTotales = 2;
+                        _jumpApretado = 0;
+                        _jumpSoltado = false;
+                    }
+                }
 
-                _saltosTotales += 1;
-                _jumpApretado = 0;
-                _jumpSoltado = false;
+                if (_wallStickDirection == -1)
+                {
+                    if (_directionalInput.x < 0)
+                    {
+                        velocity.y = maxJumpVelocity;
+                        velocity.x = wallClimbDistanceX;
+                        audioJugador.clip = salto;
+                        audioJugador.Play();
+                        _saltosTotales = 2;
+                        _jumpApretado = 0;
+                        _jumpSoltado = false;
+                    }
+                    else if (_directionalInput.x > 0)
+                    {
+                        velocity.y = maxJumpVelocity/2;
+                        velocity.x = wallLeapDistanceX;
+                        audioJugador.clip = salto;
+                        audioJugador.Play();
+                        _saltosTotales = 2;
+                        _jumpApretado = 0;
+                        _jumpSoltado = false;
+                    }
+                }
             }
-
                                  
             //si suelto salto me baja la velocidad
             if (_jumpSoltado == true)

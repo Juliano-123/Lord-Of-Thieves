@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 1579633796, guid: f7d89c09e5745964795fe8bc6b38e85c, type: 3}
+  m_Sprite: {fileID: -1690978195, guid: 652a40b17f2e9c94e8246b201551ef48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ GameObject:
   m_Layer: 6
   m_Name: RotatePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 5251490190843771179}
   - component: {fileID: 8813665683356665534}
   - component: {fileID: 3479552599976769156}
-  - component: {fileID: 437923653680902484}
   - component: {fileID: 4855844292307366518}
   - component: {fileID: 2228606236485844639}
   m_Layer: 6
@@ -227,7 +226,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.035849243, y: 0.0021194965}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -238,7 +237,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18, y: 0.28}
+  m_Size: {x: 0.19235176, y: 0.3605418}
   m_EdgeRadius: 0
 --- !u!114 &2106592264714736924
 MonoBehaviour:
@@ -272,7 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85ef2f4d46d99642bd1db8a6300d3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   gameOverScreen: {fileID: 0}
   audioJugador: {fileID: 5251490190843771179}
   audioGemas: {fileID: 8813665683356665534}
@@ -283,21 +281,16 @@ MonoBehaviour:
   _jugadorGolpeado: 0
   timerGolpeadoIzquierda: 1
   timerGolpeadoDerecha: 1
-  timerGolpeadoArriba: 1
-  timerGolpeadoAbajo: 1
-  velocidadtTiempoExtraAire: 0.5
-  multiplicadorGravedadCaida: 1.005
-  multiplicadorGravedadPuntoMasAlto: 0.3
-  tiempoCoyote: -1
-  tiempoCoyoteON: 0
-  tiempoJump1: -1
-  _jumpSoltado: 0
-  _saltosTotales: 0
-  _dashApretado: 0
-  dashVelocity: 15
+  _maxJumpHeight: 3
+  _minJumpHeight: 0.5
+  timeToJumpApex: 0.4
+  velocity: {x: 0, y: 0}
+  dashVelocity: 25
   _spawnObjetoDaga: {fileID: 8057733167756946152, guid: a6d8bdaa7f34b414fbbb64bddc38c011, type: 3}
   _mira: {fileID: 8028008100837309550}
   ghost: {fileID: 8591659372251640479}
+  wallClimbDistanceX: 30
+  wallLeapDistanceX: 50
 --- !u!114 &8591659372251640479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,32 +523,10 @@ MonoBehaviour:
   - {x: 0.09, y: -0.13999999, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1394
+  m_InstanceId: -1418
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.09, y: 0.13999999, z: 0}
---- !u!114 &437923653680902484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212459141233021213}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 866227c1c9a241b46bab9296d0cd95f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnObjetoPiso: {fileID: 5345685431640818039, guid: 6b8fef0c94ff5f948bbc0b4bc871ac02, type: 3}
-  spawnObjetoBox:
-  - {fileID: 0}
-  - {fileID: 3014385795205083990, guid: 508e6a6759c597746a2dca91aa67d008, type: 3}
-  - {fileID: 2875732305706826298, guid: e073ebc4a537d1840b97a52e2ff12091, type: 3}
-  spawnObjetoSecundario:
-  - {fileID: 1850899796953801800, guid: 446d455e991c2d549a458a57cb13719c, type: 3}
-  - {fileID: 7264124687889214144, guid: 50e561bedfa82ee4dad19582465b6ab6, type: 3}
-  spawnObjetoVacio: {fileID: 419815195447255848, guid: d0c9e17bb81c63a41847b0d0193ae62c, type: 3}
-  LineadeFuego: {fileID: 0}
 --- !u!114 &4855844292307366518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,8 +664,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3361885449373099291}
   - component: {fileID: 4001842438380065325}
+  - component: {fileID: 6702737394066107205}
+  - component: {fileID: 7727709847518849682}
   m_Layer: 6
-  m_Name: BulletTransform
+  m_Name: SlicePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,8 +682,8 @@ Transform:
   m_GameObject: {fileID: 8028008100837309550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.256, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: 0.322, y: 0, z: 0}
+  m_LocalScale: {x: 1.0363913, y: 1.0363913, z: 1.0363913}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4506814749297405162}
@@ -756,8 +729,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6960286, g: 0.41951463, b: 0.745283, a: 1}
+  m_Sprite: {fileID: 193620503, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -767,3 +740,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6702737394066107205
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028008100837309550}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4b5814ebc495e746a581fd7ee3bea4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7727709847518849682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028008100837309550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6daad04c49d074db71e9c5f6eaa687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

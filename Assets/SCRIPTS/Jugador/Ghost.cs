@@ -29,14 +29,14 @@ public class Ghost : MonoBehaviour
                 SpriteRenderer _ghostSpriteRenderer = currentGhost.GetComponent<SpriteRenderer>();
                 _ghostSpriteRenderer.sprite = _currentPlayerSprite;
                 //VOLTEA EL SPRITE
-                if (Player.orientacionX == 1)
-                {
-                    _ghostSpriteRenderer.flipX = false;
-                }
-                else if (Player.orientacionX == -1)
-                {
-                    _ghostSpriteRenderer.flipX = true;
-                }
+                //if (Player.orientacionX == 1)
+                //{
+                //    _ghostSpriteRenderer.flipX = false;
+                //}
+                //else if (Player.orientacionX == -1)
+                //{
+                //    _ghostSpriteRenderer.flipX = true;
+                //}
                 currentGhost.transform.localScale = transform.localScale;
                 ghostDelaySeconds = ghostDelay;
                 Destroy(currentGhost, 0.29f);

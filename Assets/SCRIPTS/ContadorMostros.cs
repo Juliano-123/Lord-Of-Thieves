@@ -17,6 +17,6 @@ public class ContadorMostros : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textoContador.text = "x" + Player.gemasContadas;
+        //textoContador.text = "x" + Player.gemasContadas;
     }
 }

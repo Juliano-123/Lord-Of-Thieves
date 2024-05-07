@@ -10,7 +10,7 @@
                     "type": "PassThrough",
                     "id": "1c577b2f-166a-4cf9-a518-39631e2f866d",
                     "expectedControlType": "Stick",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
