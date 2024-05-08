@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slice : MonoBehaviour
 {
-    Transform _rotatePointTransform;
+   
     SpriteRenderer _spriteRenderer;
     Animator _animator;
 
@@ -12,7 +12,7 @@ public class Slice : MonoBehaviour
 
     private void Awake()
     {
-        _rotatePointTransform = transform.GetComponentInParent<Transform>();
+        
         _rotatePointApuntar = transform.GetComponentInParent<Apuntar>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -20,14 +20,18 @@ public class Slice : MonoBehaviour
 
     public void SliceEnemy()
     {
-        Collider2D[] HitColliders = Physics2D.OverlapBoxAll(transform.position, transform.localScale / 2.5f, transform.rotation.z);
+        Collider2D[] HitColliders = Physics2D.OverlapBoxAll(transform.position, transform.localScale / 2f, transform.rotation.z);
         
         int i = 0;
         while (i < HitColliders.Length)
         {
-            
-            Debug.Log("Hit : " + HitColliders[i].name + i);
-            //Increase the number of Colliders in the array
+            Debug.Log(HitColliders[i].gameObject.tag);
+
+            if (HitColliders[i].gameObject.CompareTag("Enemigo"))
+            {
+                Destroy(HitColliders[i].gameObject);
+                Debug.Log("matado" + HitColliders[i].gameObject.tag);
+            }
             i++;
         }
 
