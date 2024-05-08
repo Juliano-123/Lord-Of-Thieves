@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     Animator _animator;
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
+    Apuntar _rotatePointApuntar;
     GameObject _slicePoint;
     Animator _slicePointAnimator;
     SpriteRenderer _slicePointSpriteRenderer;
@@ -126,6 +127,7 @@ public class Player : MonoBehaviour
         _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
         _animator = _imagen.GetComponent<Animator>();
         _rotatePoint = transform.Find("RotatePoint").gameObject;
+        _rotatePointApuntar = _rotatePoint.GetComponent<Apuntar>();
         _slicePoint = _rotatePoint.transform.Find("SlicePoint").gameObject;
         _slicePointSpriteRenderer = _slicePoint.GetComponent<SpriteRenderer>();
         _slicePointAnimator = _slicePoint.GetComponent<Animator>();
@@ -317,7 +319,7 @@ public class Player : MonoBehaviour
 
 
 
-            //INSTANCIAR PIEDRA
+            //ATAQUE Melee
             if (_shootApretado > 0)
             {
                 //CALCULAR LUGAR SPAWN
@@ -335,6 +337,7 @@ public class Player : MonoBehaviour
                 _animator.SetTrigger("IdleAttack");
                 _slicePointSpriteRenderer.enabled = true;
                 _slicePointAnimator.enabled = true;
+                _rotatePointApuntar.enabled = false;
 
 
             }
@@ -454,50 +457,15 @@ public class Player : MonoBehaviour
                 velocity.y = -10;
             }
 
-            //seteo de animaciones
-
-            _animator.SetBool("Idle", false);
-            _animator.SetBool("Corriendo", false);
-            _animator.SetBool("Subiendo", false);
-            _animator.SetBool("Cayendo", false);
 
 
-            if (velocity.x == 0 && _controller.collisions.below == true)
-            {
-                _animator.SetBool("Idle", true);
-            }
-
-            //corriendo y cayendo cuando walltouching
-            if (_isWallTouching == false)
-            {
-                if (_directionalInput.x != 0 && _controller.collisions.below == true)
-                {
-                    _animator.SetBool("Corriendo", true);
-                }
-            }
-            else if (_isWallTouching == true)
-            {
-                if (_directionalInput.x != 0)
-                {
-                    _animator.SetBool("Corriendo", true);
-                }
-            }
-
-            //subiendo y cayendo
-            if (velocity.y > 0 && _isWallTouching == false)
-            {
-                _animator.SetBool("Subiendo", true);
-            }
-
-            if (velocity.y < 0 && _controller.collisions.below == false)
-            {
-                _animator.SetBool("Cayendo", true);
-            }
-
-
+            AnimarElPJ();
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
             _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+
+
+
         }
     }
 
@@ -536,6 +504,56 @@ public class Player : MonoBehaviour
     public void SetShootSoltado(int input)
     {
         _shootSoltado = input;
+    }
+
+    void AnimarElPJ()
+    {
+        //seteo de animaciones
+
+        _animator.SetBool("Idle", false);
+        _animator.SetBool("Corriendo", false);
+
+
+
+        if (_directionalInput.x == 0 && _controller.collisions.below == true)
+        {
+            _animator.SetBool("Idle", true);
+        }
+
+        //corriendo en piso
+        if (_directionalInput.x != 0 && _controller.collisions.below == true)
+        {
+            _animator.SetBool("Corriendo", true);
+        }
+
+
+        if (_isWallRunning == true)
+        {
+            _animator.SetBool("Corriendo", true);
+            _animator.SetBool("Cayendo", false);
+            _animator.SetBool("Subiendo", false);
+        }
+
+        //subiendo y cayendo
+        if (velocity.y > 0 && _isWallRunning == false)
+        {
+            _animator.SetBool("Subiendo", true);
+            _animator.SetBool("Cayendo", false);
+
+        }
+
+        if (velocity.y < 0 && _controller.collisions.below == false)
+        {
+            _animator.SetBool("Cayendo", true);
+            _animator.SetBool("Subiendo", false);
+        }
+
+        if (_controller.collisions.below == true)
+        {
+            _animator.SetBool("Subiendo", false);
+            _animator.SetBool("Cayendo", false);
+        }
+
     }
 
     void CambiarDireccionSprite()

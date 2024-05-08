@@ -13,7 +13,7 @@ public class Controller2D : RayCastController
         collisions.facedir = 1;
     }
 
-    public void Move(Vector2 moveAmount, bool tiempoCoyoteON)
+    public Vector2 Move(Vector2 moveAmount, bool tiempoCoyoteON)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
@@ -36,6 +36,8 @@ public class Controller2D : RayCastController
         }
 
         transform.Translate(moveAmount);
+
+        return moveAmount;
     }
 
 
