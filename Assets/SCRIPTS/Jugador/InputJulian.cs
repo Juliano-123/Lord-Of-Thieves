@@ -32,6 +32,7 @@ public class InputJulian : MonoBehaviour
         if (playerInput.currentControlScheme == "Gamepad")
             {
                 apuntar.SetDirectionalInput(_directionalInput);
+                player.SetAttackDirection(_directionalInput);
             }
 
         if (playerInput.currentControlScheme == "KeyMouse")
@@ -42,9 +43,15 @@ public class InputJulian : MonoBehaviour
 
             Vector3 Rotation = _mousePosition - transform.position;
 
+            Vector2 RotationV2 = (Vector2)Rotation;
+
+            RotationV2 = RotationV2.normalized;
+            
 
             apuntar.SetDirectionalInput(new Vector2 (Rotation.x, Rotation.y));
-            }
+            player.SetAttackDirection(RotationV2);
+
+        }
 
     }
 
