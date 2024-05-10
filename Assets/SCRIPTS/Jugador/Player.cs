@@ -291,8 +291,14 @@ public class Player : MonoBehaviour
                 _shootApretado = 0;
                 _shootSoltado = 0;
 
-                velocity = _attackDirection * 18;
-                Debug.Log(velocity);
+                velocity = _attackDirection * 14;
+                if (_controller.collisions.below && velocity.y <0)
+                {
+                    velocity.x = velocity.x*5;
+                    velocity.y = 0;
+                }
+
+                Debug.Log("Cuando ataco velocity es " + velocity);
 
                 _animator.SetTrigger("IdleAttack");
                 _slicePointSpriteRenderer.enabled = true;
@@ -426,7 +432,7 @@ public class Player : MonoBehaviour
             AnimarElPJ();
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
-            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+            Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
 
 
 
