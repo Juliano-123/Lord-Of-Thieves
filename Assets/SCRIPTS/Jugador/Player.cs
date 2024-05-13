@@ -8,6 +8,10 @@ using TMPro.EditorUtilities;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    //debug
+    bool _logRotation = false;
+
+
     //components
     GameObject _imagen;
     Animator _animator;
@@ -246,9 +250,12 @@ public class Player : MonoBehaviour
                 {
                     _dashvelocitydirection = new Vector2(_mira.transform.position.x - transform.position.x, _mira.transform.position.y - transform.position.y) * dashVelocity;
                     
-                    float rotZ = Mathf.Atan2(_attackDirection.y, _attackDirection.y) * Mathf.Rad2Deg;
-
+                    float rotZ = Mathf.Atan2(_dashvelocitydirection.y, _dashvelocitydirection.x) * Mathf.Rad2Deg;
+                    Debug.Log("rotZ es" + rotZ);
+                    Debug.Log("Image rotation antes " + _imagen.transform.rotation);
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+                    Debug.Log("Image rotation despues " +  _imagen.transform.rotation);
+                    _logRotation = true;
                     _cambieRotacionImagen = true;
                     _dasheando = true;
                 }
@@ -468,6 +475,14 @@ public class Player : MonoBehaviour
            
             Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
 
+            if (_logRotation == true)
+            {
+
+                Debug.Log("Image rotation al final del script " + _imagen.transform.rotation);
+                _logRotation = false;
+
+            }
+
         }
     }
 
@@ -530,6 +545,8 @@ public class Player : MonoBehaviour
                 if (_directionalInput.x > 0 && _controller.collisions.right)
                 {
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    _cambieRotacionImagen = true;
+
                     velocity.y = moveSpeed;
                     velocity.x = 0;
                     _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
@@ -540,6 +557,8 @@ public class Player : MonoBehaviour
                 else if (_directionalInput.x < 0 && _controller.collisions.left)
                 {
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    _cambieRotacionImagen = true;
+
                     velocity.y = moveSpeed;
                     velocity.x = 0;
                     _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
@@ -549,10 +568,14 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    _imagen.transform.rotation = Quaternion.identity;
-                    _collider.size = _originalColliderSize;
-                    _collider.offset = _originalColliderOffset;
-                    _isWallRunning = false;
+                    if (_cambieRotacionImagen == true)
+                    {
+                        _imagen.transform.rotation = Quaternion.identity;
+                        _collider.size = _originalColliderSize;
+                        _collider.offset = _originalColliderOffset;
+                        _cambieRotacionImagen = false;
+                    }
+                        _isWallRunning = false;
                 }
 
 
@@ -561,17 +584,9 @@ public class Player : MonoBehaviour
             else
             {
                 _isWallTouching = false;
-                _isWallRunning = false;
             }
         }
-        else
-        {
-            _isWallTouching = false;
-            _isWallRunning = false;
-            _imagen.transform.rotation = Quaternion.identity;
-            _collider.size = _originalColliderSize;
-            _collider.offset = _originalColliderOffset;
-        }
+      
         _wallStickTimer += Time.deltaTime;
     }
 
