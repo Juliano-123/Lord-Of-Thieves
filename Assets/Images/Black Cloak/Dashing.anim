@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slice
+  m_Name: Dashing
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -269615769, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - time: 0.05
-      value: {fileID: -1662128918, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - time: 0.1
-      value: {fileID: -1086805955, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - time: 0.16666667
-      value: {fileID: -1086805955, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
+      value: {fileID: 1737798991, guid: 48567f03776c09c4c8975c2a8279ec35, type: 3}
+    - time: 0.06666667
+      value: {fileID: 1737798991, guid: 48567f03776c09c4c8975c2a8279ec35, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,16 +46,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -269615769, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - {fileID: -1662128918, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - {fileID: -1086805955, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
-    - {fileID: -1086805955, guid: 29f773ca901fd1c4797d6718483f96e1, type: 3}
+    - {fileID: 1737798991, guid: 48567f03776c09c4c8975c2a8279ec35, type: 3}
+    - {fileID: 1737798991, guid: 48567f03776c09c4c8975c2a8279ec35, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.18333334
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,39 +72,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0
-    functionName: SliceEnemy
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.05
-    functionName: SliceEnemy
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.1
-    functionName: SliceEnemy
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.13333334
-    functionName: SliceEnemy
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: EndSlice
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

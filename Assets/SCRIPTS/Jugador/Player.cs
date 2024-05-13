@@ -3,6 +3,7 @@ using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
+using TMPro.EditorUtilities;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -73,18 +74,18 @@ public class Player : MonoBehaviour
     int _saltosTotales = 0;
     bool _isJumping = false;
     
-    float timerdash = 1f;
 
     int boxContados = 0;
     int gemasContadas = 0;
 
-    
+    //DASH
     bool _dasheando = false;
     int _dashApretado = 0;
     bool _dashSoltado = false;
-    [SerializeField]
-    float dashVelocity = 15f;
     Vector2 _dashvelocitydirection;
+    bool _cambieRotacionImagen = false;
+    float timerdash = 1f;
+    float dashVelocity = 15f;
 
 
     int _shootApretado = 0;
@@ -94,6 +95,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject _mira;
     Vector2 _lugarSpawn;
+    float _shootTime = 1f;
+    float _shootTimer = 0.55f;
 
 
 
@@ -199,6 +202,8 @@ public class Player : MonoBehaviour
             //CheckeaColisiones
             HandleCollisions();
 
+            AnimarElPJ();
+
 
 
 
@@ -223,13 +228,6 @@ public class Player : MonoBehaviour
             //DECIDIR QUE DASHEO
             if (_dashApretado > 0)
             {
-                Time.timeScale = 0.05f;
-            }
-
-            if(_dashSoltado == true)
-            {
-                Time.timeScale = 1;
-                _dashSoltado = false;
                 timerdash = 0;
                 _dashApretado = 0;
                 _jumpApretado = 0;
@@ -247,11 +245,13 @@ public class Player : MonoBehaviour
                 if (_dasheando == false)
                 {
                     _dashvelocitydirection = new Vector2(_mira.transform.position.x - transform.position.x, _mira.transform.position.y - transform.position.y) * dashVelocity;
+                    
+                    float rotZ = Mathf.Atan2(_attackDirection.y, _attackDirection.y) * Mathf.Rad2Deg;
+
+                    _imagen.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+                    _cambieRotacionImagen = true;
                     _dasheando = true;
                 }
-
-                velocity = _dashvelocitydirection;
-                Debug.Log(velocity);
 
                 if (_jumpApretado > 0)
                 {
@@ -264,21 +264,26 @@ public class Player : MonoBehaviour
                     _saltosTotales = 2;
                     timerdash = 1f;
                 }
-                _controller.Move(velocity * Time.deltaTime, false);
                 
-                return;
+                ;
             }
             else
             {
+                if (_cambieRotacionImagen == true)
+                {
+                    _imagen.transform.rotation = Quaternion.identity;
+                    _cambieRotacionImagen = false;
+                }
                 _dasheando = false;
             }
-            
 
 
 
+            _shootTime += Time.deltaTime;
             //ATAQUE Melee
-            if (_shootApretado > 0)
+            if (_shootApretado > 0 && _slicePointSpriteRenderer.enabled == false)
             {
+
                 //CALCULAR LUGAR SPAWN
                 //OFFSETS
                 //X. 0.000357117
@@ -287,18 +292,41 @@ public class Player : MonoBehaviour
                 //_lugarSpawn.y = transform.position.y + 0.03107139f;
 
                 //Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
-                
+
+                _shootTime = 0;
                 _shootApretado = 0;
                 _shootSoltado = 0;
 
-                velocity = _attackDirection * 14;
-                if (_controller.collisions.below && velocity.y <0)
+                //PARA QUE AVANCE UN TOQUE CUANDO ATACAS
+                if (_controller.collisions.below && _attackDirection.y <0)
                 {
-                    velocity.x = velocity.x*5;
-                    velocity.y = 0;
+                    velocity.x = _attackDirection.x*14;
+                    velocity.y = 4;
+                }
+                else if (_controller.collisions.below && _attackDirection.y >=0)
+                {
+                    velocity = _attackDirection * 14;
+                    if (velocity.y < 4)
+                    {
+                        velocity.y = 4;
+                    }
+                }
+                else if (_controller.collisions.below == false)
+                {
+                    velocity = _attackDirection * 14;
+
                 }
 
-                Debug.Log("Cuando ataco velocity es " + velocity);
+                //voltea sprite cuando atacas
+                if (_attackDirection.x > 0)
+                {
+                    orientacionX = 1;
+                }
+                else if (_attackDirection.x < 0)
+                {
+                    orientacionX = -1;
+                }
+
 
                 _animator.SetTrigger("IdleAttack");
                 _slicePointSpriteRenderer.enabled = true;
@@ -379,7 +407,7 @@ public class Player : MonoBehaviour
                         _saltosTotales = 2;
                         _jumpApretado = 0;
                         _jumpSoltado = false;
-                        _isJumping = false;
+                        _isJumping = true;
                     }
                     else if (_directionalInput.x > 0)
                     {
@@ -390,7 +418,7 @@ public class Player : MonoBehaviour
                         _saltosTotales = 2;
                         _jumpApretado = 0;
                         _jumpSoltado = false;
-                        _isJumping = false;
+                        _isJumping = true;
                     }
                 }
             }
@@ -429,12 +457,16 @@ public class Player : MonoBehaviour
 
 
 
-            AnimarElPJ();
+
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
+            //CHECKEA PRIMERO OVERRIDES
+            if (_dasheando == true)
+            {
+                velocity = _dashvelocitydirection;
+            }
+           
             Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
-
-
 
         }
     }
@@ -473,7 +505,10 @@ public class Player : MonoBehaviour
 
     public void SetShootApretado(int input)
     {
-        _shootApretado = input;
+        if (_shootTime >= _shootTimer)
+        {
+            _shootApretado = input;
+        }
     }
 
     public void SetShootSoltado(int input)
@@ -547,7 +582,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("Idle", false);
         _animator.SetBool("Corriendo", false);
 
-
+        //timer para idle
         if (_directionalInput.x == 0)
         {
             _directionalInputX0Timer += Time.deltaTime;
@@ -557,9 +592,7 @@ public class Player : MonoBehaviour
         {
             _directionalInputX0Timer = 0;
         }
-
-
-
+        //seteo de idle segun timer
         if (_directionalInputX0Timer >= _directionalInputX0Time && _controller.collisions.below == true)
         {
             _animator.SetBool("Idle", true);
@@ -571,8 +604,7 @@ public class Player : MonoBehaviour
         {
             _animator.SetBool("Corriendo", true);
         }
-
-
+                
         if (_isWallRunning == true)
         {
             _animator.SetBool("Corriendo", true);
@@ -598,6 +630,18 @@ public class Player : MonoBehaviour
         {
             _animator.SetBool("Subiendo", false);
             _animator.SetBool("Cayendo", false);
+        }
+
+        if (_dasheando == true)
+        {
+            _animator.SetBool("Dasheando", true);
+            _animator.SetBool("Subiendo", false);
+            _animator.SetBool("Cayendo", false);
+        }
+        else if (_dasheando == false)
+        {
+            _animator.SetBool("Dasheando", false);
+
         }
 
     }
@@ -736,6 +780,7 @@ public class Player : MonoBehaviour
                                         boxContados = 0;
                                         //Tiempo de coyote
                                         tiempoCoyote = 0.15f;
+                                        _isJumping = false;
 
 
                                     }
