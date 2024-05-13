@@ -87,7 +87,8 @@ public class Player : MonoBehaviour
     int _dashApretado = 0;
     bool _dashSoltado = false;
     Vector2 _dashvelocitydirection;
-    bool _cambieRotacionImagen = false;
+
+    bool _dashCambioRotacionImagen = false;
     float timerdash = 1f;
     float dashVelocity = 15f;
 
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour
     public Ghost ghost;
 
     //nuevo movimiento
+    [SerializeField]
     Vector2 _directionalInput;
 
     //timer para poner idle (soluciona volteo sprite)
@@ -121,15 +123,16 @@ public class Player : MonoBehaviour
 
     //Wallrunning
     bool _isWallTouching = false;
+    [SerializeField]
     bool _isWallRunning = false;
-    [SerializeField]
-    float wallClimbDistanceX;
-    [SerializeField]
-    float wallLeapDistanceX;
+    
+    float wallClimbDistanceX = 30f;
+    
+    float wallLeapDistanceX = 50f;
     float _wallStickTimer = 0f;
     float _wallStickTime = 0.25f;
     float _wallStickDirection = 0f;
-
+    bool _wallCambioRotacionImagen = false;
 
 
     bool _idleAttack;
@@ -256,7 +259,7 @@ public class Player : MonoBehaviour
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, rotZ);
                     Debug.Log("Image rotation despues " +  _imagen.transform.rotation);
                     _logRotation = true;
-                    _cambieRotacionImagen = true;
+                    _dashCambioRotacionImagen = true;
                     _dasheando = true;
                 }
 
@@ -272,18 +275,20 @@ public class Player : MonoBehaviour
                     timerdash = 1f;
                 }
                 
-                ;
+                
             }
             else
             {
-                if (_cambieRotacionImagen == true)
-                {
-                    _imagen.transform.rotation = Quaternion.identity;
-                    _cambieRotacionImagen = false;
-                }
+
                 _dasheando = false;
             }
 
+            if (_dashCambioRotacionImagen == true && _dasheando == false)
+            {
+                _imagen.transform.rotation = Quaternion.identity;
+                _dashCambioRotacionImagen = false;
+                Debug.Log("dash reseteo rotation");
+            }
 
 
             _shootTime += Time.deltaTime;
@@ -387,6 +392,7 @@ public class Player : MonoBehaviour
                         _jumpApretado = 0;
                         _jumpSoltado = false;
                         _isJumping = true;
+                        _isWallRunning = false;
 
 
                     }
@@ -400,6 +406,7 @@ public class Player : MonoBehaviour
                         _jumpApretado = 0;
                         _jumpSoltado = false;
                         _isJumping = true;
+                        _isWallRunning = false;
                     }
                 }
 
@@ -415,6 +422,7 @@ public class Player : MonoBehaviour
                         _jumpApretado = 0;
                         _jumpSoltado = false;
                         _isJumping = true;
+                        _isWallRunning = false;
                     }
                     else if (_directionalInput.x > 0)
                     {
@@ -426,6 +434,7 @@ public class Player : MonoBehaviour
                         _jumpApretado = 0;
                         _jumpSoltado = false;
                         _isJumping = true;
+                        _isWallRunning = false;
                     }
                 }
             }
@@ -545,7 +554,7 @@ public class Player : MonoBehaviour
                 if (_directionalInput.x > 0 && _controller.collisions.right)
                 {
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    _cambieRotacionImagen = true;
+                    _wallCambioRotacionImagen = true;
 
                     velocity.y = moveSpeed;
                     velocity.x = 0;
@@ -554,10 +563,15 @@ public class Player : MonoBehaviour
                     _wallStickDirection = 1;
 
                 }
-                else if (_directionalInput.x < 0 && _controller.collisions.left)
+                else if (_controller.collisions.right == true)
+                    {
+                    _isWallRunning = false;
+                    }
+
+                if (_directionalInput.x < 0 && _controller.collisions.left)
                 {
                     _imagen.transform.rotation = Quaternion.Euler(0, 0, -90);
-                    _cambieRotacionImagen = true;
+                    _wallCambioRotacionImagen = true;
 
                     velocity.y = moveSpeed;
                     velocity.x = 0;
@@ -566,27 +580,34 @@ public class Player : MonoBehaviour
                     _isWallRunning = true;
                     _wallStickDirection = -1;
                 }
-                else
+                else if (_controller.collisions.left == true)
                 {
-                    if (_cambieRotacionImagen == true)
-                    {
-                        _imagen.transform.rotation = Quaternion.identity;
-                        _collider.size = _originalColliderSize;
-                        _collider.offset = _originalColliderOffset;
-                        _cambieRotacionImagen = false;
-                    }
-                        _isWallRunning = false;
+                    _isWallRunning = false;
                 }
 
-
-
             }
-            else
-            {
-                _isWallTouching = false;
-            }
+            
+
         }
-      
+        else
+        {
+         
+            _isWallTouching = false;
+        }
+
+
+        if (_wallCambioRotacionImagen == true && _isWallTouching == false)
+        {
+            _imagen.transform.rotation = Quaternion.identity;
+            _collider.size = _originalColliderSize;
+            _collider.offset = _originalColliderOffset;
+            _wallCambioRotacionImagen = false;
+            Debug.Log("wall reseteo rotation");
+        }
+
+
+
+
         _wallStickTimer += Time.deltaTime;
     }
 
