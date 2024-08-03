@@ -117,8 +117,10 @@ public class Controller2D : RayCastController
     {
         public bool above, below;
         public bool left, right;
-        public GameObject objetoGolpeadoHorizontal;
-        public GameObject objetoGolpeadoVertical;
+        public GameObject objetoGolpeadoDerecha;
+        public GameObject objetoGolpeadoIzquierda;
+        public GameObject objetoGolpeadoArriba;
+        public GameObject objetoGolpeadoAbajo;
         public int directionX;
         public int directionY;
 

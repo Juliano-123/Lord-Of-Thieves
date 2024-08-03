@@ -544,7 +544,7 @@ public class Player : MonoBehaviour
     void HandleWallRunning()
     {
         //todo walltouching
-        if (_controller.collisions.objetoGolpeadoHorizontal != null)
+        if (_controller.collisions.objetoGolpeadoArriba != null)
         {
 
             if (_controller.collisions.objetoGolpeadoHorizontal.CompareTag("Pared") && !_controller.collisions.below)
