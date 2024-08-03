@@ -1,7 +1,8 @@
-﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Controller2D : RayCastController
+public class Controller2DGeneral : RayCastController
 {
     [SerializeField]
     public CollisionInfo collisions;
@@ -10,8 +11,7 @@ public class Controller2D : RayCastController
     public override void Start()
     {
         base.Start();
-        collisions.directionX = 1;
-        collisions.directionY = -1;
+        collisions.facedir = 1;
     }
 
     public Vector2 Move(Vector2 moveAmount, bool tiempoCoyoteON)
@@ -19,12 +19,17 @@ public class Controller2D : RayCastController
         UpdateRaycastOrigins();
         collisions.Reset();
 
-        
-                
+        if (moveAmount.x != 0)
+        {
+            collisions.facedir = (int)Mathf.Sign(moveAmount.x);
+        }
+
         HorizontalCollisions(ref moveAmount);
 
-        VerticalCollisions(ref moveAmount);
-        
+        if (moveAmount.y != 0)
+        {
+            VerticalCollisions(ref moveAmount);
+        }
 
         if (tiempoCoyoteON)
         {
@@ -40,13 +45,7 @@ public class Controller2D : RayCastController
 
     void HorizontalCollisions(ref Vector2 velocity)
     {
-
-        if (velocity.x != 0)
-        {
-            collisions.directionX = (int)Mathf.Sign(velocity.x);
-        }
-
-        float directionX = collisions.directionX;
+        float directionX = collisions.facedir;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
 
         if (Mathf.Abs(velocity.x) < skinWidth)
@@ -76,20 +75,8 @@ public class Controller2D : RayCastController
 
     void VerticalCollisions(ref Vector2 velocity)
     {
-        if (velocity.y != 0)
-        {
-            collisions.directionY = (int)Mathf.Sign(velocity.y);
-        }
-
-
-        float directionY = collisions.directionY;
+        float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
-
-        if (Mathf.Abs(velocity.y) < skinWidth)
-        {
-            rayLength = 2 * skinWidth;
-        }
-
 
         for (int i = 0; i < verticalRayCount; i++)
         {
@@ -119,8 +106,7 @@ public class Controller2D : RayCastController
         public bool left, right;
         public GameObject objetoGolpeadoHorizontal;
         public GameObject objetoGolpeadoVertical;
-        public int directionX;
-        public int directionY;
+        public int facedir;
 
         public void Reset()
         {
