@@ -544,10 +544,10 @@ public class Player : MonoBehaviour
     void HandleWallRunning()
     {
         //todo walltouching
-        if (_controller.collisions.objetoGolpeadoArriba != null)
+        if (_controller.collisions.hayGolpeHorizontal == true)
         {
 
-            if (_controller.collisions.objetoGolpeadoHorizontal.CompareTag("Pared") && !_controller.collisions.below)
+            if (_controller.collisions.objetoGolpeadoDerecha.CompareTag("Pared") || _controller.collisions.objetoGolpeadoIzquierda.CompareTag("Pared") && !_controller.collisions.below)
             {
                 _isWallTouching = true;
                 _wallStickTimer = 0;
@@ -744,9 +744,9 @@ public class Player : MonoBehaviour
         //manejar casos de colision
         if (_controller.collisions.below || _controller.collisions.above || _controller.collisions.right || _controller.collisions.left)
         {
-            if (_controller.collisions.objetoGolpeadoHorizontal != null)
+            if (_controller.collisions.hayGolpeHorizontal == true)
             {
-                switch (_controller.collisions.objetoGolpeadoHorizontal.tag)
+                switch (_controller.collisions.objetoGolpeadoDerecha.tag || _controller.collisions.objetoGolpeadoIzquierda.tag)
                 {
                     //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
                     case "GEMA":
