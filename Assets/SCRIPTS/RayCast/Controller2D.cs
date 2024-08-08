@@ -72,49 +72,31 @@ public class Controller2D : RayCastController
 
             if (hit)
             {
-                velocity.x = (hit.distance - skinWidth) * directionX;
-                rayLength = hit.distance;
+                if (hit.transform.tag == "Piso" && velocity.y > 0)
+                {
 
-                collisions.hayGolpeHorizontal = true;
+                }
+                else
+                {
+
+                    velocity.x = (hit.distance - skinWidth) * directionX;
+                    rayLength = hit.distance;
+                }
+
+                collisions.hayGolpe = true;
+                collisions.objetoGolpeado = hit.transform.gameObject;
 
                 collisions.right = directionX == 1;
-
-                if (collisions.right)
-                {
-                    collisions.objetoGolpeadoDerecha = hit.transform.gameObject;
-                }
-
                 collisions.left = directionX == -1;
-
-                if (collisions.left)
-                {
-                    collisions.objetoGolpeadoIzquierda = hit.transform.gameObject;
-                }
-
-
-
             }
 
             if (hitReverso)
             {
-                collisions.hayGolpeHorizontal = true;
+                collisions.hayGolpe = true;
+                collisions.objetoGolpeado = hitReverso.transform.gameObject;
 
                 collisions.right = directionX == -1;
-
-                if (collisions.right)
-                {
-                    collisions.objetoGolpeadoDerecha = hitReverso.transform.gameObject;
-                }
-
                 collisions.left = directionX == 1;
-
-                if (collisions.left)
-                {
-                    collisions.objetoGolpeadoIzquierda = hitReverso.transform.gameObject;
-                }
-
-
-
             }
 
 
@@ -141,36 +123,47 @@ public class Controller2D : RayCastController
         for (int i = 0; i < verticalRayCount; i++)
         {
             Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            Vector2 rayOriginReverso = (directionY == -1) ? raycastOrigins.topLeft : raycastOrigins.bottomLeft;
+
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            rayOriginReverso += Vector2.right * (verticalRaySpacing * i);
+
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.up * -directionY, 2 * skinWidth, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
+            Debug.DrawRay(rayOriginReverso, Vector2.up * -directionY, Color.blue);
+
 
             if (hit)
             {
-                velocity.y = (hit.distance - skinWidth) * directionY;
-                rayLength = hit.distance;
 
-                collisions.hayGolpeVertical = true;
+                if (hit.transform.tag == "Piso" && velocity.y >0)
+                {
+
+                }
+                else
+                {
+                    velocity.y = (hit.distance - skinWidth) * directionY;
+                    rayLength = hit.distance;
+                }
+
+                collisions.hayGolpe = true;
+                collisions.objetoGolpeado = hit.transform.gameObject;
 
                 collisions.above = directionY == 1;
-
-                if (collisions.above)
-                {
-                    collisions.objetoGolpeadoArriba = hit.transform.gameObject;
-                }
-
-
                 collisions.below = directionY == -1;
-
-                if (collisions.below)
-                {
-                    collisions.objetoGolpeadoAbajo = hit.transform.gameObject;
-                }
-
-
-
             }
+
+            if (hitReverso)
+            {
+                collisions.hayGolpe = true;
+                collisions.objetoGolpeado = hitReverso.transform.gameObject;
+
+                collisions.above = directionY == -1;
+                collisions.below = directionY == 1;
+            }
+
         }
 
     }
@@ -180,12 +173,8 @@ public class Controller2D : RayCastController
     {
         public bool above, below;
         public bool left, right;
-        public bool hayGolpeHorizontal;
-        public bool hayGolpeVertical;
-        public GameObject objetoGolpeadoDerecha;
-        public GameObject objetoGolpeadoIzquierda;
-        public GameObject objetoGolpeadoArriba;
-        public GameObject objetoGolpeadoAbajo;
+        public bool hayGolpe;
+        public GameObject objetoGolpeado;
         public int directionX;
         public int directionY;
 
@@ -193,12 +182,8 @@ public class Controller2D : RayCastController
         {
             above = below = false;
             left = right = false;
-            hayGolpeHorizontal = false;
-            hayGolpeVertical = false;
-            objetoGolpeadoDerecha = null;
-            objetoGolpeadoIzquierda = null;
-            objetoGolpeadoArriba = null;
-            objetoGolpeadoAbajo = null;
+            hayGolpe = false;
+            objetoGolpeado = null;
         }
     }
 

@@ -27,31 +27,31 @@ public class Bala : MonoBehaviour
     void Update()
     {
 
-        if (_controller.collisions.objetoGolpeadoHorizontal != null)
-        {
-            if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag is "Player")
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-                Debug.Log("le pego la bala2");
-            }
-            else if (_controller.collisions.right && _controller.collisions.objetoGolpeadoHorizontal.tag is "Player")
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-            }
-            Destroy(gameObject);
-        }
+        //if (_controller.collisions.objetoGolpeadoHorizontal != null)
+        //{
+        //    if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag is "Player")
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //        Debug.Log("le pego la bala2");
+        //    }
+        //    else if (_controller.collisions.right && _controller.collisions.objetoGolpeadoHorizontal.tag is "Player")
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //    }
+        //    Destroy(gameObject);
+        //}
 
-        if (_controller.collisions.objetoGolpeadoVertical != null)
-        {
-            if (_controller.collisions.objetoGolpeadoVertical.CompareTag("Player"))
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-            }
-            Destroy(gameObject);
-        }
+        //if (_controller.collisions.objetoGolpeadoVertical != null)
+        //{
+        //    if (_controller.collisions.objetoGolpeadoVertical.CompareTag("Player"))
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //    }
+        //    Destroy(gameObject);
+        //}
 
         _controller.Move(_velocity * Time.deltaTime, false);
 

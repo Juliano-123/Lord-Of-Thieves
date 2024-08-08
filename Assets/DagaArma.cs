@@ -19,20 +19,20 @@ public class DagaArma : MonoBehaviour
     {
 
 
-        if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeadoHorizontal.tag == "Enemigo")
-        {
-            Destroy(controller.collisions.objetoGolpeadoHorizontal);
-            Destroy(gameObject);
-        }
+        //if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeadoHorizontal.tag == "Enemigo")
+        //{
+        //    Destroy(controller.collisions.objetoGolpeadoHorizontal);
+        //    Destroy(gameObject);
+        //}
 
-        if ((controller.collisions.above || controller.collisions.below) && controller.collisions.objetoGolpeadoVertical.tag == "Enemigo")
-        {
-            Destroy(controller.collisions.objetoGolpeadoVertical);
-            Destroy(gameObject);
-        }
+        //if ((controller.collisions.above || controller.collisions.below) && controller.collisions.objetoGolpeadoVertical.tag == "Enemigo")
+        //{
+        //    Destroy(controller.collisions.objetoGolpeadoVertical);
+        //    Destroy(gameObject);
+        //}
 
 
-        controller.Move(_velocity * Time.deltaTime, false);
+        //controller.Move(_velocity * Time.deltaTime, false);
 
     }
 

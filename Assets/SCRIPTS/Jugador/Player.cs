@@ -18,15 +18,15 @@ public class Player : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
     Apuntar _rotatePointApuntar;
-    GameObject _slicePoint;
-    Animator _slicePointAnimator;
-    SpriteRenderer _slicePointSpriteRenderer;
+    //GameObject _slicePoint;
+    //Animator _slicePointAnimator;
+    //SpriteRenderer _slicePointSpriteRenderer;
     Controller2D _controller;
     BoxCollider2D _collider;
     
 
-    Vector2 _originalColliderSize;
-    Vector2 _originalColliderOffset;
+    //Vector2 _originalColliderSize;
+    //Vector2 _originalColliderOffset;
 
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
@@ -93,15 +93,15 @@ public class Player : MonoBehaviour
     float dashVelocity = 15f;
 
 
-    int _shootApretado = 0;
-    int _shootSoltado = 0;
-    [SerializeField]
-    GameObject _spawnObjetoDaga;
-    [SerializeField]
+    //int _shootApretado = 0;
+    //int _shootSoltado = 0;
+    //[SerializeField]
+    //GameObject _spawnObjetoDaga;
+    //[SerializeField]
     GameObject _mira;
     Vector2 _lugarSpawn;
-    float _shootTime = 1f;
-    float _shootTimer = 0.55f;
+    //float _shootTime = 1f;
+    //float _shootTimer = 0.55f;
 
 
 
@@ -121,21 +121,21 @@ public class Player : MonoBehaviour
 
     Vector2 _attackDirection;
 
-    //Wallrunning
-    bool _isWallTouching = false;
-    [SerializeField]
-    bool _isWallRunning = false;
+    ////Wallrunning
+    //bool _isWallTouching = false;
+    //[SerializeField]
+    //bool _isWallRunning = false;
     
-    float wallClimbDistanceX = 30f;
+    //float wallClimbDistanceX = 30f;
     
-    float wallLeapDistanceX = 50f;
-    float _wallStickTimer = 0f;
-    float _wallStickTime = 0.25f;
-    float _wallStickDirection = 0f;
-    bool _wallCambioRotacionImagen = false;
+    //float wallLeapDistanceX = 50f;
+    //float _wallStickTimer = 0f;
+    //float _wallStickTime = 0.25f;
+    //float _wallStickDirection = 0f;
+    //bool _wallCambioRotacionImagen = false;
 
 
-    bool _idleAttack;
+    //bool _idleAttack;
 
 
     private void Awake()
@@ -147,9 +147,9 @@ public class Player : MonoBehaviour
         _animator = _imagen.GetComponent<Animator>();
         _rotatePoint = transform.Find("RotatePoint").gameObject;
         _rotatePointApuntar = _rotatePoint.GetComponent<Apuntar>();
-        _slicePoint = _rotatePoint.transform.Find("SlicePoint").gameObject;
-        _slicePointSpriteRenderer = _slicePoint.GetComponent<SpriteRenderer>();
-        _slicePointAnimator = _slicePoint.GetComponent<Animator>();
+        //_slicePoint = _rotatePoint.transform.Find("SlicePoint").gameObject;
+        //_slicePointSpriteRenderer = _slicePoint.GetComponent<SpriteRenderer>();
+        //_slicePointAnimator = _slicePoint.GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
     }
 
@@ -166,8 +166,8 @@ public class Player : MonoBehaviour
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * _minJumpHeight);
 
-        _originalColliderSize = _collider.size;
-        _originalColliderOffset = _collider.offset;
+        //_originalColliderSize = _collider.size;
+        //_originalColliderOffset = _collider.offset;
 
 
 
@@ -199,8 +199,8 @@ public class Player : MonoBehaviour
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 
-            //MANEJAR EL WALLRUNNING
-            HandleWallRunning();
+            ////MANEJAR EL WALLRUNNING
+            //HandleWallRunning();
 
             //VOLTEA EL SPRITE SEGUN DONDE VOY
             CambiarDireccionSprite();
@@ -291,66 +291,11 @@ public class Player : MonoBehaviour
             }
 
 
-            _shootTime += Time.deltaTime;
-            //ATAQUE Melee
-            if (_shootApretado > 0 && _slicePointSpriteRenderer.enabled == false)
-            {
-
-                //CALCULAR LUGAR SPAWN
-                //OFFSETS
-                //X. 0.000357117
-                ////Y. 0.03107139
-                //_lugarSpawn.x = transform.position.x + 0.000357117f;
-                //_lugarSpawn.y = transform.position.y + 0.03107139f;
-
-                //Instantiate(_spawnObjetoDaga, _lugarSpawn, _mira.transform.rotation);
-
-                _shootTime = 0;
-                _shootApretado = 0;
-                _shootSoltado = 0;
-
-                //PARA QUE AVANCE UN TOQUE CUANDO ATACAS
-                if (_controller.collisions.below && _attackDirection.y <0)
-                {
-                    velocity.x = _attackDirection.x*14;
-                    velocity.y = 4;
-                }
-                else if (_controller.collisions.below && _attackDirection.y >=0)
-                {
-                    velocity = _attackDirection * 14;
-                    if (velocity.y < 4)
-                    {
-                        velocity.y = 4;
-                    }
-                }
-                else if (_controller.collisions.below == false)
-                {
-                    velocity = _attackDirection * 14;
-
-                }
-
-                //voltea sprite cuando atacas
-                if (_attackDirection.x > 0)
-                {
-                    orientacionX = 1;
-                }
-                else if (_attackDirection.x < 0)
-                {
-                    orientacionX = -1;
-                }
-
-
-                _animator.SetTrigger("IdleAttack");
-                _slicePointSpriteRenderer.enabled = true;
-                _slicePointAnimator.enabled = true;
-                _rotatePointApuntar.enabled = false;
-
-            }
             
 
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
-            if (_jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeadoVertical.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
+            if (_jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeado.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
             {
                 audioJugador.clip = salto;
                 audioJugador.Play();
@@ -377,67 +322,7 @@ public class Player : MonoBehaviour
             //}
 
 
-            //SaltoWallrun
-            if (_jumpApretado > 0 && _wallStickTimer <= _wallStickTime)
-            {
-                if (_wallStickDirection == 1)
-                {
-                    if (_directionalInput.x > 0)
-                    {
-                        velocity.y = maxJumpVelocity;
-                        velocity.x = wallClimbDistanceX * -1;
-                        audioJugador.clip = salto;
-                        audioJugador.Play();
-                        _saltosTotales = 2;
-                        _jumpApretado = 0;
-                        _jumpSoltado = false;
-                        _isJumping = true;
-                        _isWallRunning = false;
 
-
-                    }
-                    else if (_directionalInput.x < 0)
-                    {
-                        velocity.y = maxJumpVelocity/2;
-                        velocity.x = wallLeapDistanceX * -1;
-                        audioJugador.clip = salto;
-                        audioJugador.Play();
-                        _saltosTotales = 2;
-                        _jumpApretado = 0;
-                        _jumpSoltado = false;
-                        _isJumping = true;
-                        _isWallRunning = false;
-                    }
-                }
-
-                if (_wallStickDirection == -1)
-                {
-                    if (_directionalInput.x < 0)
-                    {
-                        velocity.y = maxJumpVelocity;
-                        velocity.x = wallClimbDistanceX;
-                        audioJugador.clip = salto;
-                        audioJugador.Play();
-                        _saltosTotales = 2;
-                        _jumpApretado = 0;
-                        _jumpSoltado = false;
-                        _isJumping = true;
-                        _isWallRunning = false;
-                    }
-                    else if (_directionalInput.x > 0)
-                    {
-                        velocity.y = maxJumpVelocity/2;
-                        velocity.x = wallLeapDistanceX;
-                        audioJugador.clip = salto;
-                        audioJugador.Play();
-                        _saltosTotales = 2;
-                        _jumpApretado = 0;
-                        _jumpSoltado = false;
-                        _isJumping = true;
-                        _isWallRunning = false;
-                    }
-                }
-            }
                                  
             //si suelto salto me baja la velocidad
             if (_jumpSoltado == true && _isJumping == true)
@@ -529,88 +414,18 @@ public class Player : MonoBehaviour
 
     public void SetShootApretado(int input)
     {
-        if (_shootTime >= _shootTimer)
-        {
-            _shootApretado = input;
-        }
+        //if (_shootTime >= _shootTimer)
+        //{
+        //    _shootApretado = input;
+        //}
     }
 
     public void SetShootSoltado(int input)
     {
-        _shootSoltado = input;
+        //_shootSoltado = input;
     }
 
-
-    void HandleWallRunning()
-    {
-        //todo walltouching
-        if (_controller.collisions.hayGolpeHorizontal == true)
-        {
-
-            if (_controller.collisions.objetoGolpeadoDerecha.CompareTag("Pared") || _controller.collisions.objetoGolpeadoIzquierda.CompareTag("Pared") && !_controller.collisions.below)
-            {
-                _isWallTouching = true;
-                _wallStickTimer = 0;
-                if (_directionalInput.x > 0 && _controller.collisions.right)
-                {
-                    _imagen.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    _wallCambioRotacionImagen = true;
-
-                    velocity.y = moveSpeed;
-                    velocity.x = 0;
-                    _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
-                    _isWallRunning = true;
-                    _wallStickDirection = 1;
-
-                }
-                else if (_controller.collisions.right == true)
-                    {
-                    _isWallRunning = false;
-                    }
-
-                if (_directionalInput.x < 0 && _controller.collisions.left)
-                {
-                    _imagen.transform.rotation = Quaternion.Euler(0, 0, -90);
-                    _wallCambioRotacionImagen = true;
-
-                    velocity.y = moveSpeed;
-                    velocity.x = 0;
-                    _collider.size = new Vector2(_originalColliderSize.y, _originalColliderSize.x);
-                    _collider.offset = new Vector2(_originalColliderOffset.y, _originalColliderOffset.x);
-                    _isWallRunning = true;
-                    _wallStickDirection = -1;
-                }
-                else if (_controller.collisions.left == true)
-                {
-                    _isWallRunning = false;
-                }
-
-            }
-            
-
-        }
-        else
-        {
-         
-            _isWallTouching = false;
-        }
-
-
-        if (_wallCambioRotacionImagen == true && _isWallTouching == false)
-        {
-            _imagen.transform.rotation = Quaternion.identity;
-            _collider.size = _originalColliderSize;
-            _collider.offset = _originalColliderOffset;
-            _wallCambioRotacionImagen = false;
-            Debug.Log("wall reseteo rotation");
-        }
-
-
-
-
-        _wallStickTimer += Time.deltaTime;
-    }
-
+       
     void AnimarElPJ()
     {
         //seteo de animaciones
@@ -641,15 +456,9 @@ public class Player : MonoBehaviour
             _animator.SetBool("Corriendo", true);
         }
                 
-        if (_isWallRunning == true)
-        {
-            _animator.SetBool("Corriendo", true);
-            _animator.SetBool("Cayendo", false);
-            _animator.SetBool("Subiendo", false);
-        }
-
+        
         //subiendo y cayendo
-        if (velocity.y > 0 && _isWallRunning == false)
+        if (velocity.y > 0)
         {
             _animator.SetBool("Subiendo", true);
             _animator.SetBool("Cayendo", false);
@@ -744,47 +553,13 @@ public class Player : MonoBehaviour
         //manejar casos de colision
         if (_controller.collisions.below || _controller.collisions.above || _controller.collisions.right || _controller.collisions.left)
         {
-            if (_controller.collisions.hayGolpeHorizontal == true)
+            if (_controller.collisions.objetoGolpeado != null)
             {
-                switch (_controller.collisions.objetoGolpeadoDerecha.tag || _controller.collisions.objetoGolpeadoIzquierda.tag)
-                {
-                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                    case "GEMA":
-                        Destroy(_controller.collisions.objetoGolpeadoVertical);
-                        Destroy(_controller.collisions.objetoGolpeadoHorizontal);
-                        gemasContadas++;
-                        audioGemas.clip = agarrogema;
-                        audioGemas.Play();
-                        break;
-
-                    case "Enemigo":
-                        _jugadorGolpeado = true;
-                        _saltosTotales = 1;
-                        _jumpApretado = 0;
-                        _jumpSoltado = false;
-
-                        if (_controller.collisions.left)
-                        {
-                            timerGolpeadoIzquierda = 0;
-                        }
-                        else
-                        {
-                            timerGolpeadoDerecha = 0;
-                        }
-                        break;
-
-                }
-            }
-
-
-            if (_controller.collisions.objetoGolpeadoVertical != null)
-            {
-                switch (_controller.collisions.objetoGolpeadoVertical.tag)
+                switch (_controller.collisions.objetoGolpeado.tag)
                         {
                             //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
                             case "GEMA":
-                                Destroy(_controller.collisions.objetoGolpeadoVertical);
-                                Destroy(_controller.collisions.objetoGolpeadoHorizontal);
+                                Destroy(_controller.collisions.objetoGolpeado);
                                 gemasContadas++;
                                 audioGemas.clip = agarrogema;
                                 audioGemas.Play();
@@ -827,7 +602,7 @@ public class Player : MonoBehaviour
                             case "CUBO":
                                 if (_controller.collisions.below)
                                 {
-                                    _controller.collisions.objetoGolpeadoVertical.transform.GetComponent<EnemigoGolpeado>().enabled = true;
+                                    _controller.collisions.objetoGolpeado.transform.GetComponent<EnemigoGolpeado>().enabled = true;
                                     _saltosTotales = 1;
                                     _jumpApretado = 0;
                                     _jumpSoltado = false;

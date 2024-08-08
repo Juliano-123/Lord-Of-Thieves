@@ -48,28 +48,28 @@ public class MostroBlanco : MonoBehaviour
         //si le pego al jugador ................
 
 
-        if (_controller.collisions.objetoGolpeadoHorizontal != null)
-        {
-            if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-            }
-            else if (_controller.collisions.right && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-            }
-        }
+        //if (_controller.collisions.objetoGolpeadoHorizontal != null)
+        //{
+        //    if (_controller.collisions.left && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //    }
+        //    else if (_controller.collisions.right && _controller.collisions.objetoGolpeadoHorizontal.tag == "Player")
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoIzquierda = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //    }
+        //}
 
-        if (_controller.collisions.objetoGolpeadoVertical != null)
-        {
-            if (_controller.collisions.objetoGolpeadoVertical.tag == "Player")
-            {
-                _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
-                _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
-            }
-        }
+        //if (_controller.collisions.objetoGolpeadoVertical != null)
+        //{
+        //    if (_controller.collisions.objetoGolpeadoVertical.tag == "Player")
+        //    {
+        //        _elJugador.GetComponent<Player>().timerGolpeadoDerecha = 0;
+        //        _elJugador.GetComponent<Player>()._jugadorGolpeado = true;
+        //    }
+        //}
 
 
 
