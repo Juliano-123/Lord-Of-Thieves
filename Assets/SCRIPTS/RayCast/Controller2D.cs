@@ -72,13 +72,24 @@ public class Controller2D : RayCastController
 
 
 
-
             if (hit)
             {
+                //PARA ATRAVESAR PALATAFORMAS
                 if (hit.distance == 0 && hit.transform.tag == "Plataforma" || hit.transform.tag == "Plataforma")
                 {
                     continue;
                 }
+
+                //DETECTAR COLISIONES EN EL BORDE
+                if (i <= horizontalRayCount/10)
+                {
+                    collisions.edge = true;
+                }
+                else
+                {
+                    collisions.edge = false;
+                }
+
 
                 velocity.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;                
@@ -92,6 +103,17 @@ public class Controller2D : RayCastController
 
             if (hitReverso)
             {
+                //DETECTAR COLISIONES EN EL BORDE
+                if (i <= horizontalRayCount / 10)
+                {
+                    collisions.edge = true;
+                }
+                else
+                {
+                    collisions.edge = false;
+                }
+
+
                 collisions.hayGolpe = true;
                 collisions.objetoGolpeadoHorizontal = hitReverso.transform.gameObject;
 
@@ -177,6 +199,7 @@ public class Controller2D : RayCastController
         public bool above, below;
         public bool left, right;
         public bool hayGolpe;
+        public bool edge;
         public GameObject objetoGolpeadoHorizontal;
         public GameObject objetoGolpeadoVertical;
         public int directionX;
@@ -187,6 +210,7 @@ public class Controller2D : RayCastController
             above = below = false;
             left = right = false;
             hayGolpe = false;
+            edge = false;
             objetoGolpeadoHorizontal = null;
             objetoGolpeadoVertical = null;
         }

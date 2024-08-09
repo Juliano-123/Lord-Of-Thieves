@@ -499,28 +499,45 @@ public class Player : MonoBehaviour
             {
                 switch (_controller.collisions.objetoGolpeadoHorizontal.tag)
                 {
-                            //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                            case "GEMA":
-                                Destroy(_controller.collisions.objetoGolpeadoHorizontal);
-                                gemasContadas++;
-                                audioGemas.clip = agarrogema;
-                                audioGemas.Play();
-                                break;
 
-                            case "Enemigo":
-                                _jugadorGolpeado = true;
-                                _saltosTotales = 1;
-                                _jumpApretado = 0;
-                                _jumpSoltado = false;
-                                if (_controller.collisions.left)
-                                {
-                                    timerGolpeadoIzquierda = 0;
-                                }
-                                else
-                                {
-                                    timerGolpeadoDerecha = 0;
-                                }
-                                break;
+                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
+                    case "GEMA":
+                        Destroy(_controller.collisions.objetoGolpeadoHorizontal);
+                        gemasContadas++;
+                        audioGemas.clip = agarrogema;
+                        audioGemas.Play();
+                        break;
+
+                    case "Enemigo":
+                        if (_controller.collisions.edge == true)
+                        {
+                            Destroy(_controller.collisions.objetoGolpeadoHorizontal);
+                            _jumpApretado = 0;
+                            _saltosTotales = 1;
+                            _dashTotales = 0;
+                            _jumpSoltado = false;
+                            _isJumping = false;
+                            velocity.y = maxJumpVelocity;
+                            boxContados++;
+                            audioJugador.clip = salto;
+                            audioJugador.Play();
+                        }
+                        else
+                        {
+                            _jugadorGolpeado = true;
+                            _saltosTotales = 1;
+                            _jumpApretado = 0;
+                            _jumpSoltado = false;
+                            if (_controller.collisions.left)
+                            {
+                                timerGolpeadoIzquierda = 0;
+                            }
+                            else
+                            {
+                                timerGolpeadoDerecha = 0;
+                            }
+                        }
+                        break;
 
                 }
 
