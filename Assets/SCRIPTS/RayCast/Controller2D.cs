@@ -27,7 +27,7 @@ public class Controller2D : RayCastController
         VerticalCollisions(ref moveAmount);
         
 
-        if (tiempoCoyoteON)
+        if (tiempoCoyoteON && moveAmount.y < 0)
         {
             moveAmount.y = 0;
         }
@@ -55,6 +55,7 @@ public class Controller2D : RayCastController
             rayLength = 2 * skinWidth;
         }
 
+
         for (int i = 0; i < horizontalRayCount; i++)
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
@@ -70,21 +71,20 @@ public class Controller2D : RayCastController
             Debug.DrawRay(rayOriginReverso, Vector2.right * -directionX, Color.blue);
 
 
+
+
             if (hit)
             {
-                if (hit.transform.tag == "Piso" && velocity.y > 0)
+                if (hit.distance == 0 && hit.transform.tag == "Plataforma" || hit.transform.tag == "Plataforma")
                 {
-
+                    continue;
                 }
-                else
-                {
 
-                    velocity.x = (hit.distance - skinWidth) * directionX;
-                    rayLength = hit.distance;
-                }
+                velocity.x = (hit.distance - skinWidth) * directionX;
+                rayLength = hit.distance;                
 
                 collisions.hayGolpe = true;
-                collisions.objetoGolpeado = hit.transform.gameObject;
+                collisions.objetoGolpeadoHorizontal = hit.transform.gameObject;
 
                 collisions.right = directionX == 1;
                 collisions.left = directionX == -1;
@@ -93,7 +93,7 @@ public class Controller2D : RayCastController
             if (hitReverso)
             {
                 collisions.hayGolpe = true;
-                collisions.objetoGolpeado = hitReverso.transform.gameObject;
+                collisions.objetoGolpeadoHorizontal = hitReverso.transform.gameObject;
 
                 collisions.right = directionX == -1;
                 collisions.left = directionX == 1;
@@ -134,22 +134,25 @@ public class Controller2D : RayCastController
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
             Debug.DrawRay(rayOriginReverso, Vector2.up * -directionY, Color.blue);
 
+            if (hit.distance == 0 || hit.transform.tag == "Plataforma" && velocity.y > 0)
+            {
+                continue;
+            }
+
 
             if (hit)
             {
 
-                if (hit.transform.tag == "Piso" && velocity.y >0)
+                if ((hit.distance == 0 && hit.transform.tag == "Plataforma") || (hit.transform.tag == "Plataforma" && velocity.y > 0))
                 {
-
-                }
-                else
-                {
-                    velocity.y = (hit.distance - skinWidth) * directionY;
-                    rayLength = hit.distance;
+                    continue;
                 }
 
+                velocity.y = (hit.distance - skinWidth) * directionY;
+                rayLength = hit.distance;
+             
                 collisions.hayGolpe = true;
-                collisions.objetoGolpeado = hit.transform.gameObject;
+                collisions.objetoGolpeadoVertical = hit.transform.gameObject;
 
                 collisions.above = directionY == 1;
                 collisions.below = directionY == -1;
@@ -158,7 +161,7 @@ public class Controller2D : RayCastController
             if (hitReverso)
             {
                 collisions.hayGolpe = true;
-                collisions.objetoGolpeado = hitReverso.transform.gameObject;
+                collisions.objetoGolpeadoVertical = hitReverso.transform.gameObject;
 
                 collisions.above = directionY == -1;
                 collisions.below = directionY == 1;
@@ -174,7 +177,8 @@ public class Controller2D : RayCastController
         public bool above, below;
         public bool left, right;
         public bool hayGolpe;
-        public GameObject objetoGolpeado;
+        public GameObject objetoGolpeadoHorizontal;
+        public GameObject objetoGolpeadoVertical;
         public int directionX;
         public int directionY;
 
@@ -183,7 +187,8 @@ public class Controller2D : RayCastController
             above = below = false;
             left = right = false;
             hayGolpe = false;
-            objetoGolpeado = null;
+            objetoGolpeadoHorizontal = null;
+            objetoGolpeadoVertical = null;
         }
     }
 

@@ -18,15 +18,9 @@ public class Player : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
     Apuntar _rotatePointApuntar;
-    //GameObject _slicePoint;
-    //Animator _slicePointAnimator;
-    //SpriteRenderer _slicePointSpriteRenderer;
     Controller2D _controller;
-    BoxCollider2D _collider;
     
 
-    //Vector2 _originalColliderSize;
-    //Vector2 _originalColliderOffset;
 
     public GameOverScreen gameOverScreen;
     public AudioSource audioJugador;
@@ -83,28 +77,19 @@ public class Player : MonoBehaviour
     int gemasContadas = 0;
 
     //DASH
+    int _dashTotales = 0;
+    int _dashMaximos = 1;
     bool _dasheando = false;
     int _dashApretado = 0;
     bool _dashSoltado = false;
     Vector2 _dashvelocitydirection;
 
-    bool _dashCambioRotacionImagen = false;
     float timerdash = 1f;
     float dashVelocity = 15f;
 
 
-    //int _shootApretado = 0;
-    //int _shootSoltado = 0;
-    //[SerializeField]
-    //GameObject _spawnObjetoDaga;
-    //[SerializeField]
     GameObject _mira;
     Vector2 _lugarSpawn;
-    //float _shootTime = 1f;
-    //float _shootTimer = 0.55f;
-
-
-
 
 
     float flashTime = 0.008f;
@@ -121,21 +106,9 @@ public class Player : MonoBehaviour
 
     Vector2 _attackDirection;
 
-    ////Wallrunning
-    //bool _isWallTouching = false;
-    //[SerializeField]
-    //bool _isWallRunning = false;
-    
-    //float wallClimbDistanceX = 30f;
-    
-    //float wallLeapDistanceX = 50f;
-    //float _wallStickTimer = 0f;
-    //float _wallStickTime = 0.25f;
-    //float _wallStickDirection = 0f;
-    //bool _wallCambioRotacionImagen = false;
 
+    
 
-    //bool _idleAttack;
 
 
     private void Awake()
@@ -147,10 +120,8 @@ public class Player : MonoBehaviour
         _animator = _imagen.GetComponent<Animator>();
         _rotatePoint = transform.Find("RotatePoint").gameObject;
         _rotatePointApuntar = _rotatePoint.GetComponent<Apuntar>();
-        //_slicePoint = _rotatePoint.transform.Find("SlicePoint").gameObject;
-        //_slicePointSpriteRenderer = _slicePoint.GetComponent<SpriteRenderer>();
-        //_slicePointAnimator = _slicePoint.GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider2D>();
+        _mira = _rotatePoint.transform.Find("SlicePoint").gameObject;
+        
     }
 
 
@@ -166,8 +137,6 @@ public class Player : MonoBehaviour
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * _minJumpHeight);
 
-        //_originalColliderSize = _collider.size;
-        //_originalColliderOffset = _collider.offset;
 
 
 
@@ -199,8 +168,6 @@ public class Player : MonoBehaviour
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 
-            ////MANEJAR EL WALLRUNNING
-            //HandleWallRunning();
 
             //VOLTEA EL SPRITE SEGUN DONDE VOY
             CambiarDireccionSprite();
@@ -233,9 +200,10 @@ public class Player : MonoBehaviour
             //}
 
             //DECIDIR QUE DASHEO
-            if (_dashApretado > 0)
+            if (_dashApretado > 0 && _dashTotales < _dashMaximos)
             {
                 timerdash = 0;
+                _dashTotales += 1;
                 _dashApretado = 0;
                 _jumpApretado = 0;
                 _isJumping = false;
@@ -256,10 +224,8 @@ public class Player : MonoBehaviour
                     float rotZ = Mathf.Atan2(_dashvelocitydirection.y, _dashvelocitydirection.x) * Mathf.Rad2Deg;
                     Debug.Log("rotZ es" + rotZ);
                     Debug.Log("Image rotation antes " + _imagen.transform.rotation);
-                    _imagen.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
                     Debug.Log("Image rotation despues " +  _imagen.transform.rotation);
-                    _logRotation = true;
-                    _dashCambioRotacionImagen = true;
                     _dasheando = true;
                 }
 
@@ -283,19 +249,12 @@ public class Player : MonoBehaviour
                 _dasheando = false;
             }
 
-            if (_dashCambioRotacionImagen == true && _dasheando == false)
-            {
-                _imagen.transform.rotation = Quaternion.identity;
-                _dashCambioRotacionImagen = false;
-                Debug.Log("dash reseteo rotation");
-            }
-
 
             
 
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
-            if (_jumpApretado > 0 && ((_controller.collisions.below && _controller.collisions.objetoGolpeado.tag == "Piso") || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
+            if (_jumpApretado > 0 && ((_controller.collisions.below && (_controller.collisions.objetoGolpeadoVertical.tag == "Piso" || _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
             {
                 audioJugador.clip = salto;
                 audioJugador.Play();
@@ -308,22 +267,22 @@ public class Player : MonoBehaviour
 
             //DOBLE SALTO
             //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NO SALTE DOS VECES
-            //if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
-            //{
-            //    audioJugador.clip = salto;
-            //    audioJugador.Play();
+            if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales == 1)
+            {
+                audioJugador.clip = salto;
+                audioJugador.Play();
 
-            //    velocity.y = maxJumpVelocity;
-
-
-            //    _saltosTotales += 1;
-            //    _jumpApretado = 0;
-            //    _jumpSoltado = false;
-            //}
+                velocity.y = maxJumpVelocity;
 
 
+                _saltosTotales += 1;
+                _jumpApretado = 0;
+                _jumpSoltado = false;
+            }
 
-                                 
+
+
+
             //si suelto salto me baja la velocidad
             if (_jumpSoltado == true && _isJumping == true)
             {
@@ -369,13 +328,7 @@ public class Player : MonoBehaviour
            
             Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
 
-            if (_logRotation == true)
-            {
 
-                Debug.Log("Image rotation al final del script " + _imagen.transform.rotation);
-                _logRotation = false;
-
-            }
 
         }
     }
@@ -477,17 +430,6 @@ public class Player : MonoBehaviour
             _animator.SetBool("Cayendo", false);
         }
 
-        if (_dasheando == true)
-        {
-            _animator.SetBool("Dasheando", true);
-            _animator.SetBool("Subiendo", false);
-            _animator.SetBool("Cayendo", false);
-        }
-        else if (_dasheando == false)
-        {
-            _animator.SetBool("Dasheando", false);
-
-        }
 
     }
 
@@ -551,15 +493,15 @@ public class Player : MonoBehaviour
     {
 
         //manejar casos de colision
-        if (_controller.collisions.below || _controller.collisions.above || _controller.collisions.right || _controller.collisions.left)
+        if (_controller.collisions.hayGolpe)
         {
-            if (_controller.collisions.objetoGolpeado != null)
+            if (_controller.collisions.objetoGolpeadoHorizontal != null)
             {
-                switch (_controller.collisions.objetoGolpeado.tag)
-                        {
+                switch (_controller.collisions.objetoGolpeadoHorizontal.tag)
+                {
                             //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
                             case "GEMA":
-                                Destroy(_controller.collisions.objetoGolpeado);
+                                Destroy(_controller.collisions.objetoGolpeadoHorizontal);
                                 gemasContadas++;
                                 audioGemas.clip = agarrogema;
                                 audioGemas.Play();
@@ -580,45 +522,98 @@ public class Player : MonoBehaviour
                                 }
                                 break;
 
+                }
+
+            }
+
+            if (_controller.collisions.objetoGolpeadoVertical != null)
+            {
+                switch (_controller.collisions.objetoGolpeadoVertical.tag)
+                {
+                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
+                    case "GEMA":
+                        Destroy(_controller.collisions.objetoGolpeadoVertical);
+                        gemasContadas++;
+                        audioGemas.clip = agarrogema;
+                        audioGemas.Play();
+                        break;
+
+                    case "Enemigo":
+                        if (_controller.collisions.below)
+                        {
+                            Destroy(_controller.collisions.objetoGolpeadoVertical);
+                            _jumpApretado = 0;
+                            _saltosTotales = 1;
+                            _dashTotales = 0;
+                            _jumpSoltado = false;
+                            _isJumping = false;
+                            velocity.y = maxJumpVelocity;
+                            boxContados++;
+                            audioJugador.clip = salto;
+                            audioJugador.Play();
+                        }
+                        else
+                        {
+                            _jugadorGolpeado = true;
+                            _saltosTotales = 1;
+                            _jumpApretado = 0;
+                            _jumpSoltado = false;
+                            if (_controller.collisions.left)
+                            {
+                                timerGolpeadoIzquierda = 0;
+                            }
+                            else
+                            {
+                                timerGolpeadoDerecha = 0;
+                            }
+
+                        }
+
+                        break;
 
 
-                            //SI ESTOY TOCANDO ABAJO y objeto piso MANDA EL CONTADOR A 0, LE DA FALSO AL YA SALTE X 2 y AL YA DASHEE
-                            case "Piso":
-                                {
-                                    if (_controller.collisions.below)
-                                    {
-                                        _saltosTotales = 0;
-                                        boxContados = 0;
-                                        //Tiempo de coyote
-                                        tiempoCoyote = 0.15f;
-                                        _isJumping = false;
 
+                    //SI ESTOY TOCANDO ABAJO y objeto piso MANDA EL CONTADOR A 0, LE DA FALSO AL YA SALTE X 2 y AL YA DASHEE
+                    case "Piso":
+                        {
+                            if (_controller.collisions.below)
+                            {
+                                _saltosTotales = 0;
+                                _dashTotales = 0;
+                                boxContados = 0;
+                                //Tiempo de coyote
+                                tiempoCoyote = 0.15f;
+                                _isJumping = false;
+                            }
+                            break;
+                        }
 
-                                    }
-                                    break;
-                                }
-
-                            //SI SALTO SOBRE CAJA ACTIVO SU SCRIPT Y REBOTO
-                            case "CUBO":
-                                if (_controller.collisions.below)
-                                {
-                                    _controller.collisions.objetoGolpeado.transform.GetComponent<EnemigoGolpeado>().enabled = true;
-                                    _saltosTotales = 1;
-                                    _jumpApretado = 0;
-                                    _jumpSoltado = false;
-                                    _isJumping = false;
-                                    velocity.y = maxJumpVelocity;
-                                    boxContados++;
-                                    audioJugador.clip = salto;
-                                    audioJugador.Play();
-                                }
-                                break;
+                    case "Plataforma":
+                        {
+                            if (_controller.collisions.below)
+                            {
+                                _saltosTotales = 0;
+                                _dashTotales = 0;
+                                boxContados = 0;
+                                //Tiempo de coyote
+                                tiempoCoyote = 0.15f;
+                                _isJumping = false;
+                            }
+                            break;
+                        }
 
                 }
+
             }
+
+
+
         }
 
     }
+
+
+
 
     void FlashRed()
     {

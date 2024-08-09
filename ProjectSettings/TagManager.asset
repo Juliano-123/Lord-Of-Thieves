@@ -11,6 +11,7 @@ TagManager:
   - VACIO
   - Techo
   - Pared
+  - Plataforma
   layers:
   - Default
   - TransparentFX
