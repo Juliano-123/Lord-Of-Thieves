@@ -7,7 +7,7 @@ using UnityEngine;
 public class RayCastController : MonoBehaviour
 {
 
-    public LayerMask collisionMask;
+
 
     public const float skinWidth = .015f;
     const float distanceRays = .10f;

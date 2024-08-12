@@ -44,7 +44,7 @@ public class RocaArma : MonoBehaviour
         //}
 
 
-        controller.Move(_velocity * Time.deltaTime, false);
+        //controller.Move(_velocity * Time.deltaTime, false);
 
     }
 

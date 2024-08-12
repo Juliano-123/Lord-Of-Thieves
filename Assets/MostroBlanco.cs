@@ -100,7 +100,7 @@ public class MostroBlanco : MonoBehaviour
         _timersalto -= Time.deltaTime;
 
         //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
-        _controller.Move(_velocity * Time.deltaTime, false);
+        //_controller.Move(_velocity * Time.deltaTime, false);
         
 
     }

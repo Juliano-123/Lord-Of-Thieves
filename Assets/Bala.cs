@@ -53,7 +53,7 @@ public class Bala : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
-        _controller.Move(_velocity * Time.deltaTime, false);
+        //_controller.Move(_velocity * Time.deltaTime, false);
 
     }
 }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using JetBrains.Annotations;
+
 
 public class Controller2D : RayCastController
 {
@@ -15,16 +14,16 @@ public class Controller2D : RayCastController
         collisions.directionY = -1;
     }
 
-    public Vector2 Move(Vector2 moveAmount, bool tiempoCoyoteON)
+    public Vector2 Move(Vector2 moveAmount, bool tiempoCoyoteON, LayerMask layermask)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
 
         
                 
-        HorizontalCollisions(ref moveAmount);
+        HorizontalCollisions(ref moveAmount, layermask);
 
-        VerticalCollisions(ref moveAmount);
+        VerticalCollisions(ref moveAmount, layermask);
         
 
         if (tiempoCoyoteON && moveAmount.y < 0)
@@ -39,7 +38,7 @@ public class Controller2D : RayCastController
 
 
 
-    void HorizontalCollisions(ref Vector2 velocity)
+    void HorizontalCollisions(ref Vector2 velocity, LayerMask layermask)
     {
 
         if (velocity.x != 0)
@@ -52,7 +51,7 @@ public class Controller2D : RayCastController
 
         if (Mathf.Abs(velocity.x) < skinWidth)
         {
-            rayLength = 2 * skinWidth;
+            rayLength = 3 * skinWidth;
         }
 
 
@@ -64,11 +63,11 @@ public class Controller2D : RayCastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             rayOriginReverso += Vector2.up * (horizontalRaySpacing * i);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.right * -directionX, 2 * skinWidth, collisionMask);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, layermask);
+            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.right * -directionX, 3 * skinWidth, layermask);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
-            Debug.DrawRay(rayOriginReverso, Vector2.right * -directionX, Color.blue);
+            Debug.DrawRay(rayOrigin, new Vector3(rayLength * directionX,0,0), Color.red);
+            Debug.DrawRay(rayOriginReverso, new Vector3(3 * skinWidth * -directionX,0,0), Color.blue);
 
 
 
@@ -125,7 +124,7 @@ public class Controller2D : RayCastController
         }
     }
 
-    void VerticalCollisions(ref Vector2 velocity)
+    void VerticalCollisions(ref Vector2 velocity, LayerMask layermask)
     {
         if (velocity.y != 0)
         {
@@ -138,7 +137,7 @@ public class Controller2D : RayCastController
 
         if (Mathf.Abs(velocity.y) < skinWidth)
         {
-            rayLength = 2 * skinWidth;
+            rayLength = 3 * skinWidth;
         }
 
 
@@ -150,11 +149,11 @@ public class Controller2D : RayCastController
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
             rayOriginReverso += Vector2.right * (verticalRaySpacing * i);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
-            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.up * -directionY, 2 * skinWidth, collisionMask);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, layermask);
+            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.up * -directionY, 3 * skinWidth, layermask);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
-            Debug.DrawRay(rayOriginReverso, Vector2.up * -directionY, Color.blue);
+            Debug.DrawRay(rayOrigin, new Vector3(0,rayLength * directionY,0), Color.red);
+            Debug.DrawRay(rayOriginReverso, new Vector3(0,3 * skinWidth * -directionY,0), Color.blue);
 
             if (hit.distance == 0 || hit.transform.tag == "Plataforma" && velocity.y > 0)
             {

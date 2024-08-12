@@ -12,18 +12,25 @@ public class Player : MonoBehaviour
     bool _logRotation = false;
 
 
-    //components
-    [SerializeField]
-    GameObject _gameManager;
+    //components PROPIOS
     GameObject _imagen;
     Animator _animator;
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
     Apuntar _rotatePointApuntar;
     Controller2D _controller;
+    BoxCollider2D _boxCollider;
+
+
+    //COMPONENTES AJENOS
+    [SerializeField]
+    GameObject _gameManager;
     HealthManager _healthManager;
 
-
+    [SerializeField]
+    LayerMask collisionMask;
+    [SerializeField]
+    LayerMask collisionPiso;
 
 
     public GameOverScreen gameOverScreen;
@@ -125,6 +132,7 @@ public class Player : MonoBehaviour
         _rotatePoint = transform.Find("RotatePoint").gameObject;
         _rotatePointApuntar = _rotatePoint.GetComponent<Apuntar>();
         _mira = _rotatePoint.transform.Find("SlicePoint").gameObject;
+        _boxCollider = GetComponent<BoxCollider2D>();
         _healthManager = _gameManager.GetComponent<HealthManager>();
     }
 
@@ -308,7 +316,7 @@ public class Player : MonoBehaviour
                 velocity = _dashvelocitydirection;
             }
            
-            Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
+            Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionMask);
 
 
 
@@ -328,34 +336,6 @@ public class Player : MonoBehaviour
     }
 
 
-    void GetHitDerecha(float runTime)
-    {
-        float timer = 0;
-        while (timer < runTime)
-        {
-            FlashRed();
-            velocity.y = 3f;
-            velocity.x = 6f;
-            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
-            timer += Time.deltaTime;
-            return;
-        }
-    }
-
-
-    void GetHitIzquierda(float runTime)
-    {
-        float timer = 0;
-        while (timer < runTime)
-        {
-            FlashRed();
-            velocity.y = 3f;
-            velocity.x = 6f;
-            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON);
-            timer += Time.deltaTime;
-            return;
-        }
-    }
 
 
     void HandleGolpeo()
@@ -363,19 +343,21 @@ public class Player : MonoBehaviour
         //GOLPEADO
         if (GolpeadoIzquierda)
         {
-            GetHitIzquierda(0.3f);
-            GolpeadoIzquierda = false;
-            _jugadorGolpeado = false;
-            _healthManager.SetCurrentHealth(-1);
+            FlashRed();
+            velocity.y = 3f;
+            velocity.x = 6f;
+            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
+            return;
         }
 
 
         if (GolpeadoDerecha)
         {
-            GetHitDerecha(0.3f);
-            GolpeadoDerecha = false;
-            _jugadorGolpeado = false;
-            _healthManager.SetCurrentHealth(-1);
+            FlashRed();
+            velocity.y = 3f;
+            velocity.x = -6f;
+            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
+ 
         }
 
 
@@ -404,13 +386,14 @@ public class Player : MonoBehaviour
                         if (_controller.collisions.edge == true)
                         {
                             Destroy(_controller.collisions.objetoGolpeadoHorizontal);
+
                             _jumpApretado = 0;
                             _saltosTotales = 1;
                             _dashTotales = 0;
                             _jumpSoltado = false;
                             //falso para que no baje la velocidad por soltar jump
                             _isJumping = false;
-                            velocity.y = maxJumpVelocity;
+                            velocity.y = maxJumpVelocity/2;
                             boxContados++;
                             audioJugador.clip = salto;
                             audioJugador.Play();
@@ -418,9 +401,6 @@ public class Player : MonoBehaviour
                         else
                         {
                             _jugadorGolpeado = true;
-                            _saltosTotales = 1;
-                            _jumpApretado = 0;
-                            _jumpSoltado = false;
                             if (_controller.collisions.left)
                             {
                                 GolpeadoIzquierda = true;
@@ -429,6 +409,12 @@ public class Player : MonoBehaviour
                             {
                                 GolpeadoDerecha = true;
                             }
+
+                            Invoke(nameof(ResetJugadorGolpeado), 0.3f);
+                            _boxCollider.isTrigger = true;
+                            _healthManager.SetCurrentHealth(-1);
+
+                            _jumpSoltado = false;
                         }
                         break;
 
@@ -457,7 +443,7 @@ public class Player : MonoBehaviour
                             _dashTotales = 0;
                             _jumpSoltado = false;
                             _isJumping = false;
-                            velocity.y = maxJumpVelocity;
+                            velocity.y = maxJumpVelocity/2;
                             boxContados++;
                             audioJugador.clip = salto;
                             audioJugador.Play();
@@ -465,9 +451,6 @@ public class Player : MonoBehaviour
                         else
                         {
                             _jugadorGolpeado = true;
-                            _saltosTotales = 1;
-                            _jumpApretado = 0;
-                            _jumpSoltado = false;
                             if (_controller.collisions.left)
                             {
                                 GolpeadoIzquierda = true;
@@ -476,6 +459,13 @@ public class Player : MonoBehaviour
                             {
                                 GolpeadoDerecha = true;
                             }
+
+
+                            Invoke(nameof(ResetJugadorGolpeado), 0.3f);
+                            _healthManager.SetCurrentHealth(-1);
+                            _boxCollider.isTrigger = true;
+
+                            _jumpSoltado = false;
 
                         }
 
@@ -523,12 +513,21 @@ public class Player : MonoBehaviour
     }
 
 
+    void ResetJugadorGolpeado()
+    {
+        _jugadorGolpeado = false;
+        GolpeadoAbajo = false;
+        GolpeadoArriba = false;
+        GolpeadoDerecha = false;
+        GolpeadoIzquierda = false;
+        _boxCollider.isTrigger = false;
+    }
 
 
     void FlashRed()
     {
         _spriteRenderer.color = Color.black;
-        Invoke("ResetColor", flashTime);
+        Invoke(nameof(ResetColor), flashTime);
     }
 
     void ResetColor()
@@ -598,6 +597,7 @@ public class Player : MonoBehaviour
 
     }
 
+    //CAMBIA LA DIRECCION DEL SPRITE DEL PLAYER
     void CambiarDireccionSprite()
     {
         //GUARDA LA ULTIMA ORIENTACION
