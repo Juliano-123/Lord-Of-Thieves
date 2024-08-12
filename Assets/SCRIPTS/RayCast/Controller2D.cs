@@ -51,23 +51,19 @@ public class Controller2D : RayCastController
 
         if (Mathf.Abs(velocity.x) < skinWidth)
         {
-            rayLength = 3 * skinWidth;
+            rayLength = 2 * skinWidth;
         }
 
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
-            Vector2 rayOriginReverso = (directionX == -1) ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
 
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-            rayOriginReverso += Vector2.up * (horizontalRaySpacing * i);
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, layermask);
-            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.right * -directionX, 3 * skinWidth, layermask);
 
             Debug.DrawRay(rayOrigin, new Vector3(rayLength * directionX,0,0), Color.red);
-            Debug.DrawRay(rayOriginReverso, new Vector3(3 * skinWidth * -directionX,0,0), Color.blue);
 
 
 
@@ -100,27 +96,6 @@ public class Controller2D : RayCastController
                 collisions.left = directionX == -1;
             }
 
-            if (hitReverso)
-            {
-                //DETECTAR COLISIONES EN EL BORDE
-                if (i <= horizontalRayCount / 10)
-                {
-                    collisions.edge = true;
-                }
-                else
-                {
-                    collisions.edge = false;
-                }
-
-
-                collisions.hayGolpe = true;
-                collisions.objetoGolpeadoHorizontal = hitReverso.transform.gameObject;
-
-                collisions.right = directionX == -1;
-                collisions.left = directionX == 1;
-            }
-
-
         }
     }
 
@@ -137,23 +112,16 @@ public class Controller2D : RayCastController
 
         if (Mathf.Abs(velocity.y) < skinWidth)
         {
-            rayLength = 3 * skinWidth;
+            rayLength = 2 * skinWidth;
         }
 
 
         for (int i = 0; i < verticalRayCount; i++)
         {
             Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
-            Vector2 rayOriginReverso = (directionY == -1) ? raycastOrigins.topLeft : raycastOrigins.bottomLeft;
-
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-            rayOriginReverso += Vector2.right * (verticalRaySpacing * i);
-
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, layermask);
-            RaycastHit2D hitReverso = Physics2D.Raycast(rayOriginReverso, Vector2.up * -directionY, 3 * skinWidth, layermask);
-
             Debug.DrawRay(rayOrigin, new Vector3(0,rayLength * directionY,0), Color.red);
-            Debug.DrawRay(rayOriginReverso, new Vector3(0,3 * skinWidth * -directionY,0), Color.blue);
 
             if (hit.distance == 0 || hit.transform.tag == "Plataforma" && velocity.y > 0)
             {
@@ -179,14 +147,6 @@ public class Controller2D : RayCastController
                 collisions.below = directionY == -1;
             }
 
-            if (hitReverso)
-            {
-                collisions.hayGolpe = true;
-                collisions.objetoGolpeadoVertical = hitReverso.transform.gameObject;
-
-                collisions.above = directionY == -1;
-                collisions.below = directionY == 1;
-            }
 
         }
 

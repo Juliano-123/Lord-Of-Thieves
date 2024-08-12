@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
-
+using UnityEditor.ShaderGraph.Internal;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     GameObject _rotatePoint;
     Apuntar _rotatePointApuntar;
     Controller2D _controller;
+    DetectorColisiones _detectorColisiones;
     BoxCollider2D _boxCollider;
 
 
@@ -26,9 +27,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject _gameManager;
     HealthManager _healthManager;
+    CreadorMounstruos _creadorMounstruos;
 
-    [SerializeField]
-    LayerMask collisionMask;
+
     [SerializeField]
     LayerMask collisionPiso;
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     bool GolpeadoDerecha = false;
     bool GolpeadoArriba = false;
     bool GolpeadoAbajo = false;
+    float _tiempoGolpeado = 0.5f;
 
 
     [SerializeField]
@@ -126,6 +128,7 @@ public class Player : MonoBehaviour
     {
         gemasContadas = 0;
         _controller = GetComponent<Controller2D>();
+        _detectorColisiones = GetComponent<DetectorColisiones>();
         _imagen = transform.Find("Imagen").gameObject;
         _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
         _animator = _imagen.GetComponent<Animator>();
@@ -134,6 +137,7 @@ public class Player : MonoBehaviour
         _mira = _rotatePoint.transform.Find("SlicePoint").gameObject;
         _boxCollider = GetComponent<BoxCollider2D>();
         _healthManager = _gameManager.GetComponent<HealthManager>();
+        _creadorMounstruos = _gameManager.GetComponent<CreadorMounstruos>();
     }
 
 
@@ -161,26 +165,28 @@ public class Player : MonoBehaviour
         // AGREGA GRAVEDAD
         velocity.y += gravity * Time.deltaTime;
 
+        //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
+        float targetVelocityX = (_directionalInput.x * moveSpeed);
+        //Hace que uno vaya acelerando y que no sea 0 100
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+        //VOLTEA EL SPRITE SEGUN DONDE VOY
+        CambiarDireccionSprite();
+
+
 
         //SI ME GOLPEARON NO TOMA INPUT Y HACE ESTO
         if (_jugadorGolpeado == true)
         {
+            Debug.Log("Entro a handlegolpeo");
+            _detectorColisiones.enemigos.Reset();
             HandleGolpeo();
         }
 
 
         //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
         if (_jugadorGolpeado == false)
-        {
-            //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
-            float targetVelocityX = (_directionalInput.x * moveSpeed);
-            //Hace que uno vaya acelerando y que no sea 0 100
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
-
-
-            //VOLTEA EL SPRITE SEGUN DONDE VOY
-            CambiarDireccionSprite();
+        {            
 
             //CheckeaColisiones
             HandleCollisions();
@@ -315,8 +321,10 @@ public class Player : MonoBehaviour
             {
                 velocity = _dashvelocitydirection;
             }
-           
-            Vector2 MoveAmount = _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionMask);
+
+            _detectorColisiones.CheckEnemigos();
+            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
+            
 
 
 
@@ -340,139 +348,22 @@ public class Player : MonoBehaviour
 
     void HandleGolpeo()
     {
+
         //GOLPEADO
-        if (GolpeadoIzquierda)
-        {
-            FlashRed();
-            velocity.y = 3f;
-            velocity.x = 6f;
-            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
-            return;
-        }
-
-
-        if (GolpeadoDerecha)
-        {
-            FlashRed();
-            velocity.y = 3f;
-            velocity.x = -6f;
-            _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
- 
-        }
-
-
+        FlashRed();
+        velocity.y = -12f;
+        _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
     }
 
     void HandleCollisions()
     {
-
-        //manejar casos de colision
+        //MANEJAR CASOS DE COLISION CON PISO
         if (_controller.collisions.hayGolpe)
         {
-            if (_controller.collisions.objetoGolpeadoHorizontal != null)
+            if(_controller.collisions.objetoGolpeadoVertical !=null)
             {
-                switch (_controller.collisions.objetoGolpeadoHorizontal.tag)
+                switch(_controller.collisions.objetoGolpeadoVertical.tag)
                 {
-
-                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                    case "GEMA":
-                        Destroy(_controller.collisions.objetoGolpeadoHorizontal);
-                        gemasContadas++;
-                        audioGemas.clip = agarrogema;
-                        audioGemas.Play();
-                        break;
-
-                    case "Enemigo":
-                        if (_controller.collisions.edge == true)
-                        {
-                            Destroy(_controller.collisions.objetoGolpeadoHorizontal);
-
-                            _jumpApretado = 0;
-                            _saltosTotales = 1;
-                            _dashTotales = 0;
-                            _jumpSoltado = false;
-                            //falso para que no baje la velocidad por soltar jump
-                            _isJumping = false;
-                            velocity.y = maxJumpVelocity/2;
-                            boxContados++;
-                            audioJugador.clip = salto;
-                            audioJugador.Play();
-                        }
-                        else
-                        {
-                            _jugadorGolpeado = true;
-                            if (_controller.collisions.left)
-                            {
-                                GolpeadoIzquierda = true;
-                            }
-                            else
-                            {
-                                GolpeadoDerecha = true;
-                            }
-
-                            Invoke(nameof(ResetJugadorGolpeado), 0.3f);
-                            _boxCollider.isTrigger = true;
-                            _healthManager.SetCurrentHealth(-1);
-
-                            _jumpSoltado = false;
-                        }
-                        break;
-
-                }
-
-            }
-
-            if (_controller.collisions.objetoGolpeadoVertical != null)
-            {
-                switch (_controller.collisions.objetoGolpeadoVertical.tag)
-                {
-                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                    case "GEMA":
-                        Destroy(_controller.collisions.objetoGolpeadoVertical);
-                        gemasContadas++;
-                        audioGemas.clip = agarrogema;
-                        audioGemas.Play();
-                        break;
-
-                    case "Enemigo":
-                        if (_controller.collisions.below)
-                        {
-                            Destroy(_controller.collisions.objetoGolpeadoVertical);
-                            _jumpApretado = 0;
-                            _saltosTotales = 1;
-                            _dashTotales = 0;
-                            _jumpSoltado = false;
-                            _isJumping = false;
-                            velocity.y = maxJumpVelocity/2;
-                            boxContados++;
-                            audioJugador.clip = salto;
-                            audioJugador.Play();
-                        }
-                        else
-                        {
-                            _jugadorGolpeado = true;
-                            if (_controller.collisions.left)
-                            {
-                                GolpeadoIzquierda = true;
-                            }
-                            else
-                            {
-                                GolpeadoDerecha = true;
-                            }
-
-
-                            Invoke(nameof(ResetJugadorGolpeado), 0.3f);
-                            _healthManager.SetCurrentHealth(-1);
-                            _boxCollider.isTrigger = true;
-
-                            _jumpSoltado = false;
-
-                        }
-
-                        break;
-
-
-
                     //SI ESTOY TOCANDO ABAJO y objeto piso MANDA EL CONTADOR A 0, LE DA FALSO AL YA SALTE X 2 y AL YA DASHEE
                     case "Piso":
                         {
@@ -505,11 +396,113 @@ public class Player : MonoBehaviour
                 }
 
             }
-
-
-
         }
 
+        //manejar casos de colision CON ENEMIGOS Y COSAS
+        if (_detectorColisiones.enemigos.hayGolpe)
+        {
+            if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null)
+            {
+                switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
+                {
+
+                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
+                    case "GEMA":
+                        Destroy(_detectorColisiones.enemigos.objetoGolpeadoHorizontal);
+                        gemasContadas++;
+                        audioGemas.clip = agarrogema;
+                        audioGemas.Play();
+                        break;
+
+                    case "Enemigo":
+                        if (_detectorColisiones.enemigos.edge == true)
+                        {
+                            Destroy(_detectorColisiones.enemigos.objetoGolpeadoHorizontal);
+                            //Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+                            _creadorMounstruos.RestarMostros(1);
+
+                            _jumpApretado = 0;
+                            _saltosTotales = 1;
+                            _dashTotales = 0;
+                            _jumpSoltado = false;
+                            //falso para que no baje la velocidad por soltar jump
+                            _isJumping = false;
+                            velocity.y = maxJumpVelocity/2;
+                            boxContados++;
+                            audioJugador.clip = salto;
+                            audioJugador.Play();
+                        }
+                        else
+                        {
+                            _jugadorGolpeado = true;
+                            if (_detectorColisiones.enemigos.left)
+                            {
+                                GolpeadoIzquierda = true;
+                            }
+                            else
+                            {
+                                GolpeadoDerecha = true;
+                            }
+
+                            Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
+                            _boxCollider.isTrigger = true;
+                            _healthManager.SetCurrentHealth(-1);
+                            Debug.Log("Bajo vida x horizontal");
+
+                            _jumpSoltado = false;
+                        }
+                        break;
+
+                }
+
+            }
+            else if(_detectorColisiones.enemigos.objetoGolpeadoVertical != null)
+            {
+                switch (_detectorColisiones.enemigos.objetoGolpeadoVertical.tag)
+                {
+                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
+                    case "GEMA":
+                        Destroy(_detectorColisiones.enemigos.objetoGolpeadoVertical);
+                        gemasContadas++;
+                        audioGemas.clip = agarrogema;
+                        audioGemas.Play();
+                        break;
+
+                    case "Enemigo":
+                        if (_detectorColisiones.enemigos.below)
+                        {
+                            Destroy(_detectorColisiones.enemigos.objetoGolpeadoVertical);
+                            Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
+                            _creadorMounstruos.RestarMostros(1);
+                            _jumpApretado = 0;
+                            _saltosTotales = 1;
+                            _dashTotales = 0;
+                            _jumpSoltado = false;
+                            _isJumping = false;
+                            velocity.y = maxJumpVelocity / 2;
+                            boxContados++;
+                            audioJugador.clip = salto;
+                            audioJugador.Play();
+                        }
+                        else
+                        {
+                            _jugadorGolpeado = true;
+                            GolpeadoArriba = true;
+
+                            Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
+                            _healthManager.SetCurrentHealth(-1);
+                            Debug.Log("BAJO VIDA X VERTICAL");
+                            _boxCollider.isTrigger = true;
+                            _jumpSoltado = false;
+
+                        }
+
+                        break;
+                }
+
+            }
+                        
+        }
     }
 
 
