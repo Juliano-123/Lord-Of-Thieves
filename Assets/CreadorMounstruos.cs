@@ -22,7 +22,7 @@ public class CreadorMounstruos : MonoBehaviour
     public GameObject[] lugarspawn = new GameObject[5];
 
     float _timeNextSpawn = 5;
-    float _timerNextSpawn = 0;
+    float _timerNextSpawn = 3;
 
     void Awake()
     {
