@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
     float _minJumpHeight = 0.5F;
     [SerializeField]
     float timeToJumpApex = 0.4f;
-    float accelerationTimeAirborne = 0.1f;
     float aceleracionPuntoMasAlto = 0.075f;
     float accelerationTimeGrounded = 0.005f;
     float moveSpeed = 7f;
@@ -71,7 +70,8 @@ public class Player : MonoBehaviour
     float minJumpVelocity;
     [SerializeField]
     Vector2 velocity;
-    float velocityXSmoothing;
+    [SerializeField]
+    float velocityXSmoothing = 1;
     
     //COYOTE
     float tiempoCoyote = -1f;
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
 
 
     GameObject _mira;
-    Vector2 _lugarSpawn;
+
 
 
     float flashTime = 0.008f;
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
         //SETEA TARGET VELOCITY COMO EL MOVESPEED TOTAL CON SINGO POSITIVO/NEGATIVO
         float targetVelocityX = (_directionalInput.x * moveSpeed);
         //Hace que uno vaya acelerando y que no sea 0 100
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (_controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTimeGrounded);
 
         //VOLTEA EL SPRITE SEGUN DONDE VOY
         CambiarDireccionSprite();
@@ -445,7 +445,7 @@ public class Player : MonoBehaviour
                             }
 
                             Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
-                            _boxCollider.isTrigger = true;
+                            //_boxCollider.isTrigger = true;
                             _healthManager.SetCurrentHealth(-1);
                             Debug.Log("Bajo vida x horizontal");
 
@@ -492,7 +492,7 @@ public class Player : MonoBehaviour
                             Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
                             _healthManager.SetCurrentHealth(-1);
                             Debug.Log("BAJO VIDA X VERTICAL");
-                            _boxCollider.isTrigger = true;
+                            //_boxCollider.isTrigger = true;
                             _jumpSoltado = false;
 
                         }
@@ -513,7 +513,7 @@ public class Player : MonoBehaviour
         GolpeadoArriba = false;
         GolpeadoDerecha = false;
         GolpeadoIzquierda = false;
-        _boxCollider.isTrigger = false;
+        //_boxCollider.isTrigger = false;
     }
 
 

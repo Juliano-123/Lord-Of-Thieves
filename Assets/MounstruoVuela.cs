@@ -7,7 +7,21 @@ public class MounstruoVuela : MonoBehaviour
 {
     [SerializeField]
     public GameObject _target;
-    float _velocidad = 3;
+    
+
+    const float _forcePower = 10f;
+    [SerializeField]
+    float _speed = 4f;
+    [SerializeField]
+    float _force = 15f;
+        
+    float velocitySmoothing;
+    
+    [SerializeField]
+    float accelerationTime = 0.005f;
+
+    Vector2 _moveForce;
+    Vector2 _directionTowardsTarget;
 
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
@@ -31,24 +45,40 @@ public class MounstruoVuela : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (_spriteRenderer.color.a == 0)
         {
             StartCoroutine(FadeIn());
-            Debug.Log("llame fadein");
         }
 
+        _directionTowardsTarget = (_target.transform.position - transform.position).normalized;
+
+    }
+
+    
+    void FixedUpdate()
+    {
         if (_spriteRenderer.color.a >= 1)
         {
-            Vector2 IrHacia = Vector2.MoveTowards(transform.position, _target.transform.position, _velocidad * Time.deltaTime);
-            _rb.MovePosition(new Vector3(IrHacia.x, IrHacia.y, 0));
+            MoveToTarget(_directionTowardsTarget);
         }
 
     }
 
-    private IEnumerator FadeIn()
+    
+    void MoveToTarget(Vector2 Direction)
+    {
+        Vector2 desiredVelocity = Direction * _speed;
+        Vector2 deltaVelocity = desiredVelocity - _rb.velocity;
+        _moveForce = deltaVelocity * (_force * _forcePower * Time.fixedDeltaTime);
+        _moveForce.x = Mathf.SmoothDamp(_moveForce.x, desiredVelocity.x, ref velocitySmoothing, accelerationTime);
+        _moveForce.y = Mathf.SmoothDamp(_moveForce.y, desiredVelocity.y, ref velocitySmoothing, accelerationTime);
+        _rb.AddForce(_moveForce);
+    }
+
+
+    IEnumerator FadeIn()
     {
         float alphaVal = _spriteRenderer.color.a;
         Color tmp = _spriteRenderer.color;
@@ -68,7 +98,6 @@ public class MounstruoVuela : MonoBehaviour
             gameObject.tag = "Enemigo";
             gameObject.layer = 9;
             _boxCollider2D.isTrigger = false;
-            Debug.Log("termino corrutina");
             yield break;
         }
 

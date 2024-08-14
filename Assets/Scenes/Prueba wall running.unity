@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 288461773}
   - component: {fileID: 288461772}
   m_Layer: 5
-  m_Name: MostrosLeftAliveText
+  m_Name: LevelCompletText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -846,7 +846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288461772
@@ -869,7 +869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: None Left Alive
+  m_text: Level 1 Complete
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1463,8 +1463,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1194283555}
-  - {fileID: 803449502}
   - {fileID: 288461771}
+  - {fileID: 803449502}
   - {fileID: 1248993088}
   - {fileID: 894531511}
   m_Father: {fileID: 1944725922}
@@ -1524,6 +1524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865825678ff994a4d89ec17f93e71757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemiesStomped: {fileID: 803449503}
+  _creadorMounstruos: {fileID: 1894363839}
 --- !u!1 &512728318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,26 +1997,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 509893951655556480, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
   m_PrefabInstance: {fileID: 2011363165}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &662141475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662141466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae2b91c3ee34744cb967300412177ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalRayCount: 0
-  verticalRayCount: 0
-  horizontalRaySpacing: 0
-  verticalRaySpacing: 0
-  collider2Dn: {fileID: 0}
-  layerEnemigos:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1 &715216958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 110}
+  m_AnchoredPosition: {x: 0, y: 26}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803449503
@@ -4669,7 +4651,7 @@ MonoBehaviour:
   _youWinScript: {fileID: 503199268}
   _jugador: {fileID: 662141466}
   _objetoMounstruo: {fileID: 7566053585100691637, guid: 25d7db95c35e86940b80498c6eb70ff9, type: 3}
-  lugarspawn:
+  _lugaresSpawn:
   - {fileID: 1361797535}
   - {fileID: 988396572}
   - {fileID: 267870277}
@@ -4949,30 +4931,10 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1894363838}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: _maxJumpHeight
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: timeToJumpApex
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: collisionMask.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: collisionPiso.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 2228606236485844639, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: _maincam
       value: 
       objectReference: {fileID: 632032495}
-    - target: {fileID: 5999787607523115386, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6212459141233021213, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: m_Name
       value: JUGADOR_HOOD
@@ -4980,10 +4942,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6212459141233021213, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 662141475}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
 --- !u!1 &2094233705
 GameObject:

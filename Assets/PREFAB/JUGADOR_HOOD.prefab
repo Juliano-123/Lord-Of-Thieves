@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 509893951655556480}
   - component: {fileID: 5999787607523115386}
   - component: {fileID: 2106592264714736924}
+  - component: {fileID: 4551349610591183107}
   - component: {fileID: 1639946243279833541}
   - component: {fileID: 5251490190843771179}
   - component: {fileID: 8813665683356665534}
@@ -221,7 +222,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.00007943064, y: 0.00059734285}
@@ -249,14 +250,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bfa8ef8ec1cce48bc122804341f191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 3712
   horizontalRayCount: 7
   verticalRayCount: 7
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider2Dn: {fileID: 0}
+--- !u!114 &4551349610591183107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212459141233021213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae2b91c3ee34744cb967300412177ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider2Dn: {fileID: 0}
+  layerEnemigos:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1639946243279833541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85ef2f4d46d99642bd1db8a6300d3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
+  collisionPiso:
+    serializedVersion: 2
+    m_Bits: 1024
   gameOverScreen: {fileID: 0}
   audioJugador: {fileID: 5251490190843771179}
   audioGemas: {fileID: 8813665683356665534}
@@ -276,13 +298,11 @@ MonoBehaviour:
   dashlisto: {fileID: 8300000, guid: 5b4746a608f956a44a4f647969b804fc, type: 3}
   dasheando: {fileID: 8300000, guid: bd565ec427f06ba4ab4bfe121623517d, type: 3}
   agarrogema: {fileID: 8300000, guid: ba841edff2a3dd24799d87715ab3c859, type: 3}
-  _jugadorGolpeado: 0
-  timerGolpeadoIzquierda: 1
-  timerGolpeadoDerecha: 1
-  _maxJumpHeight: 6
+  _maxJumpHeight: 4
   _minJumpHeight: 0.5
-  timeToJumpApex: 0.6
+  timeToJumpApex: 0.4
   velocity: {x: 0, y: 0}
+  velocityXSmoothing: 1
   ghost: {fileID: 0}
   _directionalInput: {x: 0, y: 0}
 --- !u!82 &5251490190843771179
