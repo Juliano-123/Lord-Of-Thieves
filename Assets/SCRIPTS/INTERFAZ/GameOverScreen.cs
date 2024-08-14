@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-public void Activate()
+    [SerializeField]
+    TextMeshProUGUI _enemiesStomped;
+    [SerializeField]
+    TextMeshProUGUI _leftAlive;
+
+    [SerializeField]
+    CreadorMounstruos _creadorMounstruos;
+
+
+    public void Activate()
     {
+        _enemiesStomped.text = _creadorMounstruos.GetMostrosStompeados() + " Enemies Stomped";
+        _leftAlive.text = _creadorMounstruos.GetMostrosRestantes() + " Left Alive";
         gameObject.SetActive(true);
     }
 
     public void RestartButton()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Principal");
+        SceneManager.LoadScene("Prueba wall running");
     }
 
     public void QuitButton()

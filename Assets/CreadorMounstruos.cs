@@ -13,6 +13,11 @@ public class CreadorMounstruos : MonoBehaviour
     int _mostrosRestantes = 30;
     int _mostrosSpawneados = 0;
 
+
+    [SerializeField]
+    YouWinScript _youWinScript;
+
+
     [SerializeField]
     public GameObject _jugador;
 
@@ -45,10 +50,26 @@ public class CreadorMounstruos : MonoBehaviour
             _timerNextSpawn = 0;
         }
 
+        if (_mostrosRestantes == 0)
+        {
+            _youWinScript.Activate();
+        }
+
     }
 
     public void RestarMostros(int NaRestar)
     {
         _mostrosRestantes -= NaRestar;
     }
+
+    public int GetMostrosRestantes()
+    {
+        return _mostrosRestantes;
+    }
+
+    public int GetMostrosStompeados()
+    {
+        return _mostrosTotales - _mostrosRestantes;
+    }
+
 }

@@ -19,6 +19,8 @@ public class HealthManager : MonoBehaviour
     Sprite _fullHeart;
     [SerializeField]
     Sprite _emptyHeart;
+    [SerializeField]
+    GameOverScreen _gameOverScreen;
 
 
     // Update is called once per frame
@@ -43,6 +45,10 @@ public class HealthManager : MonoBehaviour
             _hearts[i].sprite = _fullHeart;
         }
 
+        if (_currentHealth == 0)
+        {
+            _gameOverScreen.Activate();
+        }
     }
 
     public void SetCurrentHealth(int _changeHealth)

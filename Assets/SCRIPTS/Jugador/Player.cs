@@ -531,7 +531,6 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         //gameOverScreen.Activate();
-        Time.timeScale = 0.05f;
 
     }
 
