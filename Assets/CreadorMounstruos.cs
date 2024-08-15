@@ -106,6 +106,7 @@ public class CreadorMounstruos : MonoBehaviour
 
             GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo, _lugaresSpawn[_lugarSpawn].transform.position, Quaternion.identity);
             ObjetoSpawneado.GetComponent<MounstruoVuela>()._target = _jugador;
+            ObjetoSpawneado.GetComponent<MounstruoVuela>()._creadorMounstruos = this;
             _mostrosFaltaSpawnear -= 1;
             _lugaresSpawnPrevios.Add(_lugarSpawn);
         }

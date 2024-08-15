@@ -7,33 +7,52 @@ public class MounstruoVuela : MonoBehaviour
 {
     [SerializeField]
     public GameObject _target;
-    
+
+    bool _isMoving = false;
+    public bool _isHit = false;
 
     const float _forcePower = 10f;
     [SerializeField]
     float _speed = 4f;
     [SerializeField]
     float _force = 15f;
+
+    [SerializeField]
+    float _speedHit = 30;
         
     float velocitySmoothing;
     
     [SerializeField]
     float accelerationTime = 0.005f;
 
+    [SerializeField]
+    float accelerationTimeHit = 0.005f;
+
     Vector2 _moveForce;
     Vector2 _directionTowardsTarget;
-
+    
+    //COMPONENTES PROPIOS
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     BoxCollider2D _boxCollider2D;
 
-    void Start()
+    //COMPONENTES CHILD
+    GameObject _destroyParticlesObject;
+    ParticleSystem _destroyParticlesPS;
+
+    //COMPONENTES OTROS
+    public CreadorMounstruos _creadorMounstruos;
+
+    void Awake()
     {
-        
+        //COMPONENTES PROPIOS
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
 
+        //COMPONENTES PROPIOS CHILD
+        _destroyParticlesObject = transform.Find("DestroyParticles").gameObject;
+        _destroyParticlesPS = _destroyParticlesObject.GetComponent<ParticleSystem>();
 
         Color StartColor = _spriteRenderer.color;
         StartColor.a = 0;
@@ -52,6 +71,7 @@ public class MounstruoVuela : MonoBehaviour
             StartCoroutine(FadeIn());
         }
 
+
         _directionTowardsTarget = (_target.transform.position - transform.position).normalized;
 
     }
@@ -59,10 +79,25 @@ public class MounstruoVuela : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (_spriteRenderer.color.a >= 1)
+        if (_isHit)
+        {
+            if(_isMoving)
+            {
+                _rb.velocity = Vector2.zero;
+                _isMoving = false;
+                StartCoroutine(Destroy());
+            }
+
+
+            MoveIsHit();
+        }
+
+        if (_isMoving)
         {
             MoveToTarget(_directionTowardsTarget);
         }
+
+
 
     }
 
@@ -77,6 +112,26 @@ public class MounstruoVuela : MonoBehaviour
         _rb.AddForce(_moveForce);
     }
 
+    void MoveIsHit()
+    {
+        //Vector2 desiredVelocity = Vector2.down * _speedHit;
+        //_moveForce.x = 0;
+        //_moveForce.y = Mathf.SmoothDamp(_moveForce.y, desiredVelocity.y, ref velocitySmoothing, accelerationTimeHit);
+        _rb.AddForce(Vector2.down * _speedHit);
+    }
+
+    public IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(0.25f);
+        _spriteRenderer.enabled = false;
+        _boxCollider2D.enabled = false;
+        _destroyParticlesPS.Play();
+        _creadorMounstruos.RestarMostros(1);
+        yield return new WaitForSeconds(0.7f);
+        Destroy(gameObject);
+        yield break;
+                    
+    }
 
     IEnumerator FadeIn()
     {
@@ -98,6 +153,7 @@ public class MounstruoVuela : MonoBehaviour
             gameObject.tag = "Enemigo";
             gameObject.layer = 9;
             _boxCollider2D.isTrigger = false;
+            _isMoving = true;
             yield break;
         }
 

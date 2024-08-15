@@ -21,13 +21,17 @@ public class Player : MonoBehaviour
     Controller2D _controller;
     DetectorColisiones _detectorColisiones;
     BoxCollider2D _boxCollider;
-
+    GameObject _dustTrailObject;
+    ParticleSystem _dustTrailPS;
+    GameObject _jumpParticlesObject;
+    ParticleSystem _jumpParticlesPS;
 
     //COMPONENTES AJENOS
     [SerializeField]
     GameObject _gameManager;
     HealthManager _healthManager;
     CreadorMounstruos _creadorMounstruos;
+
 
 
     [SerializeField]
@@ -82,7 +86,7 @@ public class Player : MonoBehaviour
     int _jumpApretado;
     float tiempoJump1 = -1;
     bool _jumpSoltado = false;
-    int _saltosTotales = 0;
+    int _saltosRealizados = 0;
     int _saltosMaximos = 2;
     bool _isJumping = false;
     
@@ -127,15 +131,28 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         gemasContadas = 0;
+
+        //componentes PROPIOS
         _controller = GetComponent<Controller2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
         _detectorColisiones = GetComponent<DetectorColisiones>();
+
+        //componentes PROPIOS HIJOS
         _imagen = transform.Find("Imagen").gameObject;
         _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
         _animator = _imagen.GetComponent<Animator>();
         _rotatePoint = transform.Find("RotatePoint").gameObject;
         _rotatePointApuntar = _rotatePoint.GetComponent<Apuntar>();
         _mira = _rotatePoint.transform.Find("SlicePoint").gameObject;
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _dustTrailObject = transform.Find("DustTrail").gameObject;
+        _dustTrailPS = _dustTrailObject.GetComponent<ParticleSystem>();
+        _jumpParticlesObject = transform.Find("JumpParticles").gameObject;
+        _jumpParticlesPS = _jumpParticlesObject.GetComponent<ParticleSystem>();
+
+
+
+
+        //componentes AJENOS
         _healthManager = _gameManager.GetComponent<HealthManager>();
         _creadorMounstruos = _gameManager.GetComponent<CreadorMounstruos>();
     }
@@ -178,7 +195,7 @@ public class Player : MonoBehaviour
         //SI ME GOLPEARON NO TOMA INPUT Y HACE ESTO
         if (_jugadorGolpeado == true)
         {
-            Debug.Log("Entro a handlegolpeo");
+            //Debug.Log("Entro a handlegolpeo");
             _detectorColisiones.enemigos.Reset();
             HandleGolpeo();
         }
@@ -223,7 +240,7 @@ public class Player : MonoBehaviour
                 _dashApretado = 0;
                 _jumpApretado = 0;
                 _isJumping = false;
-                _saltosTotales = 1;
+                _saltosRealizados = 1;
                 audioJugador.clip = dasheando;
                 audioJugador.Play();
             }
@@ -247,7 +264,7 @@ public class Player : MonoBehaviour
                     _isJumping = true;
                     velocity.x = 0;
                     velocity.y = maxJumpVelocity;
-                    _saltosTotales = 2;
+                    _saltosRealizados = 2;
                     timerdash = 1f;
                 }
                 
@@ -264,14 +281,15 @@ public class Player : MonoBehaviour
 
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
-            if (_jumpApretado > 0 && ((_controller.collisions.below && (_controller.collisions.objetoGolpeadoVertical.tag == "Piso" || _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosTotales == 0)
+            if (_jumpApretado > 0 && ((_controller.collisions.below && (_controller.collisions.objetoGolpeadoVertical.tag == "Piso" || _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosRealizados == 0)
             {
                 Saltar();
+                _jumpParticlesPS.Play();
             }
 
             //DOBLE SALTO
             //SI APRETE JUMP, NO ESTOY TOCANDO SUELO, NI DENTRO DEL BUFFER DE COYOTE Y ME QUEDAN SALTOS
-            if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosTotales < _saltosMaximos)
+            if (_jumpApretado > 0 && !_controller.collisions.below && !tiempoCoyoteON && _saltosRealizados < _saltosMaximos)
             {
                 Saltar();
             }
@@ -294,7 +312,7 @@ public class Player : MonoBehaviour
             //Tiempo de coyote
             tiempoCoyote -= Time.deltaTime;
 
-            if (tiempoCoyote > 0 && _saltosTotales == 0)
+            if (tiempoCoyote > 0 && _saltosRealizados == 0)
             {
                 tiempoCoyoteON = true;
             }
@@ -336,7 +354,7 @@ public class Player : MonoBehaviour
     {
         audioJugador.clip = salto;
         audioJugador.Play();
-        _saltosTotales += 1;
+        _saltosRealizados += 1;
         velocity.y = maxJumpVelocity;
         _jumpApretado = 0;
         _isJumping = true;
@@ -367,9 +385,10 @@ public class Player : MonoBehaviour
                     //SI ESTOY TOCANDO ABAJO y objeto piso MANDA EL CONTADOR A 0, LE DA FALSO AL YA SALTE X 2 y AL YA DASHEE
                     case "Piso":
                         {
-                            if (_controller.collisions.below)
+                            if (_controller.collisions.below && _saltosRealizados != 0)
                             {
-                                _saltosTotales = 0;
+                                _dustTrailPS.Play();
+                                _saltosRealizados = 0;
                                 _dashTotales = 0;
                                 boxContados = 0;
                                 //Tiempo de coyote
@@ -381,9 +400,10 @@ public class Player : MonoBehaviour
 
                     case "Plataforma":
                         {
-                            if (_controller.collisions.below)
+                            if (_controller.collisions.below && _saltosRealizados != 0)
                             {
-                                _saltosTotales = 0;
+                                _dustTrailPS.Play();
+                                _saltosRealizados = 0;
                                 _dashTotales = 0;
                                 boxContados = 0;
                                 //Tiempo de coyote
@@ -417,12 +437,12 @@ public class Player : MonoBehaviour
                     case "Enemigo":
                         if (_detectorColisiones.enemigos.edge == true)
                         {
-                            Destroy(_detectorColisiones.enemigos.objetoGolpeadoHorizontal);
+                            _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
+
                             //Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
-                            _creadorMounstruos.RestarMostros(1);
 
                             _jumpApretado = 0;
-                            _saltosTotales = 1;
+                            _saltosRealizados = 1;
                             _dashTotales = 0;
                             _jumpSoltado = false;
                             //falso para que no baje la velocidad por soltar jump
@@ -471,11 +491,12 @@ public class Player : MonoBehaviour
                     case "Enemigo":
                         if (_detectorColisiones.enemigos.below)
                         {
-                            Destroy(_detectorColisiones.enemigos.objetoGolpeadoVertical);
+                            _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
+
                             Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
-                            _creadorMounstruos.RestarMostros(1);
+
                             _jumpApretado = 0;
-                            _saltosTotales = 1;
+                            _saltosRealizados = 1;
                             _dashTotales = 0;
                             _jumpSoltado = false;
                             _isJumping = false;
@@ -603,12 +624,20 @@ public class Player : MonoBehaviour
         }
 
         //VOLTEA EL SPRITE
-        if (orientacionX == 1)
+        if (orientacionX == 1 && _spriteRenderer.flipX == true)
         {
+            if (_controller.collisions.below)
+            {
+                _dustTrailPS.Play();
+            }
             _spriteRenderer.flipX = false;
         }
-        else if (orientacionX == -1)
+        else if (orientacionX == -1 && _spriteRenderer.flipX == false)
         {
+            if (_controller.collisions.below)
+            {
+                _dustTrailPS.Play();
+            }
             _spriteRenderer.flipX = true;
         }
     }

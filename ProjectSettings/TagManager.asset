@@ -49,3 +49,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 552299579
+    locked: 0
+  - name: Platforms
+    uniqueID: 2259110627
+    locked: 0
+  - name: Enemies
+    uniqueID: 3835612435
+    locked: 0
+  - name: Player
+    uniqueID: 2711359307
+    locked: 0
+  - name: Particles
+    uniqueID: 2913277721
+    locked: 0
