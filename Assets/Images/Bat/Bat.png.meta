@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96cf9cad7050f66449f0df016f9a9370
+guid: c29cb4f4ce210a6498c9be753e92b35b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PC Computer - Duck Game - Fire_0
+      name: Bat_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1
-        width: 8
-        height: 12
+        x: 13
+        y: 18
+        width: 40
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32197aa8783bb904faae9e4685e1e94c
-      internalID: 1237871995
+      spriteID: f434bf3d26111d845b914cb6e4511517
+      internalID: 598150198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC Computer - Duck Game - Fire_1
+      name: Bat_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1
-        width: 6
-        height: 10
+        x: 77
+        y: 20
+        width: 40
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff457d97f7557454fb668f46cc664808
-      internalID: 1150072459
+      spriteID: 864eab987e4b1574883ea10b2f07955e
+      internalID: 587575197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC Computer - Duck Game - Fire_2
+      name: Bat_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 1
-        width: 8
-        height: 10
+        x: 150
+        y: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d9757deab5f7c048bf573e059ef36f2
-      internalID: -1073075129
+      spriteID: 3cbb27f60d1b71949816cdfdcf87fc72
+      internalID: 1368190118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC Computer - Duck Game - Fire_3
+      name: Bat_3
       rect:
         serializedVersion: 2
-        x: 52
-        y: 1
-        width: 7
-        height: 10
+        x: 208
+        y: 19
+        width: 35
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,29 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3964bcc03811ee48bf92ddd5c3a91ab
-      internalID: -308134058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PC Computer - Duck Game - Fire_4
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 1
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7259a7589c60cf345b7fe6387b301d36
-      internalID: -1632653436
+      spriteID: 44e017300cdd827448b88dbeb6039356
+      internalID: 962271819
       vertices: []
       indices: 
       edges: []
@@ -238,11 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PC Computer - Duck Game - Fire_0: 1237871995
-      PC Computer - Duck Game - Fire_1: 1150072459
-      PC Computer - Duck Game - Fire_2: -1073075129
-      PC Computer - Duck Game - Fire_3: -308134058
-      PC Computer - Duck Game - Fire_4: -1632653436
+      Bat_0: 598150198
+      Bat_1: 587575197
+      Bat_2: 1368190118
+      Bat_3: 962271819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

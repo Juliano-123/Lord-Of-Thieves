@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class MounstruoVuela : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MounstruoVuela : MonoBehaviour
 
     bool _isMoving = false;
     public bool _isHit = false;
+
+    int orientacionX = 0;
 
     const float _forcePower = 10f;
     [SerializeField]
@@ -71,6 +74,7 @@ public class MounstruoVuela : MonoBehaviour
             StartCoroutine(FadeIn());
         }
 
+        CambiarDireccionSprite();
 
         _directionTowardsTarget = (_target.transform.position - transform.position).normalized;
 
@@ -101,7 +105,30 @@ public class MounstruoVuela : MonoBehaviour
 
     }
 
-    
+
+    void CambiarDireccionSprite()
+    {
+        //GUARDA LA ULTIMA ORIENTACION
+        if (_moveForce.x > 0)
+        {
+            orientacionX = 1;
+        }
+        else if (_moveForce.x < 0)
+        {
+            orientacionX = -1;
+        }
+
+        //VOLTEA EL SPRITE
+        if (orientacionX == 1 && _spriteRenderer.flipX == true)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (orientacionX == -1 && _spriteRenderer.flipX == false)
+        {
+            _spriteRenderer.flipX = true;
+        }
+    }
+
     void MoveToTarget(Vector2 Direction)
     {
         Vector2 desiredVelocity = Direction * _speed;
@@ -117,7 +144,8 @@ public class MounstruoVuela : MonoBehaviour
         //Vector2 desiredVelocity = Vector2.down * _speedHit;
         //_moveForce.x = 0;
         //_moveForce.y = Mathf.SmoothDamp(_moveForce.y, desiredVelocity.y, ref velocitySmoothing, accelerationTimeHit);
-        _rb.AddForce(Vector2.down * _speedHit);
+        _moveForce = Vector2.down * _speedHit;
+        _rb.AddForce(_moveForce);
     }
 
     public IEnumerator Destroy()
