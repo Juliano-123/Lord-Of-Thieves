@@ -10,7 +10,7 @@ public class DetectorColisiones : RayCastController
 
     [SerializeField]
     LayerMask layerEnemigos;
-    float rayLength = 2 * skinWidth;
+    float rayLength = 6 * skinWidth;
 
     public override void Start()
     {

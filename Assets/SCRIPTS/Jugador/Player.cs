@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
-using UnityEditor.ShaderGraph.Internal;
+
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -439,7 +439,7 @@ public class Player : MonoBehaviour
                         {
                             _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
 
-                            //Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+                            Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
 
                             _jumpApretado = 0;
                             _saltosRealizados = 1;

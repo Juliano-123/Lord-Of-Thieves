@@ -9,7 +9,7 @@ public class CreadorMounstruos : MonoBehaviour
     [SerializeField]
     TMP_Text _contadorMostros;
 
-    int _mostrosTotales = 20;
+    public int _mostrosTotales = 20;
     int _mostrosFaltaSpawnear;
     int _mostrosFaltaDestruir;
     int _mostrosCurrentWave;
