@@ -28,7 +28,7 @@ public class RocaArma : MonoBehaviour
     void Update()
     {
         //APLICA GRAVEDAD
-        _velocity.y += Player.gravity/2 * Time.deltaTime;
+        //_velocity.y += Player.gravity/2 * Time.deltaTime;
         
 
         //if ((controller.collisions.left || controller.collisions.right) && controller.collisions.objetoGolpeadoHorizontal.tag == "Enemigo")

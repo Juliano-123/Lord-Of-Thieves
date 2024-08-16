@@ -8,19 +8,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-    //debug
-    bool _logRotation = false;
-
-
     //components PROPIOS
+    BoxCollider2D _boxCollider;
     GameObject _imagen;
     Animator _animator;
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
+    GameObject _mira;
     Apuntar _rotatePointApuntar;
+
+
+
+    //controlador movimiento y su layer
     Controller2D _controller;
+    [SerializeField]
+    LayerMask collisionPiso;
+
+    //DETECTOR COLISIONES OBJETOS
     DetectorColisiones _detectorColisiones;
-    BoxCollider2D _boxCollider;
+
+
+    //Sistemas particulas
     GameObject _dustTrailObject;
     ParticleSystem _dustTrailPS;
     GameObject _jumpParticlesObject;
@@ -34,24 +42,20 @@ public class Player : MonoBehaviour
 
 
 
+    //AUDIO SOURCE Y CLIPS
     [SerializeField]
-    LayerMask collisionPiso;
-
-
-    public GameOverScreen gameOverScreen;
-    public AudioSource audioJugador;
-    public AudioSource audioGemas;
-    public AudioClip salto, dashlisto, dasheando, agarrogema;
+    AudioSource audioJugador;
+    [SerializeField]
+    AudioClip salto, dashlisto, dasheando;
 
 
     //para golpeo
-
     bool _jugadorGolpeado = false;
     bool GolpeadoIzquierda = false;
     bool GolpeadoDerecha = false;
     bool GolpeadoArriba = false;
     bool GolpeadoAbajo = false;
-    float _tiempoGolpeado = 0.5f;
+    float _tiempoGolpeadoPiso = 0.5f;
 
 
     [SerializeField]
@@ -63,37 +67,36 @@ public class Player : MonoBehaviour
     float aceleracionPuntoMasAlto = 0.075f;
     float accelerationTimeGrounded = 0.005f;
     float moveSpeed = 7f;
-    int orientacionX = 1;
     float velocidadtTiempoExtraAire = 0.5f;
     float multiplicadorGravedadCaida = 1.5f;
     float multiplicadorGravedadPuntoMasAlto = 0.5f;
 
+    //VARIABLE DE ORIENTACION PARA EL SPRITE
+    int orientacionX = 1;
 
-    public static float gravity;
+    static float gravity;
+    float _maxFallVelocity = -10f;
     float maxJumpVelocity;
     float minJumpVelocity;
-    [SerializeField]
+    
     Vector2 velocity;
-    [SerializeField]
-    float velocityXSmoothing = 1;
+    
+    //PARA EL SMOOHTING DE ACELERACION
+    float velocityXSmoothing;
     
     //COYOTE
     float tiempoCoyote = -1f;
     bool tiempoCoyoteON = false;
     
 
-
+    //VARIABLES DE SALTO
     int _jumpApretado;
     float tiempoJump1 = -1;
     bool _jumpSoltado = false;
     int _saltosRealizados = 0;
     int _saltosMaximos = 2;
     bool _isJumping = false;
-    
-
-    int boxContados = 0;
-    int gemasContadas = 0;
-
+  
     //DASH
     int _dashTotales = 0;
     int _dashMaximos = 1;
@@ -101,15 +104,10 @@ public class Player : MonoBehaviour
     int _dashApretado = 0;
     bool _dashSoltado = false;
     Vector2 _dashvelocitydirection;
-
     float timerdash = 1f;
     float dashVelocity = 15f;
 
-
-    GameObject _mira;
-
-
-
+    //LO QUE TARDA EN CAMBIAR EL SPRITE FLASH DE CUANDO ME PEGAN
     float flashTime = 0.008f;
     public Ghost ghost;
 
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        gemasContadas = 0;
+        
 
         //componentes PROPIOS
         _controller = GetComponent<Controller2D>();
@@ -192,18 +190,14 @@ public class Player : MonoBehaviour
 
 
 
-        //SI ME GOLPEARON NO TOMA INPUT Y HACE ESTO
+        //SI ME GOLPEARON
         if (_jugadorGolpeado == true)
         {
-            //Debug.Log("Entro a handlegolpeo");
-            _detectorColisiones.enemigos.Reset();
-            HandleGolpeo();
+            FlashRed();
         }
 
 
-        //SI NO ME GOLEPARON TOMA LOS INPUTS Y ACTUA EN CONSECUENCIA
-        if (_jugadorGolpeado == false)
-        {            
+
 
             //CheckeaColisiones
             HandleCollisions();
@@ -281,7 +275,9 @@ public class Player : MonoBehaviour
 
             //SALTO
             //SI APRETE JUMP, ESTOY TOCANDO PISO o RECIEN LO TOQUE, Y ESTOY DENTRO DEL TIEMPO BUFFER
-            if (_jumpApretado > 0 && ((_controller.collisions.below && (_controller.collisions.objetoGolpeadoVertical.tag == "Piso" || _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) || tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosRealizados == 0)
+            if (_jumpApretado > 0 && ((_controller.collisions.below && (_controller.collisions.objetoGolpeadoVertical.tag == "Piso" ||
+                _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) ||
+                tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosRealizados == 0)
             {
                 Saltar();
                 _jumpParticlesPS.Play();
@@ -324,9 +320,9 @@ public class Player : MonoBehaviour
 
 
             //PONE UN LIMITE MAXIMO A LA VELOCIDAD DE CAIDA
-            if (velocity.y <= -10)
+            if (velocity.y <= _maxFallVelocity)
             {
-                velocity.y = -10;
+                velocity.y = _maxFallVelocity;
             }
 
 
@@ -334,7 +330,7 @@ public class Player : MonoBehaviour
 
 
             //LLAMA A LA FUNCION MOVE, PARA QUE SE MUEVA DETECTANDO COLISION
-            //CHECKEA PRIMERO OVERRIDES
+            //CHECKEA PRIMERO OVERRIDE DEL DASH QUE FIJA OTRO MOVIMIENTO
             if (_dasheando == true)
             {
                 velocity = _dashvelocitydirection;
@@ -346,7 +342,7 @@ public class Player : MonoBehaviour
 
 
 
-        }
+        
     }
 
 
@@ -361,17 +357,30 @@ public class Player : MonoBehaviour
         _jumpSoltado = false;
     }
 
-
-
-
-    void HandleGolpeo()
+    void Rebotar()
     {
-
-        //GOLPEADO
-        FlashRed();
-        velocity.y = -12f;
-        _controller.Move(velocity * Time.deltaTime, tiempoCoyoteON, collisionPiso);
+        _jumpApretado = 0;
+        _saltosRealizados = 1;
+        _dashTotales = 0;
+        _jumpSoltado = false;
+        //falso para que no baje la velocidad por soltar jump
+        _isJumping = false;
+        velocity.y = maxJumpVelocity / 2;
+        audioJugador.clip = salto;
+        audioJugador.Play();
     }
+
+    void RecibeGolpe()
+    {
+        _jugadorGolpeado = true;
+        _healthManager.SetCurrentHealth(-1);
+        _saltosRealizados = _saltosMaximos;
+        _jumpSoltado = false;
+        _boxCollider.isTrigger = true;
+        velocity.y = _maxFallVelocity;
+    }
+
+
 
     void HandleCollisions()
     {
@@ -380,97 +389,57 @@ public class Player : MonoBehaviour
         {
             if(_controller.collisions.objetoGolpeadoVertical !=null)
             {
-                switch(_controller.collisions.objetoGolpeadoVertical.tag)
+                if (_controller.collisions.below && _saltosRealizados != 0)
                 {
-                    //SI ESTOY TOCANDO ABAJO y objeto piso MANDA EL CONTADOR A 0, LE DA FALSO AL YA SALTE X 2 y AL YA DASHEE
-                    case "Piso":
-                        {
-                            if (_controller.collisions.below && _saltosRealizados != 0)
-                            {
-                                _dustTrailPS.Play();
-                                _saltosRealizados = 0;
-                                _dashTotales = 0;
-                                boxContados = 0;
-                                //Tiempo de coyote
-                                tiempoCoyote = 0.15f;
-                                _isJumping = false;
-                            }
-                            break;
-                        }
-
-                    case "Plataforma":
-                        {
-                            if (_controller.collisions.below && _saltosRealizados != 0)
-                            {
-                                _dustTrailPS.Play();
-                                _saltosRealizados = 0;
-                                _dashTotales = 0;
-                                boxContados = 0;
-                                //Tiempo de coyote
-                                tiempoCoyote = 0.15f;
-                                _isJumping = false;
-                            }
-                            break;
-                        }
-
+                    _dustTrailPS.Play();
+                    _saltosRealizados = 0;
+                    _dashTotales = 0;
+                    //Tiempo de coyote
+                    tiempoCoyote = 0.15f;
+                    _isJumping = false;
+                    Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeadoPiso);
                 }
 
             }
         }
 
+
         //manejar casos de colision CON ENEMIGOS Y COSAS
+
+
         if (_detectorColisiones.enemigos.hayGolpe)
         {
             if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
                 {
-
-                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                    case "GEMA":
-                        Destroy(_detectorColisiones.enemigos.objetoGolpeadoHorizontal);
-                        gemasContadas++;
-                        audioGemas.clip = agarrogema;
-                        audioGemas.Play();
-                        break;
-
                     case "Enemigo":
-                        if (_detectorColisiones.enemigos.edge == true)
+                        if (_jugadorGolpeado == false)
                         {
-                            _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
-
-                            Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
-
-                            _jumpApretado = 0;
-                            _saltosRealizados = 1;
-                            _dashTotales = 0;
-                            _jumpSoltado = false;
-                            //falso para que no baje la velocidad por soltar jump
-                            _isJumping = false;
-                            velocity.y = maxJumpVelocity/2;
-                            boxContados++;
-                            audioJugador.clip = salto;
-                            audioJugador.Play();
-                        }
-                        else
-                        {
-                            _jugadorGolpeado = true;
-                            if (_detectorColisiones.enemigos.left)
+                            if (_detectorColisiones.enemigos.edge == true)
                             {
-                                GolpeadoIzquierda = true;
+                                _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
+
+                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+
+                                Rebotar();
                             }
                             else
                             {
-                                GolpeadoDerecha = true;
+                                if (_detectorColisiones.enemigos.left)
+                                {
+                                    GolpeadoIzquierda = true;
+                                }
+                                else
+                                {
+                                    GolpeadoDerecha = true;
+                                }
+
+                                RecibeGolpe();
                             }
 
-                            Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
-                            //_boxCollider.isTrigger = true;
-                            _healthManager.SetCurrentHealth(-1);
-                            Debug.Log("Bajo vida x horizontal");
-
-                            _jumpSoltado = false;
                         }
+
                         break;
 
                 }
@@ -480,41 +449,25 @@ public class Player : MonoBehaviour
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoVertical.tag)
                 {
-                    //SI TOCO GEMA la destruyo, la sumo y mando a 0 el timer de lentitud
-                    case "GEMA":
-                        Destroy(_detectorColisiones.enemigos.objetoGolpeadoVertical);
-                        gemasContadas++;
-                        audioGemas.clip = agarrogema;
-                        audioGemas.Play();
-                        break;
 
                     case "Enemigo":
-                        if (_detectorColisiones.enemigos.below)
+                        if (_jugadorGolpeado == false)
                         {
-                            _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
+                            if (_detectorColisiones.enemigos.below)
+                            {
+                                _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
 
-                            Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
+                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
 
-                            _jumpApretado = 0;
-                            _saltosRealizados = 1;
-                            _dashTotales = 0;
-                            _jumpSoltado = false;
-                            _isJumping = false;
-                            velocity.y = maxJumpVelocity / 2;
-                            boxContados++;
-                            audioJugador.clip = salto;
-                            audioJugador.Play();
-                        }
-                        else
-                        {
-                            _jugadorGolpeado = true;
-                            GolpeadoArriba = true;
+                                Rebotar();
 
-                            Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeado);
-                            _healthManager.SetCurrentHealth(-1);
-                            Debug.Log("BAJO VIDA X VERTICAL");
-                            //_boxCollider.isTrigger = true;
-                            _jumpSoltado = false;
+                            }
+                            else
+                            {
+                                GolpeadoArriba = true;
+
+                                RecibeGolpe();
+                            }
 
                         }
 
@@ -534,7 +487,7 @@ public class Player : MonoBehaviour
         GolpeadoArriba = false;
         GolpeadoDerecha = false;
         GolpeadoIzquierda = false;
-        //_boxCollider.isTrigger = false;
+        _boxCollider.isTrigger = false;
     }
 
 
@@ -551,7 +504,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        //gameOverScreen.Activate();
+        
 
     }
 

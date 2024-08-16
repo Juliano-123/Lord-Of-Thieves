@@ -43,7 +43,7 @@ public class MostroBlanco : MonoBehaviour
     void Update()
     {
         //APLICA GRAVEDAD
-        _velocity.y += Player.gravity * Time.deltaTime;
+        //_velocity.y += Player.gravity * Time.deltaTime;
 
         //si le pego al jugador ................
 

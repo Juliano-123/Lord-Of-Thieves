@@ -10,7 +10,7 @@ public class DetectorColisiones : RayCastController
 
     [SerializeField]
     LayerMask layerEnemigos;
-    float rayLength = 6 * skinWidth;
+    float rayLength = 8 * skinWidth;
 
     public override void Start()
     {
@@ -46,7 +46,7 @@ public class DetectorColisiones : RayCastController
             {
 
                 //DETECTAR COLISIONES EN EL BORDE
-                if (i <= horizontalRayCount / 10)
+                if (i <= 1)
                 {
                     enemigos.edge = true;
                 }
@@ -63,7 +63,7 @@ public class DetectorColisiones : RayCastController
             if (hitIzquierda)
             {
                 //DETECTAR COLISIONES EN EL BORDE
-                if (i <= horizontalRayCount / 10)
+                if (i <= 1)
                 {
                     enemigos.edge = true;
                 }
