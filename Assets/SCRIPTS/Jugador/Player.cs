@@ -3,6 +3,7 @@ using System.Collections;
 using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 
 [RequireComponent(typeof(Controller2D))]
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     GameObject _rotatePoint;
     GameObject _mira;
     Apuntar _rotatePointApuntar;
+    CinemachineImpulseSource _impulseSource;
 
 
 
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioSource audioJugador;
     [SerializeField]
-    AudioClip salto, dashlisto, dasheando;
+    AudioClip salto, dashlisto, dasheando, EnemigoStompeado;
 
 
     //para golpeo
@@ -122,7 +124,7 @@ public class Player : MonoBehaviour
 
     Vector2 _attackDirection;
 
-    
+    float _shakeForce = 1f;
 
 
 
@@ -134,6 +136,7 @@ public class Player : MonoBehaviour
         _controller = GetComponent<Controller2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _detectorColisiones = GetComponent<DetectorColisiones>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
 
         //componentes PROPIOS HIJOS
         _imagen = transform.Find("Imagen").gameObject;
@@ -366,8 +369,9 @@ public class Player : MonoBehaviour
         //falso para que no baje la velocidad por soltar jump
         _isJumping = false;
         velocity.y = maxJumpVelocity / 2;
-        audioJugador.clip = salto;
-        audioJugador.Play();
+        audioJugador.clip = EnemigoStompeado; audioJugador.Play();
+        audioJugador.clip = salto; audioJugador.Play();
+        _impulseSource.GenerateImpulseWithForce(_shakeForce);
     }
 
     void RecibeGolpe()

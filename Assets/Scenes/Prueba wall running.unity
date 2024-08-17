@@ -7834,6 +7834,7 @@ GameObject:
   - component: {fileID: 1872451372}
   - component: {fileID: 1872451373}
   - component: {fileID: 1872451374}
+  - component: {fileID: 1872451375}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -7936,6 +7937,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creadorMounstruos: {fileID: 1894363839}
+--- !u!114 &1872451375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872451369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1878039341
 GameObject:
   m_ObjectHideFlags: 0
@@ -8115,7 +8139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894363838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6925a5689f088842a844c18bc29861c, type: 3}
   m_Name: 
@@ -8779,23 +8803,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: audioGemas
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1894363838}
+    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+      propertyPath: EnemigoStompeado
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ea4041c5c887f0489ea53aa37b740aa, type: 3}
     - target: {fileID: 2228606236485844639, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: _maincam
       value: 
       objectReference: {fileID: 632032495}
+    - target: {fileID: 5815762191481962555, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815762191481962555, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6212459141233021213, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: m_Name
       value: JUGADOR_HOOD
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8813665683356665534, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
