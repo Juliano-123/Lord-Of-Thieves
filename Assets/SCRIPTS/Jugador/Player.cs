@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     bool GolpeadoDerecha = false;
     bool GolpeadoArriba = false;
     bool GolpeadoAbajo = false;
-    float _tiempoGolpeadoPiso = 0.5f;
+    float _tiempoGolpeadoPiso = 0.8f;
     float _timerJugadorGolpeado = 1f;
 
 
@@ -89,7 +89,9 @@ public class Player : MonoBehaviour
     float _maxFallVelocity = -10f;
     float maxJumpVelocity;
     float minJumpVelocity;
-    
+
+    float _reboteVelocity;
+
     Vector2 velocity;
     
     //PARA EL SMOOHTING DE ACELERACION
@@ -105,7 +107,7 @@ public class Player : MonoBehaviour
     float tiempoJump1 = -1;
     bool _jumpSoltado = false;
     int _saltosRealizados = 0;
-    int _saltosMaximos = 2;
+    int _saltosMaximos = 1;
     bool _isJumping = false;
   
     //DASH
@@ -167,26 +169,17 @@ public class Player : MonoBehaviour
         //componentes AJENOS
         _healthManager = _gameManager.GetComponent<HealthManager>();
         _creadorMounstruos = _gameManager.GetComponent<CreadorMounstruos>();
-    }
-
-
-
-    void Start()
-    {
-
 
         //CACULA GRAVEDAD EN BASE A LOS VALORES DE ALTURA MAXIMA Y TIEMPO PARA LLEGAR A ELLA
         gravity = -(2 * _maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         //CALCULA VELOCIDAD DEL SALTO COMO GRAVEDAD * TIEMPO PARA LLEGAR ARRIBA
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        //SETEA REBOTE VELOCITY COMO VELOCIDAD SALTO DIVIDIDO 4
+        _reboteVelocity = maxJumpVelocity / 1.7f;
         //CALCULA LA VELOCIDAD MINIMA EN BASE A GRAVEDAD Y SALTO MINIMO
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * _minJumpHeight);
 
-
-
-
     }
-
 
 
     void Update()
@@ -293,6 +286,7 @@ public class Player : MonoBehaviour
                 _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) ||
                 tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosRealizados == 0)
             {
+                ResetJugadorGolpeado();
                 Saltar();
                 _jumpParticlesPS.Play();
             }
@@ -362,6 +356,7 @@ public class Player : MonoBehaviour
 
     void Saltar()
     {
+        _dustTrailPS.Stop();
         audioJugador.clip = salto;
         audioJugador.Play();
         _saltosRealizados += 1;
@@ -376,14 +371,12 @@ public class Player : MonoBehaviour
         _contadorPuntos.AddPuntos(100);
         _comboCounter.AddComboCount();
         _jumpApretado = 0;
-        _saltosRealizados = 1;
+        _saltosRealizados = 0;
         _dashTotales = 0;
         _jumpSoltado = false;
         //falso para que no baje la velocidad por soltar jump
         _isJumping = false;
-        velocity.y = maxJumpVelocity;
-        audioJugador.clip = EnemigoStompeado; audioJugador.Play();
-        audioJugador.clip = salto; audioJugador.Play();
+        velocity.y = _reboteVelocity;
         _impulseSource.GenerateImpulseWithForce(_shakeForce);
     }
 
@@ -410,9 +403,11 @@ public class Player : MonoBehaviour
             {
                 if (_controller.collisions.below)
                 {
-                    _dustTrailPS.Play();
+                    //particulas para cuando toca piso
+                    //_dustTrailPS.Play();
                     _saltosRealizados = 0;
                     _dashTotales = 0;
+                    _boxCollider.isTrigger = false;
                     _comboCounter.ResetComboCount();
                     tiempoCoyote = 0.15f;
                     _isJumping = false;

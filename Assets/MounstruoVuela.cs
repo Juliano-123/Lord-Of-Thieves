@@ -7,6 +7,13 @@ using UnityEngine.InputSystem.XR;
 public class MounstruoVuela : MonoBehaviour, IExplotable
 {
     [SerializeField]
+    AudioSource _audioMostro;
+    [SerializeField]
+    AudioClip _enemigoStompeado;
+
+
+
+    [SerializeField]
     public GameObject _target;
 
     bool _isMoving = false;
@@ -181,6 +188,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
 
     IEnumerator Destroy()
     {
+        _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
         yield return new WaitForSeconds(0.25f);
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
