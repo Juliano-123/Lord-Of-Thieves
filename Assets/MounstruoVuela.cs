@@ -4,7 +4,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class MounstruoVuela : MonoBehaviour
+public class MounstruoVuela : MonoBehaviour, IExplotable
 {
     [SerializeField]
     public GameObject _target;
@@ -148,11 +148,43 @@ public class MounstruoVuela : MonoBehaviour
         _rb.AddForce(_moveForce);
     }
 
-    public IEnumerator Destroy()
+    public void Explotar()
+    {
+        Collider2D[] inExplosionRadius = null;
+        float explosionRadius = 5f;
+        float explosionForceMulti = 400f;
+
+        inExplosionRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        foreach (Collider2D colliderDetectado in inExplosionRadius)
+        {
+            Rigidbody2D rigidbody2DDetectado = colliderDetectado.GetComponent<Rigidbody2D>();
+
+            if (rigidbody2DDetectado != null)
+            {
+                Vector2 distancia = colliderDetectado.transform.position - transform.position;
+                
+                if (distancia.sqrMagnitude > 0)
+                {
+                    float explosionForce = explosionForceMulti;
+                    rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
+                    Debug.Log("SE APLICO FUERZA");
+                }
+            }
+
+
+        }
+
+    }
+
+
+
+    IEnumerator Destroy()
     {
         yield return new WaitForSeconds(0.25f);
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
+        Explotar();
         _destroyParticlesPS.Play();
         _creadorMounstruos.RestarMostros(1);
         yield return new WaitForSeconds(0.7f);

@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
     GameObject _gameManager;
     HealthManager _healthManager;
     CreadorMounstruos _creadorMounstruos;
+    [SerializeField]
+    ContadorPuntos _contadorPuntos;
+    [SerializeField]
+    ComboCounter _comboCounter;
 
 
 
@@ -51,13 +55,18 @@ public class Player : MonoBehaviour
     AudioClip salto, dashlisto, dasheando, EnemigoStompeado;
 
 
-    //para golpeo
+    GameObject _ultimoObjetoDestruidoVertical = null;
+    GameObject _ultimoObjetoDestruidoHorizontal = null;
+
+
+    //Variables para golpeo
     bool _jugadorGolpeado = false;
     bool GolpeadoIzquierda = false;
     bool GolpeadoDerecha = false;
     bool GolpeadoArriba = false;
     bool GolpeadoAbajo = false;
     float _tiempoGolpeadoPiso = 0.5f;
+    float _timerJugadorGolpeado = 1f;
 
 
     [SerializeField]
@@ -111,7 +120,8 @@ public class Player : MonoBehaviour
 
     //LO QUE TARDA EN CAMBIAR EL SPRITE FLASH DE CUANDO ME PEGAN
     float flashTime = 0.008f;
-    public Ghost ghost;
+    [SerializeField]
+    Ghost ghost;
 
     //nuevo movimiento
     [SerializeField]
@@ -125,6 +135,7 @@ public class Player : MonoBehaviour
     Vector2 _attackDirection;
 
     float _shakeForce = 1f;
+
 
 
 
@@ -192,7 +203,7 @@ public class Player : MonoBehaviour
         CambiarDireccionSprite();
 
 
-
+        _timerJugadorGolpeado += Time.deltaTime;
         //SI ME GOLPEARON
         if (_jugadorGolpeado == true)
         {
@@ -202,49 +213,49 @@ public class Player : MonoBehaviour
 
 
 
-            //CheckeaColisiones
-            HandleCollisions();
+        //CheckeaColisiones
+        HandleCollisions();
 
-            //SETEA ANIMACIONES
-            AnimarElPJ();
-
-
+        //SETEA ANIMACIONES
+        AnimarElPJ();
 
 
 
-            //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
-            //timeForNextDash -= Time.deltaTime;
-            //if (timeForNextDash <= 0)
-            //{
-            //    ghost.makeGhost = true;
-            //    if (yaSonoElDash == false)
-            //    {
-            //        audioJugador.clip = dashlisto;
-            //        audioJugador.Play();
-            //        yaSonoElDash = true;
-            //    }
-            //}
-            //else if (timerdash >= 0.3f)
-            //{
-            //    ghost.makeGhost = false;
-            //}
-
-            //DECIDIR QUE DASHEO
-            if (_dashApretado > 0 && _dashTotales < _dashMaximos)
-            {
-                timerdash = 0;
-                _dashTotales += 1;
-                _dashApretado = 0;
-                _jumpApretado = 0;
-                _isJumping = false;
-                _saltosRealizados = 1;
-                audioJugador.clip = dasheando;
-                audioJugador.Play();
-            }
 
 
-            //QUE HAGO SI DASHEO
-            if (timerdash <= 0.3f)
+        //GENERACION DE FANTASMAS CUANDO PUEDO DASHEAR
+        //timeForNextDash -= Time.deltaTime;
+        //if (timeForNextDash <= 0)
+        //{
+        //    ghost.makeGhost = true;
+        //    if (yaSonoElDash == false)
+        //    {
+        //        audioJugador.clip = dashlisto;
+        //        audioJugador.Play();
+        //        yaSonoElDash = true;
+        //    }
+        //}
+        //else if (timerdash >= 0.3f)
+        //{
+        //    ghost.makeGhost = false;
+        //}
+
+        //DECIDIR QUE DASHEO
+        if (_dashApretado > 0 && _dashTotales < _dashMaximos)
+        {
+            timerdash = 0;
+            _dashTotales += 1;
+            _dashApretado = 0;
+            _jumpApretado = 0;
+            _isJumping = false;
+            _saltosRealizados = 1;
+            audioJugador.clip = dasheando;
+            audioJugador.Play();
+        }
+
+
+        //QUE HAGO SI DASHEO
+        if (timerdash <= 0.3f)
             {
                 timerdash += Time.deltaTime;
                 if (_dasheando == false)
@@ -362,13 +373,15 @@ public class Player : MonoBehaviour
 
     void Rebotar()
     {
+        _contadorPuntos.AddPuntos(100);
+        _comboCounter.AddComboCount();
         _jumpApretado = 0;
         _saltosRealizados = 1;
         _dashTotales = 0;
         _jumpSoltado = false;
         //falso para que no baje la velocidad por soltar jump
         _isJumping = false;
-        velocity.y = maxJumpVelocity / 2;
+        velocity.y = maxJumpVelocity;
         audioJugador.clip = EnemigoStompeado; audioJugador.Play();
         audioJugador.clip = salto; audioJugador.Play();
         _impulseSource.GenerateImpulseWithForce(_shakeForce);
@@ -377,7 +390,9 @@ public class Player : MonoBehaviour
     void RecibeGolpe()
     {
         _jugadorGolpeado = true;
+        _timerJugadorGolpeado = 0;
         _healthManager.SetCurrentHealth(-1);
+        _comboCounter.ResetComboCount();
         _saltosRealizados = _saltosMaximos;
         _jumpSoltado = false;
         _boxCollider.isTrigger = true;
@@ -393,15 +408,19 @@ public class Player : MonoBehaviour
         {
             if(_controller.collisions.objetoGolpeadoVertical !=null)
             {
-                if (_controller.collisions.below && _saltosRealizados != 0)
+                if (_controller.collisions.below)
                 {
                     _dustTrailPS.Play();
                     _saltosRealizados = 0;
                     _dashTotales = 0;
-                    //Tiempo de coyote
+                    _comboCounter.ResetComboCount();
                     tiempoCoyote = 0.15f;
                     _isJumping = false;
-                    Invoke(nameof(ResetJugadorGolpeado), _tiempoGolpeadoPiso);
+                    
+                    if (_timerJugadorGolpeado > _tiempoGolpeadoPiso)
+                    {
+                        ResetJugadorGolpeado();
+                    }
                 }
 
             }
@@ -422,11 +441,16 @@ public class Player : MonoBehaviour
                         {
                             if (_detectorColisiones.enemigos.edge == true)
                             {
-                                _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
+                                if (_ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
+                                {
+                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
 
-                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
 
-                                Rebotar();
+                                    Rebotar();
+
+                                    _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
+                                }
                             }
                             else
                             {
@@ -440,14 +464,12 @@ public class Player : MonoBehaviour
                                 }
 
                                 RecibeGolpe();
+                                Debug.Log("Bajo vida por horizontal");
                             }
 
                         }
-
                         break;
-
                 }
-
             }
             else if(_detectorColisiones.enemigos.objetoGolpeadoVertical != null)
             {
@@ -459,27 +481,26 @@ public class Player : MonoBehaviour
                         {
                             if (_detectorColisiones.enemigos.below)
                             {
-                                _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
+                                if (_ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoVertical && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoVertical)
+                                {
+                                    _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
 
-                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
+                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
 
-                                Rebotar();
-
+                                    Rebotar();
+                                    _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
+                                }
                             }
                             else
                             {
                                 GolpeadoArriba = true;
-
                                 RecibeGolpe();
+                                Debug.Log("Bajo vida por Vertical");
                             }
-
                         }
-
                         break;
                 }
-
             }
-                        
         }
     }
 

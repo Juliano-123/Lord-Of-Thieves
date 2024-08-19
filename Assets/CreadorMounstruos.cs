@@ -116,6 +116,8 @@ public class CreadorMounstruos : MonoBehaviour
 
     }
 
+
+
     public void RestarMostros(int NaRestar)
     {
         _mostrosFaltaDestruir -= NaRestar;
