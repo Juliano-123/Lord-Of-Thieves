@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CreadorMounstruos : MonoBehaviour
 {
@@ -17,9 +18,6 @@ public class CreadorMounstruos : MonoBehaviour
 
 
     [SerializeField]
-    YouWinScript _youWinScript;
-
-    [SerializeField]
     public GameObject _jugador;
 
     [SerializeField]
@@ -30,6 +28,9 @@ public class CreadorMounstruos : MonoBehaviour
 
     int _currentWave;
     int _previousWave;
+
+    [SerializeField]
+    YouWinScript _youWinScript;
 
 
     void Awake()
@@ -48,6 +49,8 @@ public class CreadorMounstruos : MonoBehaviour
         _mostrosFaltaSpawnear = _mostrosTotales;
         _mostrosFaltaDestruir = _mostrosTotales;
     }
+
+
 
     void Update()
     {
@@ -97,7 +100,9 @@ public class CreadorMounstruos : MonoBehaviour
 
         if (_mostrosFaltaDestruir == 0)
         {
-            YouWinScript.Instance.Activar();
+            _youWinScript.gameObject.SetActive(true);
+
+            
         }
 
     }

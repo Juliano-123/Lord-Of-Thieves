@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioClip salto, dashlisto, dasheando, EnemigoStompeado;
 
+    //COMPONENTES AJENOS
+    [SerializeField]
+    HealthManager _healthManager;
 
     GameObject _ultimoObjetoDestruidoVertical = null;
     GameObject _ultimoObjetoDestruidoHorizontal = null;
@@ -371,7 +374,7 @@ public class Player : MonoBehaviour
     {
         _jugadorGolpeado = true;
         _timerJugadorGolpeado = 0;
-        HealthManager.Instance.SetCurrentHealth(-1);
+        _healthManager.SetCurrentHealth(-1);
         ComboCounter.Instance.ResetComboCount();
         _saltosRealizados = _saltosMaximos;
         _jumpSoltado = false;

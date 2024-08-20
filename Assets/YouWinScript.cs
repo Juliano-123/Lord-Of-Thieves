@@ -6,21 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class YouWinScript : MonoBehaviour
 {
-    public static YouWinScript Instance;
 
     [SerializeField]
     TextMeshProUGUI _enemiesStomped;
 
+    [SerializeField]
+    HealthManager _healthManager;
+
+    [SerializeField]
+    ContadorPuntos _contadorPuntos;
 
     public void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
 
         _enemiesStomped.text = CreadorMounstruos.Instance.GetMostrosStompeados() + " Enemies Stomped";
         gameObject.SetActive(true);
@@ -29,6 +26,11 @@ public class YouWinScript : MonoBehaviour
     public void ContinueButton()
     {
         SceneManager.LoadScene("Prueba wall running");
+
+        UIPersistantData.Instance.SetMaxHealth(_healthManager.GetMaxHealth());
+        UIPersistantData.Instance.SetCurrentHealth(_healthManager.GetCurrentHealth());
+        UIPersistantData.Instance.SetPuntosTotales(_contadorPuntos.GetPuntos());
+        Debug.Log(UIPersistantData.Instance.GetPuntosTotales());
         gameObject.SetActive(false);
     }
 
@@ -37,13 +39,5 @@ public class YouWinScript : MonoBehaviour
         Application.Quit();
     }
 
-    public void Activar()
-    {
-        gameObject.SetActive(true);
-    }
 
-    public void Desactivar()
-    {
-        gameObject.SetActive(false);
-    }
 }
