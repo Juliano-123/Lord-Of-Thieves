@@ -4,7 +4,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class MounstruoVuela : MonoBehaviour, IExplotable
+public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
 {
     [SerializeField]
     AudioSource _audioMostro;
@@ -16,8 +16,9 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
     [SerializeField]
     public GameObject _target;
 
+    //LOS DOS ESTADOS
     bool _isMoving = false;
-    public bool _isHit = false;
+    bool _isHit = false;
 
     int orientacionX = 0;
 
@@ -50,8 +51,6 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
     GameObject _destroyParticlesObject;
     ParticleSystem _destroyParticlesPS;
 
-    //COMPONENTES OTROS
-    public CreadorMounstruos _creadorMounstruos;
 
     void Awake()
     {
@@ -148,9 +147,6 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
 
     void MoveIsHit()
     {
-        //Vector2 desiredVelocity = Vector2.down * _speedHit;
-        //_moveForce.x = 0;
-        //_moveForce.y = Mathf.SmoothDamp(_moveForce.y, desiredVelocity.y, ref velocitySmoothing, accelerationTimeHit);
         _moveForce = Vector2.down * _speedHit;
         _rb.AddForce(_moveForce);
     }
@@ -194,7 +190,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
         _boxCollider2D.enabled = false;
         Explotar();
         _destroyParticlesPS.Play();
-        _creadorMounstruos.RestarMostros(1);
+        CreadorMounstruos.Instance.RestarMostros(1);
         yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
         yield break;
@@ -225,5 +221,10 @@ public class MounstruoVuela : MonoBehaviour, IExplotable
             yield break;
         }
 
+    }
+
+    public void Golpear()
+    {
+        _isHit = true;
     }
 }

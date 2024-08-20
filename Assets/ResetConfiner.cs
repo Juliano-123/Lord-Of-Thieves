@@ -7,8 +7,6 @@ using TMPro;
 public class ResetConfiner : MonoBehaviour
 {
 
-    [SerializeField]
-    CreadorMounstruos _creadorMounstruos;
 
     private void Start()
     {
@@ -17,7 +15,7 @@ public class ResetConfiner : MonoBehaviour
 
     private void Update()
     {
-        if (_creadorMounstruos._mostrosTotales == 20)
+        if (CreadorMounstruos.Instance._mostrosTotales == 20)
         {
             ResetCameraConfiner();
         }

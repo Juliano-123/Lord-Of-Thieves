@@ -5,14 +5,22 @@ using UnityEngine;
 
 public class ComboCounter : MonoBehaviour
 {
+    public static ComboCounter Instance;
+
     int _comboCount;
     TextMeshProUGUI _textoComboCounter;
 
-    [SerializeField]
-    ComboMessage _comboMessage;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         _comboCount = 0;
         _textoComboCounter = GetComponent<TextMeshProUGUI>();
     }
@@ -42,14 +50,14 @@ public class ComboCounter : MonoBehaviour
     public void AddComboCount()
     {
         _comboCount += 1;
-
+        ContadorPuntos.Instance.AddPuntos(100 * _comboCount);
     }
 
     public void ResetComboCount()
     {
         if(_comboCount != 0)
         {
-            _comboMessage.ShowComboMessage(_comboCount);
+            ComboMessage.Instance.ShowComboMessage(_comboCount);
             _comboCount = 0;
         }
 

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static HealthManager Instance;
 
+
+    // Start is called before the first frame update
     int _currentHealth = 3;
     int _maxHealth = 3;
 
@@ -19,8 +21,31 @@ public class HealthManager : MonoBehaviour
     Sprite _fullHeart;
     [SerializeField]
     Sprite _emptyHeart;
-    [SerializeField]
-    GameOverScreen _gameOverScreen;
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+
+        //GameObject[] HeartsArray = GameObject.FindGameObjectsWithTag("EmptyHeart");
+        //_hearts = new Image[HeartsArray.Length];
+
+        //for (int i = 0; i < HeartsArray.Length; ++i)
+        //{
+        //    _hearts[i] = HeartsArray[i].GetComponent<Image>();
+
+        //}
+
+
+
+    }
 
 
     // Update is called once per frame
@@ -47,7 +72,7 @@ public class HealthManager : MonoBehaviour
 
         if (_currentHealth == 0)
         {
-            _gameOverScreen.Activate();
+            GameOverScreen.Instance.Activar();
         }
     }
 

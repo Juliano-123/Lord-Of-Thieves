@@ -36,15 +36,6 @@ public class Player : MonoBehaviour
     GameObject _jumpParticlesObject;
     ParticleSystem _jumpParticlesPS;
 
-    //COMPONENTES AJENOS
-    [SerializeField]
-    GameObject _gameManager;
-    HealthManager _healthManager;
-    CreadorMounstruos _creadorMounstruos;
-    [SerializeField]
-    ContadorPuntos _contadorPuntos;
-    [SerializeField]
-    ComboCounter _comboCounter;
 
 
 
@@ -166,9 +157,6 @@ public class Player : MonoBehaviour
 
 
 
-        //componentes AJENOS
-        _healthManager = _gameManager.GetComponent<HealthManager>();
-        _creadorMounstruos = _gameManager.GetComponent<CreadorMounstruos>();
 
         //CACULA GRAVEDAD EN BASE A LOS VALORES DE ALTURA MAXIMA Y TIEMPO PARA LLEGAR A ELLA
         gravity = -(2 * _maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -368,8 +356,7 @@ public class Player : MonoBehaviour
 
     void Rebotar()
     {
-        _contadorPuntos.AddPuntos(100);
-        _comboCounter.AddComboCount();
+        ComboCounter.Instance.AddComboCount();
         _jumpApretado = 0;
         _saltosRealizados = 0;
         _dashTotales = 0;
@@ -384,8 +371,8 @@ public class Player : MonoBehaviour
     {
         _jugadorGolpeado = true;
         _timerJugadorGolpeado = 0;
-        _healthManager.SetCurrentHealth(-1);
-        _comboCounter.ResetComboCount();
+        HealthManager.Instance.SetCurrentHealth(-1);
+        ComboCounter.Instance.ResetComboCount();
         _saltosRealizados = _saltosMaximos;
         _jumpSoltado = false;
         _boxCollider.isTrigger = true;
@@ -408,7 +395,7 @@ public class Player : MonoBehaviour
                     _saltosRealizados = 0;
                     _dashTotales = 0;
                     _boxCollider.isTrigger = false;
-                    _comboCounter.ResetComboCount();
+                    ComboCounter.Instance.ResetComboCount();
                     tiempoCoyote = 0.15f;
                     _isJumping = false;
                     
@@ -438,7 +425,7 @@ public class Player : MonoBehaviour
                             {
                                 if (_ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
                                 {
-                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<MounstruoVuela>()._isHit = true;
+                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<IGolpeable>().Golpear();
 
                                     Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
 
@@ -478,7 +465,7 @@ public class Player : MonoBehaviour
                             {
                                 if (_ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoVertical && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoVertical)
                                 {
-                                    _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<MounstruoVuela>()._isHit = true;
+                                    _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<IGolpeable>().Golpear();
 
                                     Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
 

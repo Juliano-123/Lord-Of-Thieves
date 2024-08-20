@@ -12,6 +12,8 @@ TagManager:
   - Techo
   - Pared
   - Plataforma
+  - EmptyHeart
+  - GameOverScreen
   layers:
   - Default
   - TransparentFX

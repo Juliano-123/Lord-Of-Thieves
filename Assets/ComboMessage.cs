@@ -5,10 +5,20 @@ using UnityEngine;
 
 public class ComboMessage : MonoBehaviour
 {
+    public static ComboMessage Instance;
+
     TextMeshProUGUI _textoComboMessage;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         _textoComboMessage = GetComponent<TextMeshProUGUI>();
     }
 

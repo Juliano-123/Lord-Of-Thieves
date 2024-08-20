@@ -5,6 +5,7 @@ using TMPro;
 
 public class CreadorMounstruos : MonoBehaviour
 {
+    public static CreadorMounstruos Instance;
 
     [SerializeField]
     TMP_Text _contadorMostros;
@@ -33,6 +34,15 @@ public class CreadorMounstruos : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+
         _contadorMostros.text = _mostrosTotales.ToString();
         _currentWave = 1;
         _mostrosFaltaSpawnear = _mostrosTotales;
@@ -87,7 +97,7 @@ public class CreadorMounstruos : MonoBehaviour
 
         if (_mostrosFaltaDestruir == 0)
         {
-            _youWinScript.Activate();
+            YouWinScript.Instance.Activar();
         }
 
     }
@@ -106,7 +116,6 @@ public class CreadorMounstruos : MonoBehaviour
 
             GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo, _lugaresSpawn[_lugarSpawn].transform.position, Quaternion.identity);
             ObjetoSpawneado.GetComponent<MounstruoVuela>()._target = _jugador;
-            ObjetoSpawneado.GetComponent<MounstruoVuela>()._creadorMounstruos = this;
             _mostrosFaltaSpawnear -= 1;
             _lugaresSpawnPrevios.Add(_lugarSpawn);
         }

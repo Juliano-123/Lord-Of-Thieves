@@ -5,11 +5,21 @@ using UnityEngine;
 
 public class ContadorPuntos : MonoBehaviour
 {
+    public static ContadorPuntos Instance;
+
     int _puntosTotales;
     TextMeshProUGUI _textoPuntosTotales;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         _puntosTotales = 0;
         _textoPuntosTotales = GetComponent<TextMeshProUGUI>();
     }
@@ -25,6 +35,11 @@ public class ContadorPuntos : MonoBehaviour
     {
         _puntosTotales += puntosAdded;
     
+    }
+
+    public int GetPuntos()
+    {
+        return _puntosTotales;
     }
 
 }
