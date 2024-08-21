@@ -13,13 +13,7 @@ public class ResetConfiner : MonoBehaviour
         ResetCameraConfiner();
     }
 
-    private void Update()
-    {
-        if (CreadorMounstruos.Instance._mostrosTotales == 20)
-        {
-            ResetCameraConfiner();
-        }
-    }
+
 
     //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     //static void OnAfterSceneLoad()

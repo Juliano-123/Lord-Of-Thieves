@@ -4,7 +4,7 @@ using System.ComponentModel.Design;
 using Unity.Burst.CompilerServices;
 using UnityEngine.InputSystem;
 using Cinemachine;
-
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -435,6 +435,7 @@ public class Player : MonoBehaviour
                                     Rebotar();
 
                                     _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
+                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
                                 }
                             }
                             else
@@ -474,6 +475,7 @@ public class Player : MonoBehaviour
 
                                     Rebotar();
                                     _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
+                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
                                 }
                             }
                             else
@@ -489,6 +491,12 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    void ResetUltimosEnemigosGolpeados()
+    {
+        _ultimoObjetoDestruidoHorizontal = null;
+        _ultimoObjetoDestruidoVertical = null;
+    }
 
     void ResetJugadorGolpeado()
     {
