@@ -26,8 +26,8 @@ public class HealthManager : MonoBehaviour
 
     private void Awake()
     {
-        _maxHealth = UIPersistantData.Instance.GetMaxHealth();
-        _currentHealth = UIPersistantData.Instance.GetCurrentHealth();
+        _maxHealth = 3;
+        _currentHealth = 3;
 
     }
 

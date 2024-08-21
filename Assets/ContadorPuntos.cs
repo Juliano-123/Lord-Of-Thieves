@@ -22,7 +22,7 @@ public class ContadorPuntos : MonoBehaviour
 
         _textoPuntosTotales = GetComponent<TextMeshProUGUI>();
 
-        _puntosTotales = UIPersistantData.Instance.GetPuntosTotales();
+        _puntosTotales = 0;
     }
 
     // Update is called once per frame

@@ -5,7 +5,6 @@ using UnityEngine;
 public class UIPersistantData : MonoBehaviour
 {
     public static UIPersistantData Instance;
-    // Start is called before the first frame update
 
     private static int MaxHealth = 3;
     private static int CurrentHealth = 3;

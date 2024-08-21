@@ -24,7 +24,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
 
     const float _forcePower = 10f;
     [SerializeField]
-    float _speed = 4f;
+    float _speed = 5f;
     [SerializeField]
     float _force = 15f;
 
