@@ -25,6 +25,7 @@ public class GameOverScreen : MonoBehaviour
     {
         UIPersistantData.Instance.ResetAllData();
         SceneManager.LoadScene("Prueba wall running");
+        ResetConfiner.Instance.ResetConfinerExterno();
         gameObject.SetActive(false);
     }
 

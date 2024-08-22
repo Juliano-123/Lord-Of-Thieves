@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGolpeable
+public interface IReseteable
 {
-    void Golpear();
-    
-
+    void Resetear();
 }

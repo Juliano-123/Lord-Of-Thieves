@@ -27,6 +27,8 @@ public class YouWinScript : MonoBehaviour
     {
         SceneManager.LoadScene("Prueba wall running");
 
+        ResetConfiner.Instance.ResetConfinerExterno();
+
         UIPersistantData.Instance.SetMaxHealth(_healthManager.GetMaxHealth());
         UIPersistantData.Instance.SetCurrentHealth(_healthManager.GetCurrentHealth());
         UIPersistantData.Instance.SetPuntosTotales(_contadorPuntos.GetPuntos());

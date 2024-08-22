@@ -2,9 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
+public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable, IReseteable, IExplotable
 {
+
+    //COMPONENTES
     Rigidbody2D _rigidbody;
+    SpriteRenderer _spriteRenderer;
+    BoxCollider2D _boxCollider2D;
+
+    [SerializeField]
+    AudioSource _audioPiedra;
+    [SerializeField]
+    AudioClip _enemigoStompeado;
+
+    //COMPONENTES CHILD
+    GameObject _destroyParticlesObject;
+    ParticleSystem _destroyParticlesPS;
 
     [SerializeField]
     bool _isRotating = true;
@@ -25,9 +38,11 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
 
     //VARIABLES RANDOM MOVEMENT
     //LUGAR RANDOM QUE SE CALCULA
+    [SerializeField]    
     Vector3 _randomTarget;
     //TIMER DE CADA CUANTO RESETEA LA POSICION
-    float _timer = 0.2f;
+    [SerializeField]
+    float _timer = 3f;
     //POSICIONES MINIMAS Y MAXIMAS X E Y
     [SerializeField]
     float _minPosX = 0f;
@@ -72,6 +87,7 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
     float _speedHit = 30;
 
     //PRIMERA POSICION GUARDADA, PARA VOLVER
+    [SerializeField]
     Vector3 _firstPosition;
     [SerializeField]
     float _rotateSpeed = 150f;
@@ -82,7 +98,15 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
     // Start is called before the first frame update
     void Awake()
     {
+        //COMPONENTES PROPIOS
         _rigidbody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
+
+        //COMPONENTES PROPIOS CHILD
+        _destroyParticlesObject = transform.Find("DestroyParticles").gameObject;
+        _destroyParticlesPS = _destroyParticlesObject.GetComponent<ParticleSystem>();
+
         _firstPosition = transform.position;
         _randomTarget = transform.position;
     }
@@ -90,14 +114,21 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
     // Update is called once per frame
     void Update()
     {
+        _timer -= Time.deltaTime;
 
-        if (_isRotating == true)
+
+        if (_timer >= 0 && _isRotating == true)
         {
             MoveInRotation();
+            //Debug.Log("LLAMO MOVE IN ROTATION");
+        }
+        else if (_timer <= 0 && _isRotating == true)
+        {
+            _isRotating = false;
+            _isMovingRandom = true;
         }
 
 
-        _timer -= Time.deltaTime;
 
         if (_timer <= 0 && _isRotating == false)
         {
@@ -106,12 +137,12 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
             
         }
 
-        if (transform.position.x > _minPosX && transform.position.x < _maxPosX && transform.position.y > _minPosY && transform.position.y < _maxPosY)
-        {
-            _isCheckingBounds = true;
-        }
 
-        CheckBounds();
+        if (_isCheckingBounds)
+        {
+            CheckBounds();
+
+        }
 
     }
 
@@ -119,17 +150,23 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
     {
         if (_isMovingRandom == true)
         {
-            MoveToTarget(_direction);
+            MoveToRandomTarget(_direction);
+            Debug.Log("LLAMO MOVE IN RANDOM");
         }
 
         if (_isHit == true)
         {
+            if (_isMovingRandom == true)
+            {
+                _rigidbody.velocity = Vector2.zero;
+                _isMovingRandom = false;
+            }
             MoveIsHit();
         }
 
     }
 
-    void MoveToTarget(Vector2 Direction)
+    void MoveToRandomTarget(Vector2 Direction)
     {
         Vector2 desiredVelocity = Direction * _randomSpeed;
         Vector2 deltaVelocity = desiredVelocity - _rigidbody.velocity;
@@ -137,6 +174,11 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
         _moveForce.x = Mathf.SmoothDamp(_moveForce.x, desiredVelocity.x, ref velocitySmoothing, accelerationTime);
         _moveForce.y = Mathf.SmoothDamp(_moveForce.y, desiredVelocity.y, ref velocitySmoothing, accelerationTime);
         _rigidbody.AddForce(_moveForce);
+        if (transform.position.x > _minPosX && transform.position.x < _maxPosX && transform.position.y > _minPosY && transform.position.y < _maxPosY)
+        {
+            _isCheckingBounds = true;
+        }
+
     }
 
     void CalculateRandomPosition()
@@ -148,11 +190,16 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
 
         _randomTarget = new Vector3(xpos, ypos, 0);
 
-        //if (_randomTarget.magnitude - transform.position.magnitude < _distanciaMinima)
-        //{
-        //    //porcentaje de distancia minima
-        //    _randomTarget = _randomTarget * _distanciaMinima;
-        //}
+        if( _isCheckingBounds )
+        {
+            if (_randomTarget.magnitude - transform.position.magnitude < _distanciaMinima)
+            {
+                //porcentaje de distancia minima
+                _randomTarget = _randomTarget * _distanciaMinima;
+            }
+
+        }
+
 
         _direction = (_randomTarget - transform.position).normalized;
 
@@ -170,10 +217,7 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
 
     void MoveInRotation()
     {
-
         transform.RotateAround(_moon.transform.position, new Vector3(0,0,1), _rotateSpeed * Time.deltaTime);
-        
-
     }
 
     void MoveIsHit()
@@ -190,12 +234,96 @@ public class Boos1_Moon_RockMovement : MonoBehaviour, IGolpeable
         _isRotating = false;
     }
 
+    IEnumerator ResetPositionAndFadeIn()
+    {
+        //ESPERA ANTES DE HACER NADA, PA QUE EXPLOTE
+        yield return new WaitForSeconds(1f);
+
+        transform.position = _firstPosition;
+        Color Transparente = _spriteRenderer.color;
+        Transparente.a = 0;
+        _spriteRenderer.color = Transparente;
+        _boxCollider2D.enabled = true;
+        _rigidbody.velocity = Vector2.zero;
+
+        //ESPERA DE VUELTA PARA NO RESETEAR EL COLOR Y POSICION MIL VECES
+        yield return new WaitForSeconds(0.001f);
+        _spriteRenderer.enabled = true;
+
+        float alphaVal = _spriteRenderer.color.a;
+        Color tmp = _spriteRenderer.color;
+
+        _boxCollider2D.isTrigger = true;
+
+        while (_spriteRenderer.color.a < 1)
+        {
+            alphaVal += 0.01f;
+            tmp.a = alphaVal;
+            _spriteRenderer.color = tmp;
+
+            yield return new WaitForSeconds(0.005f);
+        }
+
+
+        if (_spriteRenderer.color.a >= 1)
+        {
+            _boxCollider2D.isTrigger = false;
+            _timer = 2;
+            _isRotating = true;
+            yield break;
+        }
+
+    }
+
     public void Golpear()
     {
         _isHit = true;
-        _isRotating = false;
         _isMovingRandom = false;
         Invoke(nameof(ResetMoveToRandom), 0.2f);
+        _audioPiedra.clip = _enemigoStompeado; _audioPiedra.Play();
+    }
+
+    public void Resetear()
+    {
+        _isMovingRandom = false;
+        _isHit = false;
+        _isRotating = false;
+        _boxCollider2D.enabled = false;
+        _rigidbody.velocity = Vector2.zero;
+        _isCheckingBounds = false;
+
+        Explotar();
+        StartCoroutine(ResetPositionAndFadeIn());
+    }
+
+    public void Explotar()
+    {
+        _spriteRenderer.enabled = false;
+        Collider2D[] inExplosionRadius = null;
+        float explosionRadius = 5f;
+        float explosionForceMulti = 400f;
+
+        inExplosionRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        foreach (Collider2D colliderDetectado in inExplosionRadius)
+        {
+            Rigidbody2D rigidbody2DDetectado = colliderDetectado.GetComponent<Rigidbody2D>();
+
+            if (rigidbody2DDetectado != null)
+            {
+                Vector2 distancia = colliderDetectado.transform.position - transform.position;
+
+                if (distancia.sqrMagnitude > 0)
+                {
+                    float explosionForce = explosionForceMulti;
+                    rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
+                    Debug.Log("SE APLICO FUERZA");
+                }
+            }
+        }
+
+        _destroyParticlesPS.Play();
+
     }
 }
 

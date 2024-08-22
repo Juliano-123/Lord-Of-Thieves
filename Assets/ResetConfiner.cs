@@ -6,13 +6,37 @@ using TMPro;
 
 public class ResetConfiner : MonoBehaviour
 {
+    public static ResetConfiner Instance;
 
 
-    private void Start()
+    [SerializeField]
+    SpriteRenderer _spriteRendererCheckDeCamara;
+
+    bool _reset = false;
+
+    private void Awake()
     {
+
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+
         ResetCameraConfiner();
     }
 
+    private void Update()
+    {
+
+        if (_spriteRendererCheckDeCamara.isVisible == true)
+        {
+            ResetCameraConfiner();
+        }
+    }
 
 
     //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -23,11 +47,14 @@ public class ResetConfiner : MonoBehaviour
     //    //Debug.Log("First scene loaded: After Awake is called.");
     //}
 
-    public void ResetCameraConfiner()
+    void ResetCameraConfiner()
     {
         GetComponent<CinemachineConfiner2D>().InvalidateCache();   
     }
 
-
+    public void ResetConfinerExterno()
+    {
+        _reset = true;
+    }
 
 }

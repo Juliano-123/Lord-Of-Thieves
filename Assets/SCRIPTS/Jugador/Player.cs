@@ -359,7 +359,6 @@ public class Player : MonoBehaviour
 
     void Rebotar()
     {
-        ComboCounter.Instance.AddComboCount();
         _jumpApretado = 0;
         _saltosRealizados = 0;
         _dashTotales = 0;

@@ -178,18 +178,19 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
 
         }
 
+        _destroyParticlesPS.Play();
+
     }
 
 
 
     IEnumerator Destroy()
     {
-        _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
+
         yield return new WaitForSeconds(0.25f);
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
         Explotar();
-        _destroyParticlesPS.Play();
         CreadorMounstruos.Instance.RestarMostros(1);
         yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
@@ -225,6 +226,8 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
 
     public void Golpear()
     {
+        ComboCounter.Instance.AddComboCount();
+        _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
         _isHit = true;
     }
 }
