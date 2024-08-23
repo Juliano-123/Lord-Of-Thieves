@@ -4,10 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class CreadorMounstruos : MonoBehaviour
+public class CreadorMounstruos : MonoBehaviour, IRestarMostros
 {
-    public static CreadorMounstruos Instance;
-
     [SerializeField]
     TMP_Text _contadorMostros;
 
@@ -35,19 +33,13 @@ public class CreadorMounstruos : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
-
         _contadorMostros.text = _mostrosTotales.ToString();
         _currentWave = 1;
         _mostrosFaltaSpawnear = _mostrosTotales;
         _mostrosFaltaDestruir = _mostrosTotales;
+        //UIPersistantData.Instance.SetMostrosStompeados(0);
+        //UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosFaltaDestruir);
+
     }
 
 
@@ -101,8 +93,10 @@ public class CreadorMounstruos : MonoBehaviour
         if (_mostrosFaltaDestruir == 0)
         {
             _youWinScript.gameObject.SetActive(true);
+            UIPersistantData.Instance.SetLevel(2);
+            _jugador.SetActive(false);
+            gameObject.SetActive(false);
 
-            
         }
 
     }
@@ -121,6 +115,7 @@ public class CreadorMounstruos : MonoBehaviour
 
             GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo, _lugaresSpawn[_lugarSpawn].transform.position, Quaternion.identity);
             ObjetoSpawneado.GetComponent<MounstruoVuela>()._target = _jugador;
+            ObjetoSpawneado.GetComponent<MounstruoVuela>().LevelManager = gameObject;
             _mostrosFaltaSpawnear -= 1;
             _lugaresSpawnPrevios.Add(_lugarSpawn);
         }
@@ -132,10 +127,7 @@ public class CreadorMounstruos : MonoBehaviour
 
 
 
-    public void RestarMostros(int NaRestar)
-    {
-        _mostrosFaltaDestruir -= NaRestar;
-    }
+
 
     public int GetMostrosRestantes()
     {
@@ -147,4 +139,10 @@ public class CreadorMounstruos : MonoBehaviour
         return _mostrosTotales - _mostrosFaltaDestruir;
     }
 
+    public void RestarMostros(int NaRestar)
+    {
+        _mostrosFaltaDestruir -= NaRestar;
+        UIPersistantData.Instance.SetMostrosStompeados(_mostrosTotales - _mostrosFaltaDestruir);
+        UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosFaltaDestruir);
+    }
 }

@@ -58,7 +58,7 @@ public class HealthManager : MonoBehaviour
         if (_currentHealth == 0)
         {
             _gameOverScreen.gameObject.SetActive(true);
-            Debug.Log("llamo enabled");
+           
         }
     }
 

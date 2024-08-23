@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
+    [SerializeField]
+    GameObject _jugador;
+
+    [SerializeField]
+    GameObject[] Levels;
 
     [SerializeField]
     TextMeshProUGUI _enemiesStomped;
@@ -16,16 +21,24 @@ public class GameOverScreen : MonoBehaviour
     public void Awake()
     {
 
-        _enemiesStomped.text = CreadorMounstruos.Instance.GetMostrosStompeados() + " Enemies Stomped";
-        _leftAlive.text = CreadorMounstruos.Instance.GetMostrosRestantes() + " Left Alive";
+        _enemiesStomped.text = UIPersistantData.Instance.GetMostrosStompeados() + " Enemies Stomped";
+        _leftAlive.text = UIPersistantData.Instance.GetMostrosFaltaDestruir() + " Left Alive";
         gameObject.SetActive(true);
     }
 
     public void RestartButton()
     {
         UIPersistantData.Instance.ResetAllData();
-        SceneManager.LoadScene("Prueba wall running");
-        ResetConfiner.Instance.ResetConfinerExterno();
+
+        foreach (GameObject Level in Levels)
+        {
+            Level.SetActive(false);
+        }
+
+        Levels[0].SetActive(true);
+        _jugador.SetActive(true);
+
+
         gameObject.SetActive(false);
     }
 

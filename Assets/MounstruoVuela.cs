@@ -11,7 +11,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
     [SerializeField]
     AudioClip _enemigoStompeado;
 
-
+    public GameObject LevelManager;
 
     [SerializeField]
     public GameObject _target;
@@ -191,7 +191,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
         Explotar();
-        CreadorMounstruos.Instance.RestarMostros(1);
+        LevelManager.GetComponent<IRestarMostros>().RestarMostros(1);
         yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
         yield break;
