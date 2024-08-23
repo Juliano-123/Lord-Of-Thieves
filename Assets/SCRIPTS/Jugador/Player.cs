@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioSource audioJugador;
     [SerializeField]
-    AudioClip salto, dashlisto, dasheando, EnemigoStompeado;
+    AudioClip salto, dashlisto, dasheando;
 
     //COMPONENTES AJENOS
     [SerializeField]
