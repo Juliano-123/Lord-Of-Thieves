@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class CreadorMounstruos : MonoBehaviour, IRestarMostros
+public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruibles
 {
     [SerializeField]
     TMP_Text _contadorMostros;
@@ -37,12 +37,13 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros
         _currentWave = 1;
         _mostrosFaltaSpawnear = _mostrosTotales;
         _mostrosFaltaDestruir = _mostrosTotales;
-        //UIPersistantData.Instance.SetMostrosStompeados(0);
-        //UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosFaltaDestruir);
 
     }
 
-
+    void OnEnable()
+    {
+        Awake();
+    }
 
     void Update()
     {
@@ -93,9 +94,9 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros
         if (_mostrosFaltaDestruir == 0)
         {
             _youWinScript.gameObject.SetActive(true);
-            UIPersistantData.Instance.SetLevel(2);
             _jugador.SetActive(false);
             gameObject.SetActive(false);
+            UIPersistantData.Instance.SetLevel(2);
 
         }
 
@@ -114,9 +115,9 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros
             }
 
             GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo, _lugaresSpawn[_lugarSpawn].transform.position, Quaternion.identity);
-            ObjetoSpawneado.GetComponent<MounstruoVuela>()._target = _jugador;
-            ObjetoSpawneado.GetComponent<MounstruoVuela>().LevelManager = gameObject;
-            _mostrosFaltaSpawnear -= 1;
+            ObjetoSpawneado.GetComponent<ILevelManagerSeteable>().SetearLevelManager(gameObject);
+            ObjetoSpawneado.GetComponent<IJugadorSeteable>().SetearJugador(_jugador);
+            _mostrosFaltaSpawnear -= 1;          
             _lugaresSpawnPrevios.Add(_lugarSpawn);
         }
 
@@ -144,5 +145,15 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros
         _mostrosFaltaDestruir -= NaRestar;
         UIPersistantData.Instance.SetMostrosStompeados(_mostrosTotales - _mostrosFaltaDestruir);
         UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosFaltaDestruir);
+    }
+
+    public void DestruirMostros()
+    {
+        GameObject[] Enemigos = GameObject.FindGameObjectsWithTag("Enemigo");
+        foreach (GameObject Enemigo in Enemigos)
+        {
+            Destroy(Enemigo);
+        }
+
     }
 }

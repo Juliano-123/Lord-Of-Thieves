@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    public static HealthManager Instance;
 
     // Start is called before the first frame update
     int _currentHealth = 3;
@@ -26,9 +27,19 @@ public class HealthManager : MonoBehaviour
 
     private void Awake()
     {
-        _maxHealth = 3;
-        _currentHealth = 3;
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
 
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        _maxHealth = UIPersistantData.Instance.GetMaxHealth();
+        _currentHealth = UIPersistantData.Instance.GetCurrentHealth();
     }
 
 
@@ -68,8 +79,9 @@ public class HealthManager : MonoBehaviour
 
         }
 
-    public int GetMaxHealth() { return _maxHealth; }
-
-    public int GetCurrentHealth() { return _currentHealth; }
-
+    public void ResetHealth()
+    {
+        _maxHealth = UIPersistantData.Instance.GetMaxHealth();
+        _currentHealth = UIPersistantData.Instance.GetCurrentHealth();
+    }
 }

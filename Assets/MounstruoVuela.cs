@@ -4,17 +4,16 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
+public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSeteable, ILevelManagerSeteable
 {
     [SerializeField]
     AudioSource _audioMostro;
     [SerializeField]
     AudioClip _enemigoStompeado;
 
-    public GameObject LevelManager;
-
-    [SerializeField]
-    public GameObject _target;
+    GameObject _levelManager;
+        
+    GameObject _target;
 
     //LOS DOS ESTADOS
     bool _isMoving = false;
@@ -191,7 +190,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
         Explotar();
-        LevelManager.GetComponent<IRestarMostros>().RestarMostros(1);
+        _levelManager.GetComponent<IRestarMostros>().RestarMostros(1);
         yield return new WaitForSeconds(0.7f);
         Destroy(gameObject);
         yield break;
@@ -229,5 +228,15 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable
         ComboCounter.Instance.AddComboCount();
         _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
         _isHit = true;
+    }
+
+    public void SetearJugador(GameObject Jugador)
+    {
+        _target = Jugador;
+    }
+
+    public void SetearLevelManager(GameObject LevelManager)
+    {
+        _levelManager = LevelManager;
     }
 }

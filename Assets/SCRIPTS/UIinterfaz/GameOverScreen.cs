@@ -18,17 +18,20 @@ public class GameOverScreen : MonoBehaviour
     TextMeshProUGUI _leftAlive;
 
 
-    public void Awake()
+    private void OnEnable()
     {
-
         _enemiesStomped.text = UIPersistantData.Instance.GetMostrosStompeados() + " Enemies Stomped";
         _leftAlive.text = UIPersistantData.Instance.GetMostrosFaltaDestruir() + " Left Alive";
-        gameObject.SetActive(true);
+        Time.timeScale = 0f;
+
     }
 
     public void RestartButton()
     {
+        Levels[UIPersistantData.Instance.GetLevel() - 1].GetComponent<IMostrosDestruibles>().DestruirMostros();
+
         UIPersistantData.Instance.ResetAllData();
+        HealthManager.Instance.ResetHealth();
 
         foreach (GameObject Level in Levels)
         {
@@ -36,9 +39,9 @@ public class GameOverScreen : MonoBehaviour
         }
 
         Levels[0].SetActive(true);
+        _jugador.transform.position = new Vector3(-10, 3, 0);
         _jugador.SetActive(true);
-
-
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 

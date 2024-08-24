@@ -7,7 +7,6 @@ public class ContadorPuntos : MonoBehaviour
 {
     public static ContadorPuntos Instance;
 
-    int _puntosTotales;
     TextMeshProUGUI _textoPuntosTotales;
 
     void Awake()
@@ -22,25 +21,12 @@ public class ContadorPuntos : MonoBehaviour
 
         _textoPuntosTotales = GetComponent<TextMeshProUGUI>();
 
-        _puntosTotales = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _textoPuntosTotales.text = _puntosTotales.ToString("#,##0");
+        _textoPuntosTotales.text = UIPersistantData.Instance.GetPuntosTotales().ToString("#,##0");
 
     }
-
-    public void AddPuntos(int puntosAdded)
-    {
-        _puntosTotales += puntosAdded;
-    
-    }
-
-    public int GetPuntos()
-    {
-        return _puntosTotales;
-    }
-
 }

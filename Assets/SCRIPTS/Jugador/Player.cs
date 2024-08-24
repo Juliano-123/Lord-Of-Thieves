@@ -45,9 +45,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioClip salto, dashlisto, dasheando;
 
-    //COMPONENTES AJENOS
-    [SerializeField]
-    HealthManager _healthManager;
 
     GameObject _ultimoObjetoDestruidoVertical = null;
     GameObject _ultimoObjetoDestruidoHorizontal = null;
@@ -172,6 +169,10 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        ResetJugadorGolpeado();
+    }
 
     void Update()
     {
@@ -277,7 +278,7 @@ public class Player : MonoBehaviour
                 _controller.collisions.objetoGolpeadoVertical.tag == "Plataforma")) ||
                 tiempoCoyoteON) && Time.time - tiempoJump1 < 0.15 && _saltosRealizados == 0)
             {
-                ResetJugadorGolpeado();
+                Invoke(nameof(ResetJugadorGolpeado), 0.2f);
                 Saltar();
                 _jumpParticlesPS.Play();
             }
@@ -373,7 +374,7 @@ public class Player : MonoBehaviour
     {
         _jugadorGolpeado = true;
         _timerJugadorGolpeado = 0;
-        _healthManager.SetCurrentHealth(-1);
+        HealthManager.Instance.SetCurrentHealth(-1);
         ComboCounter.Instance.ResetComboCount();
         _saltosRealizados = _saltosMaximos;
         _jumpSoltado = false;

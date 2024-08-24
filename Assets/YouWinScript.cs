@@ -21,17 +21,19 @@ public class YouWinScript : MonoBehaviour
     [SerializeField]
     ContadorPuntos _contadorPuntos;
 
-    public void Awake()
-    {
 
+    private void OnEnable()
+    {
         _enemiesStomped.text = UIPersistantData.Instance.GetMostrosStompeados() + " Enemies Stomped";
-        gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ContinueButton()
     {
         Levels[UIPersistantData.Instance.GetLevel() - 1].SetActive(true);
+        _jugador.transform.position = new Vector3(-10, 3, 0);
         _jugador.SetActive(true);
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 

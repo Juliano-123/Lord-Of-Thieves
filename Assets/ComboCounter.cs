@@ -50,7 +50,7 @@ public class ComboCounter : MonoBehaviour
     public void AddComboCount()
     {
         _comboCount += 1;
-        ContadorPuntos.Instance.AddPuntos(100 * _comboCount);
+        UIPersistantData.Instance.AddPuntosTotales(100 * _comboCount);
     }
 
     public void ResetComboCount()
