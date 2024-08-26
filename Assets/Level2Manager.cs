@@ -30,21 +30,21 @@ public class Level2Manager : MonoBehaviour, IRestarMostros, IMostrosDestruibles
     YouWinScript _youWinScript;
 
 
-    void Awake()
+    void Start()
     {
         _contadorMostros.text = _mostrosTotales.ToString();
         _currentWave = 1;
         _mostrosFaltaSpawnear = _mostrosTotales;
         _mostrosFaltaDestruir = _mostrosTotales;
         UIPersistantData.Instance.SetMostrosStompeados(0);
-        UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosFaltaDestruir);
+        UIPersistantData.Instance.SetMostrosFaltaDestruir(_mostrosTotales);
 
 
     }
 
     void OnEnable()
     {
-        Awake();
+        Start();
     }
 
 

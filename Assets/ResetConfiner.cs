@@ -39,22 +39,11 @@ public class ResetConfiner : MonoBehaviour
     }
 
 
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    //static void OnAfterSceneLoad()
-    //{
-    //    //ResetConfiner _resetConfiner = gameObject.AddComponent(typeof(ResetConfiner)) as ResetConfiner;
-    //    //_resetConfiner.ResetCameraConfiner();
-    //    //Debug.Log("First scene loaded: After Awake is called.");
-    //}
 
     void ResetCameraConfiner()
     {
         GetComponent<CinemachineConfiner2D>().InvalidateCache();   
     }
 
-    public void ResetConfinerExterno()
-    {
-        _reset = true;
-    }
 
 }
