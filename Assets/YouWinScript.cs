@@ -31,7 +31,7 @@ public class YouWinScript : MonoBehaviour
     public void ContinueButton()
     {
         Levels[UIPersistantData.Instance.GetLevel() - 1].SetActive(true);
-        _jugador.transform.position = new Vector3(-10, 3, 0);
+        _jugador.GetComponent<IReseteable>().Resetear();
         _jugador.SetActive(true);
         Time.timeScale = 1f;
         gameObject.SetActive(false);

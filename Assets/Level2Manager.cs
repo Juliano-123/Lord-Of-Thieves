@@ -18,7 +18,7 @@ public class Level2Manager : MonoBehaviour, IRestarMostros, IMostrosDestruibles
     public GameObject _jugador;
 
     [SerializeField]
-    GameObject _objetoMounstruo;
+    GameObject[] _objetoMounstruo = new GameObject[2];
 
     [SerializeField]
     GameObject[] _lugaresSpawn = new GameObject[5];
@@ -111,17 +111,19 @@ public class Level2Manager : MonoBehaviour, IRestarMostros, IMostrosDestruibles
 
         for (int i = 0; i < NdeMostros; i++)
         {
-            int _lugarSpawn = Random.Range(0, 6);
-            while (_lugaresSpawnPrevios.Contains(_lugarSpawn))
+            int LugarSpawn = Random.Range(0, 6);
+            while (_lugaresSpawnPrevios.Contains(LugarSpawn))
             {
-                _lugarSpawn = Random.Range(0, 6);
+                LugarSpawn = Random.Range(0, 6);
             }
 
-            GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo, _lugaresSpawn[_lugarSpawn].transform.position, Quaternion.identity);
+            int TipoMonstro = Random.Range(0, 2);
+
+            GameObject ObjetoSpawneado = Instantiate(_objetoMounstruo[TipoMonstro], _lugaresSpawn[LugarSpawn].transform.position, Quaternion.identity);
             ObjetoSpawneado.GetComponent<ILevelManagerSeteable>().SetearLevelManager(gameObject);
             ObjetoSpawneado.GetComponent<IJugadorSeteable>().SetearJugador(_jugador);
             _mostrosFaltaSpawnear -= 1;
-            _lugaresSpawnPrevios.Add(_lugarSpawn);
+            _lugaresSpawnPrevios.Add(LugarSpawn);
         }
 
         _previousWave = _currentWave;

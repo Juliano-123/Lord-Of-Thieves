@@ -66,9 +66,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
         StartColor.a = 0;
         _spriteRenderer.color = StartColor;
 
-        gameObject.tag = "Untagged";
-        gameObject.layer = 0;
-        _boxCollider2D.isTrigger = true;
+        _boxCollider2D.enabled = false;
 
     }
 
@@ -214,9 +212,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
 
         if (_spriteRenderer.color.a >= 1)
         {
-            gameObject.tag = "Enemigo";
-            gameObject.layer = 9;
-            _boxCollider2D.isTrigger = false;
+            _boxCollider2D.enabled = true;
             _isMoving = true;
             yield break;
         }

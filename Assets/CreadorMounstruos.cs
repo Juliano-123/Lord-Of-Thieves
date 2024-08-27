@@ -9,7 +9,7 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     [SerializeField]
     TMP_Text _contadorMostros;
 
-    public int _mostrosTotales = 20;
+    int _mostrosTotales = 9;
     int _mostrosFaltaSpawnear;
     int _mostrosFaltaDestruir;
     int _mostrosCurrentWave;
@@ -56,12 +56,12 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
             case 1:
                 _mostrosCurrentWave = 1;
                 SpawnearMostros(_mostrosCurrentWave);
-                _mostrosCurrentWave += 1;
+                _mostrosCurrentWave += 2;
                 break;
             
             case 2:
                 SpawnearMostros(_mostrosCurrentWave);
-                _mostrosCurrentWave += 1;
+                _mostrosCurrentWave += 2;
                 break;
 
             case 3:

@@ -7,7 +7,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(Controller2D))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IReseteable
 {
     //components PROPIOS
     BoxCollider2D _boxCollider;
@@ -417,51 +417,10 @@ public class Player : MonoBehaviour
 
         if (_detectorColisiones.enemigos.hayGolpe)
         {
-            if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null)
-            {
-                switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
-                {
-                    case "Enemigo":
-                        if (_jugadorGolpeado == false)
-                        {
-                            if (_detectorColisiones.enemigos.edge == true)
-                            {
-                                if (_ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
-                                {
-                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<IGolpeable>().Golpear();
-
-                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
-
-                                    Rebotar();
-
-                                    _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
-                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
-                                }
-                            }
-                            else
-                            {
-                                if (_detectorColisiones.enemigos.left)
-                                {
-                                    GolpeadoIzquierda = true;
-                                }
-                                else
-                                {
-                                    GolpeadoDerecha = true;
-                                }
-
-                                RecibeGolpe();
-                                Debug.Log("Bajo vida por horizontal");
-                            }
-
-                        }
-                        break;
-                }
-            }
-            else if(_detectorColisiones.enemigos.objetoGolpeadoVertical != null)
+            if (_detectorColisiones.enemigos.objetoGolpeadoVertical != null)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoVertical.tag)
                 {
-
                     case "Enemigo":
                         if (_jugadorGolpeado == false)
                         {
@@ -488,6 +447,46 @@ public class Player : MonoBehaviour
                         break;
                 }
             }
+            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null)
+            {
+                switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
+                {
+                    case "Enemigo":
+                        if (_jugadorGolpeado == false)
+                        {
+                            if (_detectorColisiones.enemigos.edge == true)
+                            {
+                                if (_ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
+                                {
+                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<IGolpeable>().Golpear();
+
+                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+
+                                    Rebotar();
+
+                                    _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
+                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
+                                }
+                            }
+                            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != _ultimoObjetoDestruidoVertical)
+                            {
+                                if (_detectorColisiones.enemigos.left)
+                                {
+                                    GolpeadoIzquierda = true;
+                                }
+                                else
+                                {
+                                    GolpeadoDerecha = true;
+                                }
+
+                                RecibeGolpe();
+                                Debug.Log("Bajo vida por horizontal");
+                            }
+
+                        }
+                        break;
+                }
+            }
         }
     }
 
@@ -506,6 +505,7 @@ public class Player : MonoBehaviour
         GolpeadoDerecha = false;
         GolpeadoIzquierda = false;
         _boxCollider.isTrigger = false;
+        _detectorColisiones.enemigos.Reset();
     }
 
 
@@ -519,13 +519,6 @@ public class Player : MonoBehaviour
     {
         _spriteRenderer.color = Color.white;
     }
-
-    private void OnDestroy()
-    {
-        
-
-    }
-
 
 
     //seteo de animaciones
@@ -661,7 +654,11 @@ public class Player : MonoBehaviour
         //_shootSoltado = input;
     }
 
-
+    public void Resetear()
+    {
+        transform.position = new Vector3(-10, 1.5f, 0);
+        ResetJugadorGolpeado();
+    }
 }
 
 
