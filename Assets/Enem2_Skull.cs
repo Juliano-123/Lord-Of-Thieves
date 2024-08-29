@@ -32,7 +32,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
     [SerializeField]
     float accelerationTime = 0.005f;
 
-    [SerializeField]
+    
     float accelerationTimeHit = 0.005f;
 
     [SerializeField]
@@ -54,13 +54,16 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
     [SerializeField]
     float _timer = 3;
 
-    int _minAttackTime = 2;
-    int _maxAttackTime = 3;
+    [SerializeField]
+    float _minAttackTime = 2;
+    [SerializeField]
+    float _maxAttackTime = 3;
 
-    int _minIdleTime = 2;
-    int _maxIdleTime = 4;
+    [SerializeField]
+    float _minIdleTime = 2;
+    [SerializeField]
+    float _maxIdleTime = 4;
 
-    Vector3 _currentPosition;
     [SerializeField]
     float _distanceToTravel;
     [SerializeField]
@@ -297,8 +300,6 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                     Debug.Log("SE APLICO FUERZA");
                 }
             }
-
-
         }
 
         _destroyParticlesPS.Play();

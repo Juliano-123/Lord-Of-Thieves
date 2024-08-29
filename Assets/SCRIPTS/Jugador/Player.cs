@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IReseteable
     //components PROPIOS
     BoxCollider2D _boxCollider;
     GameObject _imagen;
-    Animator _animator;
+    public Animator _animator;
     SpriteRenderer _spriteRenderer;
     GameObject _rotatePoint;
     GameObject _mira;
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, IReseteable
     [SerializeField]
     AudioSource audioJugador;
     [SerializeField]
-    AudioClip salto, dashlisto, dasheando;
+    AudioClip salto, hurt, dashlisto, dasheando;
 
 
     GameObject _ultimoObjetoDestruidoVertical = null;
@@ -375,16 +375,41 @@ public class Player : MonoBehaviour, IReseteable
         _jugadorGolpeado = true;
         _timerJugadorGolpeado = 0;
         HealthManager.Instance.SetCurrentHealth(-1);
+        Explotar();
         ComboCounter.Instance.ResetComboCount();
         _saltosRealizados = _saltosMaximos;
         _jumpSoltado = false;
-        _boxCollider.isTrigger = true;
         velocity.y = _maxFallVelocity;
     }
 
+    void Explotar()
+    {
+        Collider2D[] inExplosionRadius = null;
+        float explosionRadius = 8f;
+        float explosionForceMulti = 800f;
 
+        inExplosionRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
-    void HandleCollisions()
+        foreach (Collider2D colliderDetectado in inExplosionRadius)
+        {
+            Rigidbody2D rigidbody2DDetectado = colliderDetectado.GetComponent<Rigidbody2D>();
+
+            if (rigidbody2DDetectado != null)
+            {
+                Vector2 distancia = colliderDetectado.transform.position - transform.position;
+
+                if (distancia.sqrMagnitude > 0)
+                {
+                    rigidbody2DDetectado.velocity = Vector3.zero;
+                    float explosionForce = explosionForceMulti;
+                    rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
+                    Debug.Log("SE APLICO FUERZA");
+                }
+            }
+        }
+    }
+
+        void HandleCollisions()
     {
         //MANEJAR CASOS DE COLISION CON PISO
         if (_controller.collisions.hayGolpe)
@@ -397,7 +422,6 @@ public class Player : MonoBehaviour, IReseteable
                     //_dustTrailPS.Play();
                     _saltosRealizados = 0;
                     _dashTotales = 0;
-                    _boxCollider.isTrigger = false;
                     ComboCounter.Instance.ResetComboCount();
                     tiempoCoyote = 0.15f;
                     _isJumping = false;
@@ -434,12 +458,14 @@ public class Player : MonoBehaviour, IReseteable
 
                                     Rebotar();
                                     _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
-                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
+                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.05f);
                                 }
                             }
                             else
                             {
                                 GolpeadoArriba = true;
+                                audioJugador.clip = hurt;
+                                audioJugador.Play();
                                 RecibeGolpe();
                                 Debug.Log("Bajo vida por Vertical");
                             }
@@ -465,7 +491,7 @@ public class Player : MonoBehaviour, IReseteable
                                     Rebotar();
 
                                     _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
-                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.1f);
+                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.05f);
                                 }
                             }
                             else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != _ultimoObjetoDestruidoVertical)
@@ -479,6 +505,8 @@ public class Player : MonoBehaviour, IReseteable
                                     GolpeadoDerecha = true;
                                 }
 
+                                audioJugador.clip = hurt;
+                                audioJugador.Play();
                                 RecibeGolpe();
                                 Debug.Log("Bajo vida por horizontal");
                             }
@@ -504,8 +532,6 @@ public class Player : MonoBehaviour, IReseteable
         GolpeadoArriba = false;
         GolpeadoDerecha = false;
         GolpeadoIzquierda = false;
-        _boxCollider.isTrigger = false;
-        _detectorColisiones.enemigos.Reset();
     }
 
 
@@ -657,8 +683,12 @@ public class Player : MonoBehaviour, IReseteable
     public void Resetear()
     {
         transform.position = new Vector3(-10, 1.5f, 0);
+        audioJugador.Stop();
+        _detectorColisiones.enemigos.Reset();
+        ResetUltimosEnemigosGolpeados();
         ResetJugadorGolpeado();
     }
+
 }
 
 

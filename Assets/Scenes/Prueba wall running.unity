@@ -3323,8 +3323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _contadorMostros: {fileID: 1746527685}
-  _mostrosTotales: 20
   _jugador: {fileID: 662141466}
+  _jugadorAnimator: {fileID: 318420655}
   _objetoMounstruo: {fileID: 7566053585100691637, guid: 25d7db95c35e86940b80498c6eb70ff9, type: 3}
   _lugaresSpawn:
   - {fileID: 1361797535}
@@ -3334,6 +3334,12 @@ MonoBehaviour:
   - {fileID: 1878039341}
   - {fileID: 1591570113}
   _youWinScript: {fileID: 503199268}
+  _rotationIncrease: 6
+  _newYPosition: 0
+  _positionUpdateInterval: 0.001
+  _intervalDecrease: 1
+  _audioJugador: {fileID: 662141475}
+  _winSound: {fileID: 8300000, guid: 1a6439f84a0232c45acecfb456d6626c, type: 3}
 --- !u!4 &188953684
 Transform:
   m_ObjectHideFlags: 0
@@ -10225,6 +10231,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 653960017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &318420655 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5467225910893788199, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+  m_PrefabInstance: {fileID: 2011363165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &321888452
 GameObject:
   m_ObjectHideFlags: 0
@@ -21820,6 +21831,11 @@ GameObject:
 --- !u!4 &662141474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509893951655556480, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
+  m_PrefabInstance: {fileID: 2011363165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &662141475 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5251490190843771179, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
   m_PrefabInstance: {fileID: 2011363165}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &664328172
@@ -67147,7 +67163,7 @@ Transform:
   m_GameObject: {fileID: 1872451369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.000001, y: 1.6599998, z: -10}
+  m_LocalPosition: {x: -10.000001, y: 0.553, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69776,7 +69792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509893951655556480, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: 1.003
       objectReference: {fileID: 0}
     - target: {fileID: 509893951655556480, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69811,13 +69827,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: _healthManager
+      propertyPath: hurt
       value: 
-      objectReference: {fileID: 487430441}
-    - target: {fileID: 1639946243279833541, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
-      propertyPath: _maxJumpHeight
-      value: 4
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: a35a88fee285e1e4087fb31bd65e50ff, type: 3}
     - target: {fileID: 2228606236485844639, guid: 0ba9d95b709b1bb4bb86d7a01687dff6, type: 3}
       propertyPath: _maincam
       value: 

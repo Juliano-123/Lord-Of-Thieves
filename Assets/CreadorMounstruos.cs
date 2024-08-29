@@ -14,9 +14,11 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     int _mostrosFaltaDestruir;
     int _mostrosCurrentWave;
 
-
     [SerializeField]
     public GameObject _jugador;
+
+    [SerializeField]
+    Animator _jugadorAnimator;
 
     [SerializeField]
     GameObject _objetoMounstruo;
@@ -31,12 +33,36 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     YouWinScript _youWinScript;
 
 
+    bool _jugadorFestejando = false;
+
+    float _newRotation = 0;
+
+    [SerializeField]
+    float _rotationIncrease = 7f;
+    [SerializeField]
+    float _newYPosition = 0;
+
+    [SerializeField]
+    float _positionUpdateInterval = 0.001f;
+
+    [SerializeField]
+    float _intervalDecrease = 2f;
+
+    float _firstYPosition = 0;
+
+    [SerializeField]
+    AudioSource _audioJugador;
+    [SerializeField]
+    AudioClip _winSound;
+
+
     void Awake()
     {
         _contadorMostros.text = _mostrosTotales.ToString();
         _currentWave = 1;
         _mostrosFaltaSpawnear = _mostrosTotales;
         _mostrosFaltaDestruir = _mostrosTotales;
+        _jugadorFestejando = false;
 
     }
 
@@ -69,18 +95,18 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
                 _mostrosCurrentWave += 1;
                 break;
 
-            case 4:
-                SpawnearMostros(_mostrosCurrentWave);
-                _mostrosCurrentWave += 1;
-                break;
+            //case 4:
+            //    SpawnearMostros(_mostrosCurrentWave);
+            //    _mostrosCurrentWave += 1;
+            //    break;
 
-            case 5:
-                SpawnearMostros(_mostrosCurrentWave);
-                break;
+            //case 5:
+            //    SpawnearMostros(_mostrosCurrentWave);
+            //    break;
 
-            case 6:
-                SpawnearMostros(_mostrosCurrentWave);
-                break;
+            //case 6:
+            //    SpawnearMostros(_mostrosCurrentWave);
+            //    break;
 
         }
 
@@ -90,16 +116,22 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
             _currentWave = _previousWave + 1;
         }
 
-
-        if (_mostrosFaltaDestruir == 0)
+        if (_jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical != null)
         {
-            _youWinScript.gameObject.SetActive(true);
-            _jugador.SetActive(false);
-            gameObject.SetActive(false);
-            UIPersistantData.Instance.SetLevel(2);
+            if (_mostrosFaltaDestruir == 0 && _jugadorFestejando == false && _jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical.layer == 10)
+            {
+                _jugadorFestejando = true;
+                _jugadorAnimator.SetBool("Cayendo", false);
+                _jugadorAnimator.SetBool("Idle", true);
+                _jugador.GetComponent<Player>().enabled = false;
 
+                _newRotation = 0;
+                _firstYPosition = _jugador.transform.position.y;
+                _audioJugador.clip = _winSound;
+                _audioJugador.Play();
+                StartCoroutine(WinRoutine());
+            }
         }
-
     }
 
     void SpawnearMostros (int NdeMostros)
@@ -127,7 +159,40 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     }
 
 
+    IEnumerator WinRoutine()
+    {
 
+        while (_newRotation < 360)
+        {
+            _newRotation += _rotationIncrease;
+            _newYPosition = _newRotation / 100;
+            _positionUpdateInterval = _positionUpdateInterval / _intervalDecrease;
+            _jugador.transform.rotation = Quaternion.Euler(0, 0, _newRotation);
+            if (_newRotation <= 180)
+            {
+                _jugador.transform.position = new Vector3(_jugador.transform.position.x, _firstYPosition + _newYPosition, _jugador.transform.position.z);
+            }
+            else
+            {
+                _jugador.transform.position = new Vector3(_jugador.transform.position.x, _firstYPosition + 3.60f - _newYPosition, _jugador.transform.position.z);
+
+            }
+
+            yield return new WaitForSeconds(_positionUpdateInterval);
+        }
+
+        if (_newRotation >= 360)
+        {
+            _jugador.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        yield return new WaitForSeconds(1f);
+        _youWinScript.gameObject.SetActive(true);
+        _jugador.SetActive(false);
+        gameObject.SetActive(false);
+        UIPersistantData.Instance.SetLevel(2);
+        yield break;
+
+    }
 
 
     public int GetMostrosRestantes()

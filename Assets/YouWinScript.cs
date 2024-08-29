@@ -31,8 +31,9 @@ public class YouWinScript : MonoBehaviour
     public void ContinueButton()
     {
         Levels[UIPersistantData.Instance.GetLevel() - 1].SetActive(true);
-        _jugador.GetComponent<IReseteable>().Resetear();
         _jugador.SetActive(true);
+        _jugador.GetComponent<Player>().enabled = true;
+        _jugador.GetComponent<IReseteable>().Resetear();
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
