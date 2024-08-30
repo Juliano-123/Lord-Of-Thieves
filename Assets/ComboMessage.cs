@@ -47,7 +47,6 @@ public class ComboMessage : MonoBehaviour
     {
         while (transform.position.x < 200)
         {
-            Debug.Log("moviendoTransform corru");
             transform.Translate(new Vector3(1100, 0, 0) * Time.deltaTime);
             yield return null;
         }
@@ -59,7 +58,6 @@ public class ComboMessage : MonoBehaviour
             transform.Translate(new Vector3(-1100, 0, 0) * Time.deltaTime);
             yield return null;
         }
-        Debug.Log("termino la corru");
         yield break;
     }
 }

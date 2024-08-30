@@ -403,7 +403,6 @@ public class Player : MonoBehaviour, IReseteable
                     rigidbody2DDetectado.velocity = Vector3.zero;
                     float explosionForce = explosionForceMulti;
                     rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
-                    Debug.Log("SE APLICO FUERZA");
                 }
             }
         }
@@ -441,7 +440,7 @@ public class Player : MonoBehaviour, IReseteable
 
         if (_detectorColisiones.enemigos.hayGolpe)
         {
-            if (_detectorColisiones.enemigos.objetoGolpeadoVertical != null)
+            if (_detectorColisiones.enemigos.objetoGolpeadoVertical != null && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoVertical && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoVertical)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoVertical.tag)
                 {
@@ -450,16 +449,14 @@ public class Player : MonoBehaviour, IReseteable
                         {
                             if (_detectorColisiones.enemigos.below)
                             {
-                                if (_ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoVertical && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoVertical)
-                                {
-                                    _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<IGolpeable>().Golpear();
+                                _detectorColisiones.enemigos.objetoGolpeadoVertical.GetComponent<IGolpeable>().Golpear();
 
-                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
+                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
 
-                                    Rebotar();
-                                    _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
-                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.05f);
-                                }
+                                Rebotar();
+                                _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
+                                CancelInvoke(nameof(ResetUltimosEnemigosGolpeados));
+                                Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.2f);
                             }
                             else
                             {
@@ -473,7 +470,7 @@ public class Player : MonoBehaviour, IReseteable
                         break;
                 }
             }
-            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null)
+            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
                 {
@@ -482,19 +479,17 @@ public class Player : MonoBehaviour, IReseteable
                         {
                             if (_detectorColisiones.enemigos.edge == true)
                             {
-                                if (_ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
-                                {
-                                    _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<IGolpeable>().Golpear();
+                                _detectorColisiones.enemigos.objetoGolpeadoHorizontal.GetComponent<IGolpeable>().Golpear();
 
-                                    Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
+                                Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
 
-                                    Rebotar();
+                                Rebotar();
 
-                                    _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
-                                    Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.05f);
-                                }
+                                _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
+                                CancelInvoke(nameof(ResetUltimosEnemigosGolpeados));
+                                Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.2f);
                             }
-                            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != _ultimoObjetoDestruidoVertical)
+                            else
                             {
                                 if (_detectorColisiones.enemigos.left)
                                 {

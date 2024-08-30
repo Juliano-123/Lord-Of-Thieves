@@ -168,7 +168,6 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
                 {
                     float explosionForce = explosionForceMulti;
                     rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
-                    Debug.Log("SE APLICO FUERZA");
                 }
             }
 
@@ -223,6 +222,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
     {
         ComboCounter.Instance.AddComboCount();
         _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
+        Debug.Log("SONO GOLPE");
         _isHit = true;
     }
 

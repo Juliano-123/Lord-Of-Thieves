@@ -129,7 +129,6 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                 if (_timer < 0)
                 {
                     _isCalculatingAttack = true;
-                    Debug.Log("calcula attack");
 
                 }
                 else
@@ -137,7 +136,6 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                     _directionTowardsTarget = (new Vector3(transform.position.x, 0, 0) - new Vector3(_target.transform.position.x, 0, 0)).normalized;
                     _directionTowardsTarget.y = _retrocederSpeed;
                     MoveToTarget(_retrocederSpeed);
-                    Debug.Log("entro retrocede");
                 }
 
 
@@ -151,14 +149,12 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                 _isCalculatingAttack = false;
                 _rigidBody2D.velocity = Vector3.zero;
                 _timer = Random.RandomRange(_minAttackTime, _maxAttackTime);
-                Debug.Log("calculo attack");
             }
 
             if (_isAttacking == true)
             {
                 _directionTowardsTarget = (_positionToStrike - transform.position).normalized;
                 MoveToTarget(_attackSpeed);
-                Debug.Log("ataca");
                 if (_timer < 0)
                 {
                     _isAttacking = false;
@@ -297,7 +293,6 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                 {
                     float explosionForce = explosionForceMulti;
                     rigidbody2DDetectado.AddForce(distancia.normalized * explosionForce);
-                    Debug.Log("SE APLICO FUERZA");
                 }
             }
         }
@@ -310,6 +305,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
     {
         ComboCounter.Instance.AddComboCount();
         _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
+        Debug.Log("SONO GOLPE");
         _isHit = true;
     }
 

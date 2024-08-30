@@ -116,9 +116,11 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
             _currentWave = _previousWave + 1;
         }
 
-        if (_jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical != null)
+        if (_mostrosFaltaDestruir == 0)
         {
-            if (_mostrosFaltaDestruir == 0 && _jugadorFestejando == false && _jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical.layer == 10)
+            ComboCounter.Instance.ResetComboCount();
+
+            if (_jugadorFestejando == false && _jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical != null &&  _jugador.GetComponent<Controller2D>().collisions.objetoGolpeadoVertical.layer == 10)
             {
                 _jugadorFestejando = true;
                 _jugadorAnimator.SetBool("Cayendo", false);
@@ -132,6 +134,7 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
                 StartCoroutine(WinRoutine());
             }
         }
+
     }
 
     void SpawnearMostros (int NdeMostros)

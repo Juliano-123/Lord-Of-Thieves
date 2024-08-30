@@ -32,7 +32,6 @@ public class ComboCounter : MonoBehaviour
             if (transform.position.x < 200)
             {
                 transform.Translate(new Vector3(1100, 0, 0) * Time.deltaTime);
-                Debug.Log("MOVIENDO COMBO COUNTER");
             }
             _textoComboCounter.text = _comboCount.ToString() + "x Combo";
         }
