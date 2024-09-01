@@ -148,7 +148,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                 _isAttacking = true;
                 _isCalculatingAttack = false;
                 _rigidBody2D.velocity = Vector3.zero;
-                _timer = Random.RandomRange(_minAttackTime, _maxAttackTime);
+                _timer = Random.Range(_minAttackTime, _maxAttackTime);
             }
 
             if (_isAttacking == true)
@@ -158,7 +158,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
                 if (_timer < 0)
                 {
                     _isAttacking = false;
-                    _timer = Random.RandomRange(_minIdleTime, _maxIdleTime);
+                    _timer = Random.Range(_minIdleTime, _maxIdleTime);
                 }
             }
 
@@ -252,7 +252,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
         if (_spriteRenderer.color.a >= 1)
         {
             _boxCollider2D.enabled = true;
-            _timer = Random.RandomRange(_minIdleTime, _maxIdleTime);
+            _timer = Random.Range(_minIdleTime, _maxIdleTime);
             _isMoving = true;
             yield break;
         }

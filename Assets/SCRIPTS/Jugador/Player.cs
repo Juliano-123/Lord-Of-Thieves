@@ -52,10 +52,6 @@ public class Player : MonoBehaviour, IReseteable
 
     //Variables para golpeo
     bool _jugadorGolpeado = false;
-    bool GolpeadoIzquierda = false;
-    bool GolpeadoDerecha = false;
-    bool GolpeadoArriba = false;
-    bool GolpeadoAbajo = false;
     float _tiempoGolpeadoPiso = 0.8f;
     float _timerJugadorGolpeado = 1f;
 
@@ -373,6 +369,8 @@ public class Player : MonoBehaviour, IReseteable
     void RecibeGolpe()
     {
         _jugadorGolpeado = true;
+        audioJugador.clip = hurt;
+        audioJugador.Play();
         _timerJugadorGolpeado = 0;
         HealthManager.Instance.SetCurrentHealth(-1);
         Explotar();
@@ -460,9 +458,6 @@ public class Player : MonoBehaviour, IReseteable
                             }
                             else
                             {
-                                GolpeadoArriba = true;
-                                audioJugador.clip = hurt;
-                                audioJugador.Play();
                                 RecibeGolpe();
                                 Debug.Log("Bajo vida por Vertical");
                             }
@@ -491,17 +486,6 @@ public class Player : MonoBehaviour, IReseteable
                             }
                             else
                             {
-                                if (_detectorColisiones.enemigos.left)
-                                {
-                                    GolpeadoIzquierda = true;
-                                }
-                                else
-                                {
-                                    GolpeadoDerecha = true;
-                                }
-
-                                audioJugador.clip = hurt;
-                                audioJugador.Play();
                                 RecibeGolpe();
                                 Debug.Log("Bajo vida por horizontal");
                             }
@@ -523,10 +507,6 @@ public class Player : MonoBehaviour, IReseteable
     void ResetJugadorGolpeado()
     {
         _jugadorGolpeado = false;
-        GolpeadoAbajo = false;
-        GolpeadoArriba = false;
-        GolpeadoDerecha = false;
-        GolpeadoIzquierda = false;
     }
 
 
@@ -678,6 +658,7 @@ public class Player : MonoBehaviour, IReseteable
     public void Resetear()
     {
         transform.position = new Vector3(-10, 1.5f, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         audioJugador.Stop();
         _detectorColisiones.enemigos.Reset();
         ResetUltimosEnemigosGolpeados();

@@ -12,7 +12,6 @@ public class ResetConfiner : MonoBehaviour
     [SerializeField]
     SpriteRenderer _spriteRendererCheckDeCamara;
 
-    bool _reset = false;
 
     private void Awake()
     {
@@ -32,10 +31,9 @@ public class ResetConfiner : MonoBehaviour
     private void Update()
     {
 
-        if (_spriteRendererCheckDeCamara.isVisible == true)
-        {
+
             ResetCameraConfiner();
-        }
+
     }
 
 

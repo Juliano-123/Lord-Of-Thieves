@@ -46,7 +46,7 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     float _positionUpdateInterval = 0.001f;
 
     [SerializeField]
-    float _intervalDecrease = 2f;
+    float _newRotationMultiplier = 2f;
 
     float _firstYPosition = 0;
 
@@ -168,8 +168,8 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
         while (_newRotation < 360)
         {
             _newRotation += _rotationIncrease;
+            _rotationIncrease = _rotationIncrease * _newRotationMultiplier;
             _newYPosition = _newRotation / 100;
-            _positionUpdateInterval = _positionUpdateInterval / _intervalDecrease;
             _jugador.transform.rotation = Quaternion.Euler(0, 0, _newRotation);
             if (_newRotation <= 180)
             {

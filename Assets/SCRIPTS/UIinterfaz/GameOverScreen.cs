@@ -39,8 +39,9 @@ public class GameOverScreen : MonoBehaviour
         }
 
         Levels[0].SetActive(true);
-        _jugador.GetComponent<IReseteable>().Resetear();
         _jugador.SetActive(true);
+        _jugador.GetComponent<Player>().enabled = true;
+        _jugador.GetComponent<IReseteable>().Resetear();
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
