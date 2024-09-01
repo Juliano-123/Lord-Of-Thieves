@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruibles
 {
@@ -55,6 +56,10 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
     [SerializeField]
     AudioClip _winSound;
 
+    [SerializeField]
+    EventSystem _eventSystem;
+    [SerializeField]
+    GameObject _continueButton;
 
     void Awake()
     {
@@ -189,6 +194,7 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
             _jugador.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         yield return new WaitForSeconds(1f);
+        _eventSystem.SetSelectedGameObject(_continueButton);
         _youWinScript.gameObject.SetActive(true);
         _jugador.SetActive(false);
         gameObject.SetActive(false);

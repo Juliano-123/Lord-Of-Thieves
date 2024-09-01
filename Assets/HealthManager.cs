@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -60,6 +61,11 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField]
     float _maxDieHeight = 5;
+
+    [SerializeField]
+    EventSystem _eventSystem;
+    [SerializeField]
+    GameObject _restartButton;
 
 
     private void Awake()
@@ -146,6 +152,7 @@ public class HealthManager : MonoBehaviour
             }
             yield return new WaitForSeconds(_positionUpdateInterval);
         }
+        _eventSystem.SetSelectedGameObject(_restartButton);
         _gameOverScreen.gameObject.SetActive(true);
         _jugador.SetActive(false);
         yield break;
