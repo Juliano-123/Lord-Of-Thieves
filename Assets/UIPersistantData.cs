@@ -14,7 +14,7 @@ public class UIPersistantData : MonoBehaviour
     private int PuntosTotales = 0;
 
     [SerializeField]
-    private int Level = 1;
+    private int Stage = 1;
     [SerializeField]
     private int MostrosStompeados = 0;
     [SerializeField]
@@ -23,7 +23,7 @@ public class UIPersistantData : MonoBehaviour
     public int GetMaxHealth() { return MaxHealth; }
     public int GetCurrentHealth() {  return CurrentHealth; }
     public int GetPuntosTotales() {  return PuntosTotales; }
-    public int GetLevel() { return Level; }
+    public int GetStage() { return Stage; }
     public int GetMostrosStompeados() { return MostrosStompeados; }
     public int GetMostrosFaltaDestruir() { return MostrosFaltaDestruir; }
 
@@ -31,7 +31,7 @@ public class UIPersistantData : MonoBehaviour
     public void SetCurrentHealth(int currentHealth) { CurrentHealth = currentHealth; }
     public void SetPuntosTotales(int puntosTotales) { PuntosTotales = puntosTotales; }
     public void AddPuntosTotales(int PuntosAgregar) { PuntosTotales += PuntosAgregar; }
-    public void SetLevel(int level) { Level = level; }
+    public void SetStage(int stage) { Stage = stage; }
     public void SetMostrosStompeados (int mostrosStompeados) { MostrosStompeados = mostrosStompeados; }
     public void SetMostrosFaltaDestruir(int mostrosfaltadestruir) { MostrosFaltaDestruir = mostrosfaltadestruir; }
 
@@ -41,7 +41,7 @@ public class UIPersistantData : MonoBehaviour
         MaxHealth = 3;
         CurrentHealth = 3;
         PuntosTotales = 0;
-        Level = 1;
+        Stage = 1;
         MostrosStompeados = 0;
         MostrosFaltaDestruir = 0;
     }

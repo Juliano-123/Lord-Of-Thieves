@@ -22,6 +22,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
     [SerializeField]
     GameObject _target;
 
+    GameObject _imagen;
     SpriteRenderer _spriteRenderer;
     Rigidbody2D _rigidBody2D;
     BoxCollider2D _boxCollider2D;
@@ -79,9 +80,12 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
 
     void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+
+        _imagen = transform.Find("Imagen").gameObject;
+        _spriteRenderer = _imagen.GetComponent<SpriteRenderer>();
+
 
         //COMPONENTES PROPIOS CHILD
         _destroyParticlesObject = transform.Find("DestroyParticles").gameObject;
@@ -230,7 +234,7 @@ public class Enem2_Skull : MonoBehaviour, IExplotable, IGolpeable, IJugadorSetea
             _spriteRenderer.flipY = false;
         }
 
-        transform.right = _target.transform.position - transform.position;
+        _imagen.transform.right = _target.transform.position - transform.position;
     }
 
 

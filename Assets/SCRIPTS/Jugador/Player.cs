@@ -46,8 +46,7 @@ public class Player : MonoBehaviour, IReseteable
     AudioClip salto, hurt, dashlisto, dasheando;
 
 
-    GameObject _ultimoObjetoDestruidoVertical = null;
-    GameObject _ultimoObjetoDestruidoHorizontal = null;
+    GameObject[] _ultimosObjetosGolpeados = new GameObject[10];
 
 
     //Variables para golpeo
@@ -438,7 +437,7 @@ public class Player : MonoBehaviour, IReseteable
 
         if (_detectorColisiones.enemigos.hayGolpe)
         {
-            if (_detectorColisiones.enemigos.objetoGolpeadoVertical != null && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoVertical && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoVertical)
+            if (_detectorColisiones.enemigos.objetoGolpeadoVertical != null && CheckSiYaSeGolpeo(_detectorColisiones.enemigos.objetoGolpeadoVertical) == false)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoVertical.tag)
                 {
@@ -452,7 +451,14 @@ public class Player : MonoBehaviour, IReseteable
                                 Debug.Log("DESTRUIDO POR DETECTORCOLISIONE VERTICAL DISTINTO DE NULL Y TAG ENEMIGO Y BELOW");
 
                                 Rebotar();
-                                _ultimoObjetoDestruidoVertical = _detectorColisiones.enemigos.objetoGolpeadoVertical;
+                                for (int i = 0; i < _ultimosObjetosGolpeados.Length; i++)
+                                {
+                                    if (_ultimosObjetosGolpeados[i] == null)
+                                    {
+                                        _ultimosObjetosGolpeados[i] = _detectorColisiones.enemigos.objetoGolpeadoVertical;
+                                        break;
+                                    }
+                                }
                                 CancelInvoke(nameof(ResetUltimosEnemigosGolpeados));
                                 Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.2f);
                             }
@@ -465,7 +471,7 @@ public class Player : MonoBehaviour, IReseteable
                         break;
                 }
             }
-            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null && _ultimoObjetoDestruidoHorizontal != _detectorColisiones.enemigos.objetoGolpeadoHorizontal && _ultimoObjetoDestruidoVertical != _detectorColisiones.enemigos.objetoGolpeadoHorizontal)
+            else if (_detectorColisiones.enemigos.objetoGolpeadoHorizontal != null && CheckSiYaSeGolpeo(_detectorColisiones.enemigos.objetoGolpeadoHorizontal) == false)
             {
                 switch (_detectorColisiones.enemigos.objetoGolpeadoHorizontal.tag)
                 {
@@ -479,8 +485,15 @@ public class Player : MonoBehaviour, IReseteable
                                 Debug.Log("DESTRUIDO POR DETECTORCOLISIONEs HORIZONAL DISTINTO DE NULL Y TAG ENEMIGO Y EDGE");
 
                                 Rebotar();
+                                for (int i = 0; i < _ultimosObjetosGolpeados.Length; i++)
+                                {
+                                    if (_ultimosObjetosGolpeados[i] == null)
+                                    {
+                                        _ultimosObjetosGolpeados[i] = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
+                                        break;
+                                    }
+                                }
 
-                                _ultimoObjetoDestruidoHorizontal = _detectorColisiones.enemigos.objetoGolpeadoHorizontal;
                                 CancelInvoke(nameof(ResetUltimosEnemigosGolpeados));
                                 Invoke(nameof(ResetUltimosEnemigosGolpeados), 0.2f);
                             }
@@ -500,8 +513,21 @@ public class Player : MonoBehaviour, IReseteable
 
     void ResetUltimosEnemigosGolpeados()
     {
-        _ultimoObjetoDestruidoHorizontal = null;
-        _ultimoObjetoDestruidoVertical = null;
+        _ultimosObjetosGolpeados = new GameObject[10];
+    }
+
+    bool CheckSiYaSeGolpeo(GameObject EnemigoActual)
+    {
+        for (int i = 0; i < _ultimosObjetosGolpeados.Length; i++)
+        {
+            if (_ultimosObjetosGolpeados[i] == EnemigoActual)
+            {
+                return true;
+            }
+
+        }
+        return false;
+
     }
 
     void ResetJugadorGolpeado()

@@ -198,7 +198,7 @@ public class CreadorMounstruos : MonoBehaviour, IRestarMostros, IMostrosDestruib
         _youWinScript.gameObject.SetActive(true);
         _jugador.SetActive(false);
         gameObject.SetActive(false);
-        UIPersistantData.Instance.SetLevel(2);
+        UIPersistantData.Instance.SetStage(2);
         yield break;
 
     }

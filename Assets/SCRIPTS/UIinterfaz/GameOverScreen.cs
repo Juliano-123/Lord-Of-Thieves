@@ -28,7 +28,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void RestartButton()
     {
-        Levels[UIPersistantData.Instance.GetLevel() - 1].GetComponent<IMostrosDestruibles>().DestruirMostros();
+        Levels[UIPersistantData.Instance.GetStage() - 1].GetComponent<IMostrosDestruibles>().DestruirMostros();
 
         UIPersistantData.Instance.ResetAllData();
         HealthManager.Instance.ResetHealth();
