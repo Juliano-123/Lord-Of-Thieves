@@ -57,6 +57,7 @@ public class DetectorColisiones : RayCastController
 
                 enemigos.hayGolpe = true;
                 enemigos.objetoGolpeadoHorizontal = hitDerecha.transform.gameObject;
+                enemigos.puntoGolpe = hitDerecha.point;
                 enemigos.right = true;
             }
 
@@ -75,6 +76,7 @@ public class DetectorColisiones : RayCastController
 
                 enemigos.hayGolpe = true;
                 enemigos.objetoGolpeadoHorizontal = hitIzquierda.transform.gameObject;
+                enemigos.puntoGolpe = hitIzquierda.point;
                 enemigos.left = true;
             }
         }
@@ -100,6 +102,7 @@ public class DetectorColisiones : RayCastController
             {
                 enemigos.hayGolpe = true;
                 enemigos.objetoGolpeadoVertical = hitArriba.transform.gameObject;
+                enemigos.puntoGolpe = hitArriba.point;
                 enemigos.above = true;
             }
 
@@ -107,6 +110,7 @@ public class DetectorColisiones : RayCastController
             {
                 enemigos.hayGolpe = true;
                 enemigos.objetoGolpeadoVertical = hitAbajo.transform.gameObject;
+                enemigos.puntoGolpe = hitAbajo.point;
                 enemigos.below = true;
             }
 
@@ -123,6 +127,7 @@ public class DetectorColisiones : RayCastController
         public GameObject objetoGolpeadoVertical;
         public int directionX;
         public int directionY;
+        public Vector2 puntoGolpe;
 
         public void Reset()
         {
@@ -132,6 +137,7 @@ public class DetectorColisiones : RayCastController
             edge = false;
             objetoGolpeadoHorizontal = null;
             objetoGolpeadoVertical = null;
+            puntoGolpe = Vector2.zero;
         }
     }
 }

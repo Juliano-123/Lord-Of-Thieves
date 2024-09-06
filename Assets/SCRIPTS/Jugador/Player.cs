@@ -35,6 +35,8 @@ public class Player : MonoBehaviour, IReseteable
     ParticleSystem _dustTrailPS;
     GameObject _jumpParticlesObject;
     ParticleSystem _jumpParticlesPS;
+    [SerializeField]
+    GameObject _impactPS;
 
 
 
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour, IReseteable
         _dustTrailPS = _dustTrailObject.GetComponent<ParticleSystem>();
         _jumpParticlesObject = transform.Find("JumpParticles").gameObject;
         _jumpParticlesPS = _jumpParticlesObject.GetComponent<ParticleSystem>();
+
 
 
 
@@ -362,6 +365,7 @@ public class Player : MonoBehaviour, IReseteable
         //falso para que no baje la velocidad por soltar jump
         _isJumping = false;
         velocity.y = _reboteVelocity;
+        Instantiate(_impactPS, _detectorColisiones.enemigos.puntoGolpe, Quaternion.identity);
         _impulseSource.GenerateImpulseWithForce(_shakeForce);
     }
 
@@ -685,6 +689,7 @@ public class Player : MonoBehaviour, IReseteable
     {
         transform.position = new Vector3(-10, 1.5f, 0);
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        _jumpApretado = 0;
         audioJugador.Stop();
         _detectorColisiones.enemigos.Reset();
         ResetUltimosEnemigosGolpeados();
