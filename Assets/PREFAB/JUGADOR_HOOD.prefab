@@ -9949,6 +9949,7 @@ MonoBehaviour:
   collisionPiso:
     serializedVersion: 2
     m_Bits: 1024
+  _impactPS: {fileID: 4697263331823098862, guid: 43d8706f247050243a99d023fc24f8a8, type: 3}
   audioJugador: {fileID: 5251490190843771179}
   salto: {fileID: 8300000, guid: 79aedd4299eab8b40b2f8b4b97d90e09, type: 3}
   hurt: {fileID: 8300000, guid: a35a88fee285e1e4087fb31bd65e50ff, type: 3}
