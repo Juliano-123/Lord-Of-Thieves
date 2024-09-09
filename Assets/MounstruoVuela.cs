@@ -45,6 +45,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     BoxCollider2D _boxCollider2D;
+    DamageFlash _damageFlash;
 
     //COMPONENTES CHILD
     GameObject _destroyParticlesObject;
@@ -57,6 +58,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        _damageFlash = GetComponent<DamageFlash>();
 
         //COMPONENTES PROPIOS CHILD
         _destroyParticlesObject = transform.Find("DestroyParticles").gameObject;
@@ -222,6 +224,7 @@ public class MounstruoVuela : MonoBehaviour, IExplotable, IGolpeable, IJugadorSe
     {
         ComboCounter.Instance.AddComboCount();
         _audioMostro.clip = _enemigoStompeado; _audioMostro.Play();
+        _damageFlash.CallDamageFlash();
         Debug.Log("SONO GOLPE");
         _isHit = true;
     }

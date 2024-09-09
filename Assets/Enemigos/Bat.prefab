@@ -4844,6 +4844,7 @@ GameObject:
   - component: {fileID: 7325220945623383614}
   - component: {fileID: 2930377070098074673}
   - component: {fileID: 1149401001930480974}
+  - component: {fileID: 6449942870044290552}
   m_Layer: 9
   m_Name: Bat
   m_TagString: Enemigo
@@ -5127,3 +5128,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6449942870044290552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566053585100691637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc657192f4083242906ed08205ca2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
+  _spriteRenderer: {fileID: 7790645864026012871}
+  _material: {fileID: 2100000, guid: b27c30e3687893a4d8cd0e1336c62ae5, type: 2}
