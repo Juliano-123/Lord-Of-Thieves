@@ -11,10 +11,13 @@ public class DamageFlash : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer _spriteRenderer;
-    [SerializeField]
     Material _material;
 
-    Coroutine _damageFlashCoroutine;
+
+    private void Awake()
+    {
+        _material = _spriteRenderer.material;
+    }
 
     IEnumerator DamageFlasher()
     {
@@ -28,7 +31,7 @@ public class DamageFlash : MonoBehaviour
 
             currentFlashAmount = Mathf.Lerp(1f, 0, (elapsedTime / _flashTime));
             _material.SetFloat("_FlashAmount", currentFlashAmount);
-            Debug.Log("currentflashamount seteado: " + currentFlashAmount);
+            yield return null;
         }
 
         yield break;
